@@ -8,12 +8,12 @@ image: /site_images/CBW_Metagenome_icon.jpg
 home: https://bioinformaticsdotca.github.io/MIC_2023
 ---
 
-||**Wednesday, July 5** | | **Thursday, July 6** | | **Friday, July 7** | 
+||Wednesday, July 5 | | Thursday, July 6 | | Friday, July 7 | 
 |:---: | :---: | :---: | :---: | :---: | :---: |
 | Time (Mountain) | Module | Time (Mountain) | Module | Time (Mountain) | Module |
 |	8:30	|	<font color="green">Arrivals & Check-in</font>	|	8:30	|	<font color="green">Arrivals</font> 	|	8:30	|	<font color="green">Arrivals</font> 	|
-|	9:00	|	Module 1: Introduction	|	9:00	|	<font color="purple">Module 4: Intro to MGS Lecture</font> 	|	9:15	|	<font color="purple">Module 6: Metatranscriptomics</font> 	|
-| 9:30 | Student Intros 1 | | | | | 
+|	9:00	|	<font color="purple">Module 1: Introduction</font>	|	9:00	|	<font color="purple">Module 4: Intro to MGS Lecture</font> 	|	9:15	|	<font color="purple">Module 6: Metatranscriptomics</font> 	|
+| 9:30 | <font color="purple">Student Intros 1</font> | | | | | 
 | 10:00 | <font color="purple">Cloud Computing</font> | | | | |
 |	10:30	|	<font color="green">Break (15min)</font>	|	10:15	|	<font color="green">Break (15min)</font>	|	10:15	|	<font color="green">Break (15min)</font>	|
 | 10:45 | <font color="purple">Module 2 Lecture</font> | 10:30 | <font color="blue">Module 4 Lab</font> | 10:30 | <font color="blue">Module 6 Lab</font> 
