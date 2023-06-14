@@ -8,6 +8,8 @@ image: /site_images/CBW_Metagenome_icon.jpg
 home: https://bioinformaticsdotca.github.io/MIC_2023
 ---
 
+### Please Note
+To ensure everyone can smoothly connect to AWS during the workshop, we will be hosting a virtual office hour on **Tuesday, July 4, 2023** from 2-3pm MST. It will use a drop-in format and we highly recommend attending. A Zoom link will be sent out shortly beforehand.  
 
 | Time (Mountain) |                                      Wednesday, July 5                                      | Time (Mountain) |                                Thursday, July 6                                 | Time (Mountain) |                                  Friday, July 7                                   |
 | :-------------: | :-----------------------------------------------------------------------------------------: | :-------------: | :-----------------------------------------------------------------------------: | :-------------: | :-------------------------------------------------------------------------------: |
