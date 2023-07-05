@@ -1,3 +1,14 @@
+---
+layout: tutorial_page
+permalink: /MIC_2023_Module2_answers
+title: CBW-IMPACTT Microbiome Analysis 2023
+header1: Workshop Pages for Students
+header2: CBW-IMPACTT Microbiome Analysis Module 2 Lab Answers
+image: /site_images/CBW_Metagenome_icon.jpg
+home: https://bioinformaticsdotca.github.io/
+---
+
+
 **Question 1: How many samples are there?**
 
 We have 12 samples. The raw data folder contains one fastq.gz file for each set of the forward and reverse sequences (labelled R1 and R2, respectively) for each of the samples (BBxxx).
