@@ -78,7 +78,7 @@ fasterq-dump.
 | KGHS_9-0    | SRR19237608 | 1116676                       | 2x150       | 2x450MB   |
 | KGHS_15-0   | SRR19237617 | 3701058                       | 2x150       | 2x1.3GB   |
 
-<img src="images/media/image1.png" style="width:6.5in;height:5.11042in"
+<img src="https://github.com/bioinformaticsdotca/MIC_2023/blob/main/module5/images/media/image1.png" style="width:6.5in;height:5.11042in"
 alt="A screenshot of a computer Description automatically generated with medium confidence" />
 
 **Figure 1**: Overview of the assembly, binning, and annotation
@@ -1168,7 +1168,7 @@ assemblies.* Bioinformatics, 2013. **29**(8): p. 1072-1075.
 
 3\. Peng, Y., et al., *IDBA-UD: a de novo assembler for single-cell and
 metagenomic sequencing data with highly uneven depth.* Bioinformatics,
-2012. **28**(11): p. 1420-1428.
+1.    **28**(11): p. 1420-1428.
 
 4\. Li, D., et al., *MEGAHIT: an ultra-fast single-node solution for
 large and complex metagenomics assembly via succinct de Bruijn graph.*
