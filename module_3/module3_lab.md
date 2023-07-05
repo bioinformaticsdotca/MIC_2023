@@ -94,11 +94,6 @@ qiime diversity alpha-rarefaction \
     --o-visualization rarefaction_curves.qzv
 ```
 
-Note in the last session if you were not able to complete some steps, you can use the files from the CourseData folder by adding this to the d
-
-``` ~/CourseData/MIC_data/16S_data/all_output/```
-
-
 **Remember that you can look at all of the files in your ```workspace``` folder by going to http://##.uhn-hpc.ca/ (you might need to refresh the page regularly!)**
 
 **Question 1: What is a good rarefaction depth for diversity analysis?**
