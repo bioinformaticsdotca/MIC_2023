@@ -104,7 +104,7 @@ paired end FASTQ files as input and generates a number of output files,
 including the scaffolds.fasta file containing all scaffold sequences for
 the metagenomic assembly.
 
-**WARNING: DO NOT RUN MetaSPAdes!!!**
+**WARNING: DO NOT RUN MetaSPAdes!**
 
 > *Notes: For a dataset this size (~300MB – 1.3GB per read1.fastq and
 > read2.fastq), with 28 threads, MetaSPAdes ran for 17 – 27 minutes
@@ -217,13 +217,13 @@ Example output:
 <span class="mark">less
 /bulk/IMCshared_bulk/kevin/module5/metagenome_assemblies/KGHS_1-0/quast_scaffolds/transposed_report.tsv</span>
 
-**Table 2:** The QUAST evaluation metrics results for contigs.fasta and
+**Table 2:** QUAST evaluation metrics for contigs.fasta and
 scaffolds.fasta
 
-| Assembly  | Number of contigs | Largest contig | Total length | GC (%) | N50   | \# N's per 100 kbp |
+| Assembly  | Number of Contigs | Largest Contig | Total Length | GC (%) | N50   | \# N's per 100 kbp |
 |-----------|-------------------|----------------|--------------|--------|-------|--------------------|
-| contigs   | 29757             | 256891         | 5998229      | 36.61  | 28084 | 0                  |
-| scaffolds | 29708             | 256891         | 6021946      | 36.64  | 29877 | 33.54              |
+| Contigs   | 29757             | 256891         | 5998229      | 36.61  | 28084 | 0                  |
+| Scaffolds | 29708             | 256891         | 6021946      | 36.64  | 29877 | 33.54              |
 
 <u>Step 1c: Filter scaffolds \<1500 nt and evaluate change in assembly
 quality using seqkit</u>
@@ -335,8 +335,9 @@ sample have to be mapped to the assembled metagenome (1500 nt+ scaffolds
 only). We used BWA\[8\] and samtools\[9\] to map the reads back to the
 filtered metagenome.
 
-**WARNING: DO NOT RUN BWA mem or samtools!!!** *Note: The mapping step
-takes a few minutes using 14 threads.*
+**WARNING: DO NOT RUN BWA mem or samtools**
+
+> *The mapping step takes a few minutes using 14 threads.*
 
 Example commands for sample KGHS_1-0:
 
@@ -367,7 +368,7 @@ filtered_metagenomes/KGHS_1-0/KGHS_1-0.sam</span>
 
 <span class="mark">conda activate samtools_env</span>
 
-**\# Sort the sam file and conver to bam using samtools.**
+**\# Sort the sam file and convert to bam using samtools.**
 
 <span class="mark">samtools sort -@ 4 -O BAM -o
 filtered_metagenomes/KGHS_1-0/KGHS_1-0.bam
@@ -406,7 +407,7 @@ output/filtered_metagenomes/KGHS_1-0/KGHS_1-0.bam</span>
 <span class="mark">mkdir -p
 initial_binning/KGHS_1-0/working_dir/metabat2</span> 
 
-**\# Run metabat on the filtered scaffolds using the metabat2 depth of
+**\# Run metabat2 on the filtered scaffolds using the metabat2 depth of
 coverage file.**
 
 <span class="mark">metabat2 -i
@@ -428,7 +429,9 @@ initial_binning/KGHS_1-0/metabat2</span>
 
 **Bin length-filtered scaffolds using MaxBin2.**
 
-**\# Activate the metabat2 conda environment.**
+**\# Activate the metabat2 conda environment for running the
+jgi_summarize_bam_contig_depths program from the metabat2 software to
+generate the depth of coverage file for maxbin2.**
 
 <span class="mark">conda activate metabat2_env</span>
 
@@ -470,8 +473,8 @@ abundance list.**
 initial_binning/KGHS_1-0/working_dir/maxbin2/KGHS_1-0_bin -abund_list
 initial_binning/KGHS_1-0/KGHS_1-0_maxbin2_abund_list.txt</span>
 
-**\# Create the maxbins2 output directory so we can rename the bins so
-metawrap can use them as input.**
+**\# Create the maxbins2 output directory so we can rename the bins;
+this is needed in order for metawrap to use them as input.**
 
 <span class="mark">mkdir -p initial_binning/KGHS_1-0/maxbin2</span>
 
@@ -534,14 +537,14 @@ refine your bins into higher quality bins.
 
 **metaWRAP bin_refinement module** (<https://github.com/bxlab/metaWRAP>)
 
-MetaWRAP uses CheckM to optimize the quality of bins. It takes up to 3
-different sets of bins at a time. Since you are using two binning
-algorithms, you will specify the -A and -B parameter options. If you
-used a third, you would add the -C option.
+MetaWRAP uses CheckM\[10\] and Binning_refiner\[11\] to optimize the
+quality of bins. It takes up to 3 different sets of bins at a time.
+Since you are using two binning algorithms, you will specify the -A and
+-B parameter options. If you used a third, you would add the -C option.
 
-**WARNING: DO NOT RUN metaWRAP!!!**
+**WARNING: DO NOT RUN MetaWRAP!**
 
-Since metawrap uses checkm and it takes quite a bit of time to complete.
+Since MetaWRAP uses CheckM and it takes quite a bit of time to complete.
 We precomputed the refined bins taking 31 minutes using 28 threads and
 34 GB.
 
@@ -551,7 +554,7 @@ Example commands for sample KGHS_1-0 bins:
 
 cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5
 
-**\# Start the conda environment for metaWRAP bin_refinement.**
+**\# Start the conda environment for MetaWRAP bin_refinement.**
 
 conda activate metawrap_bin_refinement_env
 
@@ -567,15 +570,15 @@ The metawrap stats file for the
 
 less output/bin_refinement/KGHS_1-0/metawrap_50_10_bins.stats
 
-Obtained from quast output transposed_report.tsv for KGHS_1-0_bin.1 and
-KGHS_1-0_bin.3.
+Obtained from QUAST output transposed_report.tsv output file for
+KGHS_1-0_bin.1 and KGHS_1-0_bin.3.
 
-**Table 4**: Number and quality of bins refined using metaWRAP.
+**Table 4**: Number and quality of bins refined using MetaWRAP.
 
-| **Bin ID**     | **Refined Bin Program** | **Number of contigs** | **Largest contig** | **Complete-ness** | **Contam-ination** | **Total length** | **GC (%)** | **N50** |
-|----------------|-------------------------|-----------------------|--------------------|-------------------|--------------------|------------------|------------|---------|
-| KGHS_1-0_bin.1 | metaWRAP                | 75                    | 133687             |                   |                    | 1711736          | 34.19      | 67177   |
-| KGHS_1-0_bin.3 | metaWRAP                | 136                   | 59107              |                   |                    | 1593681          | 37.33      | 17642   |
+| **Bin ID**     | **Bin Refining Program** | **Number of Contigs** | **Largest Contig** | **Complete-ness** | **Contam-ination** | **Total Length** | **GC (%)** | **N50** |
+|----------------|--------------------------|-----------------------|--------------------|-------------------|--------------------|------------------|------------|---------|
+| KGHS_1-0_bin.1 | MetaWRAP                 | 75                    | 133687             | 98.83             | 0.341              | 1711736          | 34.19      | 67177   |
+| KGHS_1-0_bin.3 | MetaWRAP                 | 136                   | 59107              | 76.06             | 0.373              | 1593681          | 37.33      | 17642   |
 
 <u>Step 2c: Evaluate bin quality using CheckM</u>
 
@@ -597,16 +600,16 @@ which produces a variety of output files, including different .tsv files
 that contain various data summaries. Note that some .tsv files may not
 be produced unless specified using the appropriate parameter.
 
-**WARNING Do not run CheckM as it takes 10 mins using 14 threads and x
-GB of RAM memory. It will take considerably longer with less threads and
-will run into memory issues using AWS instance resources as it requires
-more than 16 GB of memory.**
+**WARNING: Do not run CheckM!**
 
-**WARNING: Before running CheckM we would need to set the path to the
-CheckM database. If you don’t set the database, or have proper user
-permissions to read the database, CheckM will print an error message
-until you run out of space on your hard drive. So be aware of this as it
-could potentially give you a lot of problems you don’t need.**
+> *This was run prior to the tutorial, taking 13 min per MAG using 14
+> threads and 30GB RAM. It will run into memory issues using the AWS
+> instance since it requires more than 16GB of memory.*
+
+**WARNING: Before running CheckM you need to set the path to the CheckM
+database. If you don’t set the database, or lack proper user permissions
+to read the database, CheckM will print an error message until you run
+out of disk space.**
 
 Example commands for the KGHS_1-0.bin1.fa MAG:
 
@@ -619,12 +622,12 @@ cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5
 echo "software_dir/checkm_data_dir" \| checkm data setRoot
 
 **\# Copy the bin and rename to KGHS_1-0.bin1 so that we can run
-checkm.**
+CheckM.**
 
 cp bin_refinement/KGHS_1-0/metawrap_50_10_bins/bin.1.fa
 refined_bins/KGHS_1-0/KGHS_1-0_bin.1/checkm/KGHS_1-0_bin.1.fa
 
-**\# Activate the checkm conda environment.**
+**\# Activate the CheckM conda environment.**
 
 conda activate checkm_env
 
@@ -700,12 +703,12 @@ alt="A picture containing text, font, screenshot, line Description automatically
 which produces a summary .tsv file with the full taxonomic string and
 other information about the annotation process.
 
-GTDB-tk is used to classify the taxonomy of your MAGs\[10\]. *If you
+GTDB-tk is used to classify the taxonomy of your MAGs\[12\]. *If you
 give GTDB-tk a heavily contaminated MAG or metagenomic assembly, it will
 fail.*
 
-**WARNING Do not run GTDB-tk!!! *Note It requires pplacer and will take
-20 mins using 46 GB RAM and 14 threads.***
+**WARNING Do not run GTDB-tk! *Note It requires pplacer and will take 20
+mins using 46 GB RAM and 14 threads.***
 
 Example commands for the KGHS_1-0.bin1.fa MAG:
 
@@ -828,9 +831,8 @@ alt="A picture containing text, font, screenshot, line Description automatically
 DRAM, which produces a variety of output files, including gene and
 protein multi-FASTA files.
 
-**WARNING: DO NOT RUN DRAM on the AWS instance! The databases it
-requires were too large to allow it to be installed and ran within this
-tutorial.**
+**WARNING: Do not run DRAM! The databases it requires were too large to
+allow it to be installed and run on the AWS instance.**
 
 > *The DRAM database requires 500–700GB of storage and installing the
 > DRAM database on a high-performance computing cluster at the
@@ -885,7 +887,7 @@ browser window (i.e. chrome)</span>
 <img src="images/media/image17.png"
 style="width:7.03704in;height:4.39815in" />
 
-**Exercise**:
+**Exercises**:
 
 **Question**: How many pentose phosphate pathway steps are found within
 the KGHS_1-0_bin.1.fa MAG?
@@ -899,11 +901,11 @@ Compare the results of Prokka versus DRAM. Both use Prodigal
 (<https://github.com/hyattpd/Prodigal>) for calling open reading frames
 (ORFs), Barrnap (<https://github.com/tseemann/barrnap>) to identify 5S,
 23S,16S rRNA genes. DRAM uses tRNAscan-SE
-(<http://lowelab.ucsc.edu/tRNAscan-SE/>) to search for t-RNA gene
-prediction and Prokka uses Aragorn (<http://www.ansikte.se/ARAGORN/>)
-for t-RNA gene prediction. DRAM and Prokka use a different combination
-of databases for annotation of protein coding genes resulting in
-different naming of each sequence ID and the annotation given.
+(<http://lowelab.ucsc.edu/tRNAscan-SE/>) for t-RNA gene prediction while
+Prokka uses Aragorn (<http://www.ansikte.se/ARAGORN/>) for t-RNA gene
+prediction. DRAM and Prokka use a different combination of databases for
+annotation of protein coding genes, sometimes resulting in different
+gene names functional annotations.
 
 **Table 5**: Overview of the programs used in the DRAM and Prokka
 annotation software.
@@ -930,18 +932,19 @@ DRAM?
 
 **Question**: Do all the MAGs have a chaperonin 60 (*cpn60*) protein
 coding gene? This is an alternative marker gene to 16S rRNA that is used
-in many microbial ecology studies. How about the 16S rRNA gene? *Hint:
-The cpn60 gene in Prokka can be searched using synonyms such as GroL and
-chaperonin 60 kDa. You can search 16S Ribosomal RNA in prokka. If you
-cross reference the gene ID in prokka to the one found in DRAM using the
-scaffold ID found in the prokka GFF file to the annotations.tsv file
-found in DRAM*.
+in many microbial ecology studies. How about the 16S rRNA gene?
 
-**Question**: Find a GH68 Levansucrase carbohydrate active enzyme
+> *Hint: The cpn60 gene in Prokka can be searched using synonyms such
+> as* *GroEL and chaperonin 60 kDa. You can search ‘16S ribosomal RNA’
+> in Prokka, then cross reference the gene/scaffold ID in the Prokka
+> .gff file to the one found in the DRAM annotations.tsv file*.
+
+**Question**: Find a GH68 levansucrase carbohydrate active enzyme
 (CAZyme) in the DRAM annotations.tsv file. Compare it to the annotation
-found in Prokka. *Hint: Search for GH68 or “Levansucrase” in the DRAM
-annotations.tsv file. Find a scaffold ID that will link to the
-annotation in Prokka.*
+found in Prokka.
+
+> *Hint: Search for GH68 or “levansucrase” in the DRAM annotations.tsv
+> file. Find a scaffold ID that will link to the annotation in Prokka.*
 
 <u>Step 3c: Annotate structural features – in this case mobile elements
 – of MAGs using mobileOG-db</u>
@@ -950,6 +953,9 @@ annotation in Prokka.*
 
 <img src="images/media/image18.png" style="width:6.5in;height:1.32986in"
 alt="A picture containing text, font, screenshot, line Description automatically generated" />
+
+**Figure 9.** Refined bin FASTA files are again provided as input for
+mobileOG, which produces a variety of annotation files as output.
 
 Example commands to run mobileOG-db.
 
@@ -985,16 +991,16 @@ Example output:
 <img src="images/media/image19.png"
 style="width:7.35787in;height:1.0463in" />
 
-You can expect to find the follow types of mobile elements.
+You can expect to find the following types of mobile elements;
 
-- **Insertion sequences (IS)** - small pieces of DNA which move within
+- **Insertion sequences (IS)** – small pieces of DNA which move within
   or between genomes using their own specialized recombination systems.
   i.e. transposons
 
-- **Integrative genomic elements (IGEs)** - mobile multigene DNA units
+- **Integrative genomic elements (IGEs)** – mobile multigene DNA units
   that integrate into and excise from host bacterial genomes.
 
-- **Plasmids** - small circular extrachromosomal DNA molecules that
+- **Plasmids** – small circular extrachromosomal DNA molecules that
   replicate and are transmitted independent from chromosomal DNA.
 
 - **Phages** – bacteriophage genome that is integrated into the circular
@@ -1014,7 +1020,7 @@ What did prokka and mobileOG-db annotate these protein sequences as?
 mobileOG-db using the locus tag ids and grab the prokka protein fasta
 file.*
 
-**Appendix**
+**Appendices**
 
 **Appendix Section 1: Downloading SRA datasets**
 
@@ -1085,17 +1091,18 @@ scripts.
 
 **Appendix 3: Extra annotation programs and examples.**
 
-**Step 3: Annotate MAG using eggnog-mapper**
+**Alternate function annotation tool: eggnog-mapper.**
 
 eggnog-mapper (<https://github.com/eggnogdb/eggnog-mapper>)
 
 <img src="images/media/image22.png" style="width:6.5in;height:1.06944in"
 alt="A picture containing text, font, screenshot, number Description automatically generated" />
 
-The eggnog-mapper program annotates a protein fasta file using the
-following databases.
+The eggnog-mapper program annotates a protein.fasta file using databases
+download using the download_eggnog_data.py
+(<https://github.com/eggnogdb/eggnog-mapper>) script.
 
-Example Commands:
+Example command:
 
 **\# Change the directory back to the module5 directory.**
 
@@ -1122,7 +1129,7 @@ style="width:7.36508in;height:1.07407in" />
 <span class="mark">less
 /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/eggnog_mapper/KGHS_1-0_bin.1.emapper.annotations</span>
 
-**\#query** – The Query Name
+**\#query** – The query name
 
 **seed_ortholog** - The seed ortholog ID
 
@@ -1130,7 +1137,7 @@ style="width:7.36508in;height:1.07407in" />
 
 **score** - The seed ortholog bit score
 
-**eggNOG_OGs** - a comma-separated, clade depth-sorted (broadest to
+**eggNOG_OGs** - A comma-separated, clade depth-sorted (broadest to
 narrowest), list of Orthologous Groups (OGs) identified for this query.
 Note that each OG is represented in the following
 format: *OG@tax_id\|tax_name*
@@ -1138,21 +1145,23 @@ format: *OG@tax_id\|tax_name*
 **max_annot_lvl** - tax_id\|tax_name of the level of widest OG used to
 retrieve orthologs for annotations.
 
-**COG_category** - COG category of the narrowest OG with a valid one.
+**COG_category** - COG category of the narrowest OG with a valid
+assignment.
 
-**Description** - Description of the narrowest OG with a valid one.
+**Description** - Description of the narrowest OG with a valid
+assignment.
 
 **Preferred_name** – The preferred name of the protein sequence.
 
 **GOs** – Gene Ontology IDs
 
-**EC** – Enzyme Class Number
+**EC** – Enzyme class number
 
 **KEGG_ko** – KEGG ko ID
 
 **KEGG_Pathway** – KEGG pathway ID
 
-**KEGG_Module** – KEGG Module ID
+**KEGG_Module** – KEGG module ID
 
 **KEGG_Reaction** – KEGG reaction ID
 
@@ -1184,7 +1193,7 @@ run_dbCAN4 (<https://github.com/linnabrown/run_dbcan>)
 alt="A close-up of a computer code Description automatically generated with low confidence" />
 
 The run_dbcan software annotates a protein fasta file with carbohydrate
-active enzymes\[11\]. run_dbcan4 is a new version that uses eCAMI HMM
+active enzymes\[13\]. run_dbcan4 is a new version that uses eCAMI HMM
 models to obtain the enzyme class number (EC#) to predict the substrate
 a CAZyme.
 
@@ -1272,10 +1281,18 @@ contigs with BWA-MEM.* arXiv: Genomics, 2013.
 9\. Li, H., et al., *The Sequence Alignment/Map format and SAMtools.*
 Bioinformatics, 2009. **25**(16): p. 2078-2079.
 
-10\. Chaumeil, P.-A., et al., *GTDB-Tk: a toolkit to classify genomes
+10\. Parks, D.H., et al., *CheckM: assessing the quality of microbial
+genomes recovered from isolates, single cells, and metagenomes.* Genome
+Res, 2015. **25**(7): p. 1043-55.
+
+11\. Song, W.Z. and T. Thomas, *Binning_refiner: improving genome bins
+through the combination of different binning programs.* Bioinformatics,
+2017. **33**(12): p. 1873-1875.
+
+12\. Chaumeil, P.-A., et al., *GTDB-Tk: a toolkit to classify genomes
 with the Genome Taxonomy Database.* Bioinformatics, 2019. **36**(6): p.
 1925-1927.
 
-11\. Zhang, H., et al., *dbCAN2: a meta server for automated
+13\. Zhang, H., et al., *dbCAN2: a meta server for automated
 carbohydrate-active enzyme annotation.* Nucleic Acids Research, 2018.
 **46**(W1): p. W95-W101.
