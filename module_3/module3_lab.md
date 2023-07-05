@@ -35,6 +35,8 @@ This lab provides a walkthrough of an end-to-end pipeline using the command line
 
 In part 1 we covered the basics of marker gene analysis from raw reads to filtered feature table, and in part 2 we will explore examples of downstream analyses that can be used to draw biological conclusions from these data. The pipeline described is embedded in the latest version of QIIME2 (Quantitative Insights into Microbial Ecology version 2023.2), which is a popular microbiome bioinformatics platform for microbial ecology built on user-made software packages called plugins that work on QIIME2 artifact or QZA files. Documentation for these plugins can be found in the [QIIME 2 user documentation](https://docs.qiime2.org/2023.2/), along with tutorials and other useful information. QIIME2 also provides interpretable visualizations that can be accessed by opening any generated QZV files within [QIIME2 View](https://view.qiime2.org/).
 
+There are questions throughout this workshop that are aimed at ensuring you've understood the material - you can find the answers [here]() and are welcome to discuss the answers with us, but we will not be marking them.
+
 ### Practical considerations
 
 If you run into problems copying the commands directly, try copying each line individually or typing them manually into the terminal.
@@ -69,9 +71,12 @@ cp ~/CourseData/MIC_data/16S_data/insertion-placements.qza .
 
 DONOT RUN THIS COMMAND
 ```
-qiime fragment-insertion sepp --i-representative-sequences deblur_output/rep_seqs_final.qza \
---i-reference-database sepp-refs-gg-13-8.qza \
---o-tree asvs-tree.qza --o-placements insertion-placements.qza --p-threads 4
+qiime fragment-insertion sepp \
+    --i-representative-sequences deblur_output/rep_seqs_final.qza \
+    --i-reference-database /home/shared/microbiome_amplicon/sepp-refs-gg-13-8.qza \
+    --o-tree asvs-tree.qza \
+    --o-placements insertion-placements.qza \
+    --p-threads 4
 ```
 
 Note that if you do not already have this file locally you will need to download sepp-refs-gg-13-8.qza as specified in the [fragment-insertion instructions](https://library.qiime2.org/plugins/q2-fragment-insertion/16/). You can specify custom reference files to place other amplicons, but the easiest approach for 18S and ITS data is to instead create a de novo tree as outlined in the [Microbiome Helper repository](https://github.com/LangilleLab/microbiome_helper/wiki/Amplicon-SOP-v2-(qiime2-2022.11)).
@@ -81,9 +86,12 @@ Note that if you do not already have this file locally you will need to download
 A key quality control step is to plot rarefaction curves for all of your samples to determine if you performed sufficient sequencing. The below command will generate these plots (make sure you have the correct maximum sequencing depth as per your filtered feature table).
 
 ```
-qiime diversity alpha-rarefaction --i-table deblur_output/deblur_table_final.qza \
---p-max-depth 11536 --p-steps 20 --i-phylogeny asvs-tree.qza \
---o-visualization rarefaction_curves.qzv
+qiime diversity alpha-rarefaction \
+    --i-table deblur_output/deblur_table_final.qza \
+    --p-max-depth 11536 \
+    --p-steps 20 \
+    --i-phylogeny asvs-tree.qza \
+    --o-visualization rarefaction_curves.qzv
 ```
 
 Note in the last session if you were not able to complete some steps, you can use the files from the CourseData folder by adding this to the d
@@ -91,7 +99,7 @@ Note in the last session if you were not able to complete some steps, you can us
 ``` ~/CourseData/MIC_data/16S_data/all_output/```
 
 
-**Click [here](https://www.dropbox.com/sh/iom12uffc3o24a6/AAC0t4f95AJ8QSJ1u9wLO2nVa?dl=1) to access and download any files from the server onto your machine (i.e. to upload to QIIME2 View).**
+**Remember that you can look at all of the files in your ```workspace``` folder by going to http://##.uhn-hpc.ca/ (you might need to refresh the page regularly!)**
 
 **Question 1: What is a good rarefaction depth for diversity analysis?**
 
@@ -102,9 +110,13 @@ Note in the last session if you were not able to complete some steps, you can us
 Common **alpha** and **beta-diversity** metrics can be calculated with a single command in QIIME 2. In addition, ordination plots (such as PCoA plots for weighted UniFrac distances) will be generated automatically as well. This command will also rarefy all samples to the sample sequencing depth before calculating these metrics ( is a placeholder for the lowest reasonable sample depth; samples with depth below this cut-off will be excluded). In our case X can be 4000 to make sure that we have all the samples included. 
 
 ```
-qiime diversity core-metrics-phylogenetic --i-table deblur_output/deblur_table_final.qza \
---i-phylogeny asvs-tree.qza --p-sampling-depth X  --m-metadata-file Blueberry_metadata_reduced.tsv \
---p-n-jobs-or-threads 4 --output-dir diversity
+qiime diversity core-metrics-phylogenetic \
+    --i-table deblur_output/deblur_table_final.qza \
+    --i-phylogeny asvs-tree.qza \
+    --p-sampling-depth X  \
+    --m-metadata-file Blueberry_metadata_reduced.tsv \
+    --p-n-jobs-or-threads 4 \
+    --output-dir diversity
 ```
 
 While `qiime diversity core-metrics-phylogenetic` forces you to specify sampling depth hence makes you rarefy samples, if you use a diversity 
@@ -115,13 +127,14 @@ measure directly you don't have to specify the depth. There is a lot of debate o
 For alpha diversity visualizations, you will need to produce boxplots comparing the different categories in your metadata file. For example, to create boxplots comparing the Shannon alpha-diversity metric you can use this command:
 
 ```
-qiime diversity alpha-group-significance --i-alpha-diversity diversity/shannon_vector.qza \
---m-metadata-file Blueberry_metadata_reduced.tsv \
---o-visualization diversity/shannon_compare_groups.qzv
+qiime diversity alpha-group-significance \
+    --i-alpha-diversity diversity/shannon_vector.qza \
+    --m-metadata-file Blueberry_metadata_reduced.tsv \
+    --o-visualization diversity/shannon_compare_groups.qzv
 ```
 **Hint: you will need to change this command for the other alpha diversity metrics. You can see the other metrics available by running ls diversity/*_vector.qza**
 
-Click [here](https://www.dropbox.com/sh/iom12uffc3o24a6/AAC0t4f95AJ8QSJ1u9wLO2nVa?dl=1) to access and download any files from the server onto your machine (i.e. to upload to QIIME2 View).
+**Remember that you can look at all of the files in your ```workspace``` folder by going to http://##.uhn-hpc.ca/ (you might need to refresh the page regularly!)**
 
 **Note that you can also export (see below) this or any other diversity metric file (ending in .qza) and analyze them with a different program.**
 
@@ -134,17 +147,22 @@ Click [here](https://www.dropbox.com/sh/iom12uffc3o24a6/AAC0t4f95AJ8QSJ1u9wLO2nV
 Here we are going to use PERMANOVA from the beta-group-significance function to see if out groups in the Description_3 variable are significantly different or not. By default the function performs PERMANOVA method.The PERMANOVA implementation here is one-way. To include more than one variable with potential interactions, use `qiime diversity adonis`
 
 ``` 
-qiime diversity beta-group-significance --i-distance-matrix diversity/bray_curtis_distance_matrix.qza \
---m-metadata-file ../Blueberry_metadata_reduced.tsv --m-metadata-column Description_3 \
---o-visualization beta_group_sig_permanova
+qiime diversity beta-group-significance \
+    --i-distance-matrix diversity/bray_curtis_distance_matrix.qza \
+    --m-metadata-file Blueberry_metadata_reduced.tsv \
+    --m-metadata-column Description_3 \
+    --o-visualization beta_group_sig_permanova
 ```
 
 It is recommended to test for dispersion of groups especially if PERMANOVA shows signifcant difference in groups. 
 
 ```
-qiime diversity beta-group-significance --i-distance-matrix diversity/bray_curtis_distance_matrix.qza \
---m-metadata-file ../Blueberry_metadata_reduced.tsv --m-metadata-column Description_3 \
---o-visualization beta_group_sig_permdisp --p-method "permdisp"
+qiime diversity beta-group-significance \
+    --i-distance-matrix diversity/bray_curtis_distance_matrix.qza \
+    --m-metadata-file Blueberry_metadata_reduced.tsv \
+    --m-metadata-column Description_3 \
+    --o-visualization beta_group_sig_permdisp \
+    --p-method "permdisp"
 ```
 
 
@@ -152,11 +170,13 @@ qiime diversity beta-group-significance --i-distance-matrix diversity/bray_curti
 
 Another useful output is the interactive stacked bar-charts of the taxonomic abundances across samples, which can be output with this command:
 ```
-qiime taxa barplot --i-table deblur_output/deblur_table_final.qza \
---i-taxonomy taxa/classification.qza --m-metadata-file Blueberry_metadata_reduced.tsv \
---o-visualization taxa/taxa_barplot.qzv
+qiime taxa barplot \
+    --i-table deblur_output/deblur_table_final.qza \
+    --i-taxonomy taxa/classification.qza \
+    --m-metadata-file Blueberry_metadata_reduced.tsv \
+    --o-visualization taxa/taxa_barplot.qzv
 ```
-Click [here](https://www.dropbox.com/sh/iom12uffc3o24a6/AAC0t4f95AJ8QSJ1u9wLO2nVa?dl=0) to access and download any files from the server onto your machine (i.e. to upload to QIIME2 View).
+**Remember that you can look at all of the files in your ```workspace``` folder by going to http://##.uhn-hpc.ca/ (you might need to refresh the page regularly!)**
 
 **Question 4: can you identify any patterns between the metadata groups?**
 
@@ -165,23 +185,28 @@ Click [here](https://www.dropbox.com/sh/iom12uffc3o24a6/AAC0t4f95AJ8QSJ1u9wLO2nV
 ANCOM is one method to test for differences in the relative abundance of features between sample groupings. It is a compositional approach that makes no assumptions about feature distributions. However, it requires that all features have non-zero abundances so a pseudocount first needs to be added (1 is a typical pseudocount choice):
 
 ```
-qiime composition add-pseudocount --i-table deblur_output/deblur_table_final.qza \
---p-pseudocount 1 --o-composition-table deblur_output/deblur_table_final_pseudocount.qza
+qiime composition add-pseudocount \
+    --i-table deblur_output/deblur_table_final.qza \
+    --p-pseudocount 1 \
+    --o-composition-table deblur_output/deblur_table_final_pseudocount.qza
 ```
 
 Then ANCOM can be run with this command; note that CATEGORY is a placeholder for the text label of your category of interest from the metadata file:
 
 ```
-qiime composition ancom --i-table deblur_output/deblur_table_final_pseudocount.qza \
---m-metadata-file Blueberry_metadata_reduced.tsv --m-metadata-column CATEGORY --output-dir ancom_output
+qiime composition ancom \
+    --i-table deblur_output/deblur_table_final_pseudocount.qza \
+    --m-metadata-file Blueberry_metadata_reduced.tsv \
+    --m-metadata-column CATEGORY \
+    --output-dir ancom_output
 ```
 
-Click [here](https://www.dropbox.com/sh/iom12uffc3o24a6/AAC0t4f95AJ8QSJ1u9wLO2nVa?dl=1) to access and download any files from the server onto your machine (i.e. to upload to QIIME2 View).
+**Remember that you can look at all of the files in your ```workspace``` folder by going to http://##.uhn-hpc.ca/ (you might need to refresh the page regularly!)**
 
 **Question 5: Does ANCOM identify any differentially abundant taxa between any of the metadata groups? If so, which one(s)?**
 
 ## 6. Exporting the final abundance, profile and sequence files
-Lastly, to get the BIOM file (with associated taxonomy) and FASTA file (one per ASV) for your dataset to plug into other programs you can use the commands below.
+If you didn't do this at the end of Module 2, to get the BIOM file (with associated taxonomy) and FASTA file (one per ASV) for your dataset to plug into other programs you can use the commands below.
 
 To export the FASTA:
 
