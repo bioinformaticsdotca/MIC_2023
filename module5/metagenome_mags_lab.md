@@ -249,11 +249,11 @@ Example commands for sample KGHS_1-0:
 
 **\# Filter scaffolds to a minimum length of 1500 nt.**
 
-```seqkit seq -m 1500 output/metagenome_assemblies/KGHS_1-0/scaffolds.fasta \> filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500/KGHS_1-0_min1500.fasta```
+```seqkit seq -m 1500 output/metagenome_assemblies/KGHS_1-0/scaffolds.fasta > filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500/KGHS_1-0_min1500.fasta```
 
 **\# Run seqkit stats on the KGHS_1-0 contigs.fasta file.**
 
-```seqkit stats -a output/metagenome_assemblies/KGHS_1-0/contigs.fasta \> metagenome_assemblies/KGHS_1-0/contigs.fasta.seqkit.stats.txt```
+```seqkit stats -a output/metagenome_assemblies/KGHS_1-0/contigs.fasta > metagenome_assemblies/KGHS_1-0/contigs.fasta.seqkit.stats.txt```
 
 Example output:
 
@@ -262,7 +262,7 @@ style="width:6.5in;height:0.34097in" />
 
 **\# Run seqkit stats on the KGHS_1-0 scaffolds.fasta file.**
 
-```seqkit stats -a output/metagenome_assemblies/KGHS_1-0/scaffolds.fasta \> metagenome_assemblies/KGHS_1-0/scaffolds.fasta.seqkit.stats.txt```
+```seqkit stats -a output/metagenome_assemblies/KGHS_1-0/scaffolds.fasta > metagenome_assemblies/KGHS_1-0/scaffolds.fasta.seqkit.stats.txt```
 
 Example output:
 
@@ -273,7 +273,7 @@ style="width:6.5in;height:0.34485in" />
 KGHS_1-0_min1500.fasta file to see how filtering affected the minimum
 length reported and the number of scaffolds.**
 
-```seqkit stats -a output/filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta \> filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta.seqkit.stats.txt```
+```seqkit stats -a output/filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta > filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta.seqkit.stats.txt```
 
 Example output:
 
@@ -333,7 +333,7 @@ Example commands for sample KGHS_1-0:
 **\# Map the paired end reads from sample KGHS_1-0 to the filtered
 scaffolds using bwa mem.**
 
-```bwa mem -t 4 filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta cleaned_fastq_files/KGHS_1-0_1.fastq cleaned_fastq_files/KGHS_1-0_2.fastq \> filtered_metagenomes/KGHS_1-0/KGHS_1-0.sam```
+```bwa mem -t 4 filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta cleaned_fastq_files/KGHS_1-0_1.fastq cleaned_fastq_files/KGHS_1-0_2.fastq > filtered_metagenomes/KGHS_1-0/KGHS_1-0.sam```
 
 **\# Activate the samtools conda environment.**
 
