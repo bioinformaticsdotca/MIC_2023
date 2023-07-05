@@ -1,14 +1,3 @@
----
-layout: tutorial_page
-permalink: /MIC_2023_Module5_lab
-title: CBW-IMPACTT Microbiome Analysis 2023
-header1: Workshop Pages for Students
-header2: CBW-IMPACTT Microbiome Analysis Module 5 Lab
-image: /site_images/CBW_Metagenome_icon.jpg
-home: https://bioinformaticsdotca.github.io/
---- 
-
-
 CBW IMPACTT Workshop
 
 Kevin Muirhead and Dr. Laura Sycuro
@@ -577,11 +566,14 @@ initial_binning/KGHS_1-0/metabat2 -B initial_binning/KGHS_1-0/maxbin2 -c
 
 Example output:
 
-The metawrap stats file for the
+The statistics file outlining the results of the MetaWRAP bin refinement
+module.
 
-less output/bin_refinement/KGHS_1-0/metawrap_50_10_bins.stats
+<span class="mark">less
+output/bin_refinement/KGHS_1-0/metawrap_50_10_bins.stats</span>
 
-Obtained from QUAST output transposed_report.tsv output file for
+Table data obtained from the MetaWRAP bin refinement module statistics
+output file and QUAST transposed_report.tsv output file for
 KGHS_1-0_bin.1 and KGHS_1-0_bin.3.
 
 **Table 4**: Number and quality of bins refined using MetaWRAP.
