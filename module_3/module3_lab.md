@@ -16,12 +16,12 @@ This tutorial is for the 2023 CBW IMPACTT workshop running from July 5th-7th wit
 Authors: Robyn Wright & Hena Ramay
 
 # Table of Contents
-1. [Build tree](https://github.com/LangilleLab/microbiome_helper/wiki/Microbial-diversity-metrics-and-data-visualization-with-QIIME2#1-build-tree-withsepp-qiime-2-plugin) 
-2. [Generate rarefaction curves](https://github.com/LangilleLab/microbiome_helper/wiki/Microbial-diversity-metrics-and-data-visualization-with-QIIME2#2-generate-rarefaction-curves)
-3. [Calculating diversity metrics and generating ordination plots](https://github.com/LangilleLab/microbiome_helper/wiki/Microbial-diversity-metrics-and-data-visualization-with-QIIME2#3-calculating-diversity-metrics-and-generating-ordination-plots)
-4. [Generate stacked bar chart of taxa relative abundances](https://github.com/LangilleLab/microbiome_helper/wiki/Microbial-diversity-metrics-and-data-visualization-with-QIIME2#4-generate-stacked-bar-chart-of-taxa-relative-abundances)
-5. [Identifying differentially abundant features with ANCOM](https://github.com/LangilleLab/microbiome_helper/wiki/Microbial-diversity-metrics-and-data-visualization-with-QIIME2#5-identifying-differentially-abundant-features-with-ancom)
-6. [Exporting the final abundance, profile and sequence files](https://github.com/LangilleLab/microbiome_helper/wiki/Microbial-diversity-metrics-and-data-visualization-with-QIIME2#6-exporting-the-final-abundance-profile-and-sequence-files)
+1. Build tree
+2. Generate rarefaction curves
+3. Calculating diversity metrics and generating ordination plots
+4. Generate stacked bar chart of taxa relative abundances
+5. Identifying differentially abundant features with ANCOM
+6. Exporting the final abundance, profile and sequence files
 
 # Introduction
 
