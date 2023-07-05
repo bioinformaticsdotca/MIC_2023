@@ -48,7 +48,7 @@ and only carry out some of the less computationally intensive steps on
 your own.
 
 Each step that you will perform on your AWS instance in class is
-highlighted in gray. Procedural notes are indented and italicized and
+highlighted in ```gray```. Procedural notes are indented and italicized and
 critical warnings are bolded. If you wish to skip directly to the
 working component of the tutorial, go to page 3.
 
@@ -113,8 +113,7 @@ the metagenomic assembly.
 > these data on it. For the purpose of the in-class tutorial, the output
 > files are provided for you to view:*
 >
->
->```cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/metagenome_assemblies/KGHS_1-0```
+> ```cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/metagenome_assemblies/KGHS_1-0```
 >
 > *We have also provided a conda environment and commands within shell
 > scripts to run MetaSPAdes, with more details in Appendix 2.*
@@ -250,11 +249,11 @@ Example commands for sample KGHS_1-0:
 
 **\# Filter scaffolds to a minimum length of 1500 nt.**
 
-```seqkit seq -m 1500 output/metagenome_assemblies/KGHS_1-0/scaffolds.fasta filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500/KGHS_1-0_min1500.fasta```
+```seqkit seq -m 1500 output/metagenome_assemblies/KGHS_1-0/scaffolds.fasta \> filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500/KGHS_1-0_min1500.fasta```
 
 **\# Run seqkit stats on the KGHS_1-0 contigs.fasta file.**
 
-```seqkit stats -a output/metagenome_assemblies/KGHS_1-0/contigs.fasta metagenome_assemblies/KGHS_1-0/contigs.fasta.seqkit.stats.txt```
+```seqkit stats -a output/metagenome_assemblies/KGHS_1-0/contigs.fasta \> metagenome_assemblies/KGHS_1-0/contigs.fasta.seqkit.stats.txt```
 
 Example output:
 
@@ -263,7 +262,7 @@ style="width:6.5in;height:0.34097in" />
 
 **\# Run seqkit stats on the KGHS_1-0 scaffolds.fasta file.**
 
-```seqkit stats -a output/metagenome_assemblies/KGHS_1-0/scaffolds.fasta metagenome_assemblies/KGHS_1-0/scaffolds.fasta.seqkit.stats.txt```
+```seqkit stats -a output/metagenome_assemblies/KGHS_1-0/scaffolds.fasta \> metagenome_assemblies/KGHS_1-0/scaffolds.fasta.seqkit.stats.txt```
 
 Example output:
 
@@ -274,7 +273,7 @@ style="width:6.5in;height:0.34485in" />
 KGHS_1-0_min1500.fasta file to see how filtering affected the minimum
 length reported and the number of scaffolds.**
 
-```seqkit stats -a output/filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta.seqkit.stats.txt```
+```seqkit stats -a output/filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta \> filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta.seqkit.stats.txt```
 
 Example output:
 
@@ -321,8 +320,7 @@ Example commands for sample KGHS_1-0:
 
 **\# Change the directory back to the module5 directory.**
 
-```cd
-/home/ubuntu/CourseData/MIC_data/mags_workshop/module5```
+```cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5```
 
 **\# Activate the bwa conda environment.**
 
@@ -330,17 +328,12 @@ Example commands for sample KGHS_1-0:
 
 **\# Create an index of the filtered scaffolds using bwa index.**
 
-```bwa index
-filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta```
+```bwa index filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta```
 
 **\# Map the paired end reads from sample KGHS_1-0 to the filtered
 scaffolds using bwa mem.**
 
-```bwa mem -t 4
-filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta
-cleaned_fastq_files/KGHS_1-0_1.fastq
-cleaned_fastq_files/KGHS_1-0_2.fastq \>
-filtered_metagenomes/KGHS_1-0/KGHS_1-0.sam```
+```bwa mem -t 4 filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta cleaned_fastq_files/KGHS_1-0_1.fastq cleaned_fastq_files/KGHS_1-0_2.fastq \> filtered_metagenomes/KGHS_1-0/KGHS_1-0.sam```
 
 **\# Activate the samtools conda environment.**
 
@@ -348,9 +341,7 @@ filtered_metagenomes/KGHS_1-0/KGHS_1-0.sam```
 
 **\# Sort the sam file and convert to bam using samtools.**
 
-```samtools sort -@ 4 -O BAM -o
-filtered_metagenomes/KGHS_1-0/KGHS_1-0.bam
-filtered_metagenomes/KGHS_1-0/KGHS_1-0.sam```
+```samtools sort -@ 4 -O BAM -o filtered_metagenomes/KGHS_1-0/KGHS_1-0.bam filtered_metagenomes/KGHS_1-0/KGHS_1-0.sam```
 
 **MetaBat2** (<https://bitbucket.org/berkeleylab/metabat/src/master/>)
 
@@ -362,8 +353,7 @@ Example commands for sample KGHS_1-0:
 
 **\# Change the directory back to the module5 directory.**
 
-```cd
-/home/ubuntu/CourseData/MIC_data/mags_workshop/module5```
+```cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5```
 
 **\# Activate the metabat2 conda environment.**
 
@@ -376,23 +366,16 @@ Example commands for sample KGHS_1-0:
 **\# Generate the metabat2 depth of coverage text file using the bam
 file generated in the mapping step.**
 
-```jgi_summarize_bam_contig_depths --outputDepth
-initial_binning/KGHS_1-0/metabat2_depth.txt
-output/filtered_metagenomes/KGHS_1-0/KGHS_1-0.bam```
+```jgi_summarize_bam_contig_depths --outputDepth initial_binning/KGHS_1-0/metabat2_depth.txt output/filtered_metagenomes/KGHS_1-0/KGHS_1-0.bam```
 
 **\# Create the initial binning working directory for metabat2.**
 
-```mkdir -p
-initial_binning/KGHS_1-0/working_dir/metabat2``` 
+```mkdir -p initial_binning/KGHS_1-0/working_dir/metabat2``` 
 
 **\# Run metabat2 on the filtered scaffolds using the metabat2 depth of
 coverage file.**
 
-```metabat2 -i
-output/filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta -a
-initial_binning/KGHS_1-0/metabat2_depth.txt -o
-initial_binning/KGHS_1-0/working_dir/metabat2/KGHS_1-0_bin -m 1500 -t 1
-–unbinned```
+```metabat2 -i output/filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta -a initial_binning/KGHS_1-0/metabat2_depth.txt -o initial_binning/KGHS_1-0/working_dir/metabat2/KGHS_1-0_bin -m 1500 -t 1 –unbinned```
 
 **\# Create the initial binning metabat2 directory for the KGHS_1-0
 sample.**
@@ -401,9 +384,7 @@ sample.**
 
 **\# Copy the metabat2 bins to the initial binning metabat2 directory.**
 
-```cp
-initial_binning/KGHS_1-0/working_dir/metabat2/KGHS_1-0_bin.\[0-9\]\*.fa
-initial_binning/KGHS_1-0/metabat2```
+```cp initial_binning/KGHS_1-0/working_dir/metabat2/KGHS_1-0_bin.\[0-9\]\*.fa initial_binning/KGHS_1-0/metabat2```
 
 **Bin length-filtered scaffolds using MaxBin2.**
 
@@ -416,22 +397,16 @@ generate the depth of coverage file for maxbin2.**
 **\# Generate the maxbin2 depth of coverage text file using the bam file
 generated in the mapping step.**
 
-```jgi_summarize_bam_contig_depths --outputDepth
-initial_binning/KGHS_1-0/KGHS_1-0_maxbin2_depth.txt
---noIntraDepthVariance
-output/filtered_metagenomes/KGHS_1-0/KGHS_1-0.bam```
+```jgi_summarize_bam_contig_depths --outputDepth initial_binning/KGHS_1-0/KGHS_1-0_maxbin2_depth.txt --noIntraDepthVariance output/filtered_metagenomes/KGHS_1-0/KGHS_1-0.bam```
 
 **\# Create the maxbin2 abundance file using the first and third columns
 of the maxbin2 depth of coverage file.**
 
-```tail
--n+2 initial_binning/KGHS_1-0/KGHS_1-0_maxbin2_depth.txt \| cut -f1,3
-\> initial_binning/KGHS_1-0/KGHS_1-0_maxbin2_abund.txt```
+```tail -n+2 initial_binning/KGHS_1-0/KGHS_1-0_maxbin2_depth.txt \| cut -f1,3 \> initial_binning/KGHS_1-0/KGHS_1-0_maxbin2_abund.txt```
 
 **\# Print the path of the maxbin2 abundance file to a list file.**
 
-```echo initial_binning/KGHS_1-0/KGHS_1-0_maxbin2_abund.txt
-\> initial_binning/KGHS_1-0/KGHS_1-0_maxbin2_abund_list.txt```
+```echo initial_binning/KGHS_1-0/KGHS_1-0_maxbin2_abund.txt \> initial_binning/KGHS_1-0/KGHS_1-0_maxbin2_abund_list.txt```
 
 **\# Activate the maxbin2 conda environment.**
 
@@ -439,17 +414,12 @@ of the maxbin2 depth of coverage file.**
 
 **\# Create the working maxbin2 output directory.**
 
-```mkdir
--p initial_binning/KGHS_1-0/working_dir/maxbin2```
+```mkdir -p initial_binning/KGHS_1-0/working_dir/maxbin2```
 
 **\# Run MaxBin2 using the filtered scaffolds fasta file and the maxbin2
 abundance list.**
 
-```perl software_dir/MaxBin-2.2.7/run_MaxBin.pl
--contig output/filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta
--markerset 107 -thread 14 -min_contig_length 1500 -out
-initial_binning/KGHS_1-0/working_dir/maxbin2/KGHS_1-0_bin -abund_list
-initial_binning/KGHS_1-0/KGHS_1-0_maxbin2_abund_list.txt```
+```perl software_dir/MaxBin-2.2.7/run_MaxBin.pl -contig output/filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta -markerset 107 -thread 14 -min_contig_length 1500 -out initial_binning/KGHS_1-0/working_dir/maxbin2/KGHS_1-0_bin -abund_list initial_binning/KGHS_1-0/KGHS_1-0_maxbin2_abund_list.txt```
 
 **\# Create the maxbins2 output directory so we can rename the bins;
 this is needed in order for metawrap to use them as input.**
@@ -459,15 +429,13 @@ this is needed in order for metawrap to use them as input.**
 **\# Rename bins and copy the maxbin2 bins to the maxbin2 bin
 directory.**
 
-```for bin_file in \$(ls
-initial_binning/KGHS_1-0/working_dir/maxbin2 \| grep "\\fasta");```
+```for bin_file in \$(ls initial_binning/KGHS_1-0/working_dir/maxbin2 \| grep "\\fasta");```
 
 ```do echo \$bin_file;```
 
 ```filename=\$(basename \$bin_file '.fasta');```
 
-```bin_num=\$(echo \$filename \| sed -r
-"s/KGHS_1-0_bin\\0+//g");```
+```bin_num=\$(echo \$filename \| sed -r "s/KGHS_1-0_bin\\0+//g");```
 
 ```echo \$bin_num;```
 
@@ -475,9 +443,7 @@ initial_binning/KGHS_1-0/working_dir/maxbin2 \| grep "\\fasta");```
 
 ```echo \$new_filename;```
 
-```cp
-initial_binning/KGHS_1-0/working_dir/maxbin2/\$bin_file
-initial_binning/KGHS_1-0/maxbin2/\$new_filename;```
+```cp initial_binning/KGHS_1-0/working_dir/maxbin2/\$bin_file initial_binning/KGHS_1-0/maxbin2/\$new_filename;```
 
 ```done```
 
@@ -547,8 +513,7 @@ Example output:
 The statistics file outlining the results of the MetaWRAP bin refinement
 module.
 
-```less
-output/bin_refinement/KGHS_1-0/metawrap_50_10_bins.stats```
+```less output/bin_refinement/KGHS_1-0/metawrap_50_10_bins.stats```
 
 Table data obtained from the MetaWRAP bin refinement module statistics
 output file and QUAST transposed_report.tsv output file for
@@ -621,8 +586,7 @@ refined_bins/KGHS_1-0/KGHS_1-0_bin.1/checkm
 
 Example output:
 
-```less
-/home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/checkm/checkm.tsv```
+```less /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/checkm/checkm.tsv```
 
 <img src="images/media/image11.png"
 style="width:7.18336in;height:0.71296in" />
@@ -647,22 +611,17 @@ Exercise:
 
 **\# Change the directory to the checkm bin directory.**
 
-```cd /home/ubuntu/CourseData/MIC_data/mags_workshop/
-module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/checkm```
+```cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/checkm```
 
 **\# Use awk to filter the CheckM results using \>= 50% completeness and
 \<=10 % contamination.**
 
-```awk -F’\t’ ‘((\$1 \>= 50) && (\$2 \<= 10)){print
-\$0}’ \<(tail -n+2 \< checkm.tsv) \>
-checkm_output_ge50comp_le10contam.tsv```
+```awk -F’\t’ ‘((\$1 \>= 50) && (\$2 \<= 10)){print \$0}’ \<(tail -n+2 \< checkm.tsv) \> checkm_output_ge50comp_le10contam.tsv```
 
 **\# Use awk to filter the CheckM results using \>= 90% completeness and
 \<=10 % contamination.**
 
-```awk -F’\t’ ‘((\$1 \>= 90) && (\$2 \<= 10)){print
-\$0}’ \<(tail -n+2 \< checkm.tsv) \>
-checkm_output_ge90comp_le10contam.tsv```
+```awk -F’\t’ ‘((\$1 \>= 90) && (\$2 \<= 10)){print \$0}’ \<(tail -n+2 \< checkm.tsv) \> checkm_output_ge90comp_le10contam.tsv```
 
 **Section 3: Annotation**
 
@@ -717,8 +676,7 @@ refined_bins/KGHS_1-0/KGHS_1-0_bin.1/gtdbtk --extension "fa" --cpus 14
 
 **Example output:**
 
-```less
-/home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/gtdbtk/gtdbtk.bac120.summary.tsv```
+```less /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/gtdbtk/gtdbtk.bac120.summary.tsv```
 
 <img src="images/media/image13.png"
 style="width:7.14777in;height:0.74074in" />
@@ -750,8 +708,7 @@ Example command for the KGHS_1-0.bin1.fa MAG:
 
 **\# Change the directory back to the module5 directory.**
 
-```cd
-/home/ubuntu/CourseData/MIC_data/mags_workshop/module5```
+```cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5```
 
 **\# Activate the conda environment.**
 
@@ -760,41 +717,30 @@ Example command for the KGHS_1-0.bin1.fa MAG:
 **\# Rename and copy the KGHS_1-0_bin.1.fa MAG to the refined_bins
 KGHS_1-0_bin.1 prokka directory.**
 
-```cp
-bin_refinement/KGHS_1-0/metawrap_50_10_bins/bin.1.fa
-refined_bins/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.fa```
+```cp bin_refinement/KGHS_1-0/metawrap_50_10_bins/bin.1.fa refined_bins/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.fa```
 
 **\# Run prokka on the KGHS_1-0_bin.1.fa MAG.**
 
-```prokka --metagenome --outdir
-refined_bins/KGHS_1-0/KGHS_1-0_bin.1/prokka --prefix KGHS_1-0_bin.1
-refined_bins/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.fa --cpus 14
---rfam 1 –force```
+```prokka --metagenome --outdir refined_bins/KGHS_1-0/KGHS_1-0_bin.1/prokka --prefix KGHS_1-0_bin.1 refined_bins/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.fa --cpus 14 --rfam 1 –force```
 
 Example output:
 
 **KGHS_1-0_bin.1.ffn** – The annotated genes FASTA file containing
 rRNAs, tRNAs, CDS, ncRNAs, etc.
 
-```less
-/home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/prokka
-/KGHS_1-0_bin.1.ffn```
+```less /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.ffn```
 
 **KGHS_1-0_bin.1.faa** – The protein FASTA file annotated CDS gene
 sequences translated to proteins.
 
-```less
-/home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/prokka
-/KGHS_1-0_bin.1.faa```
+```less /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.faa```
 
 **KGHS_1-0_bin.1.gff** – The generic feature format (GFF) file that
 contains all the annotated MAG sequence information including start and
 end position, reading frame, functional annotation, annotation
 description, etc.
 
-```less
-/home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/prokka
-/KGHS_1-0_bin.1.gff```
+```less /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.gff```
 
 **DRAM** (<https://github.com/WrightonLabCSU/DRAM>)
 
@@ -830,21 +776,15 @@ conda activate dram_env
 
 **\# Prepare the DRAM databases.**
 
-DRAM-setup.py prepare_databases --threads 32 --output_dir
-/path/to/dram_database
+DRAM-setup.py prepare_databases --threads 32 --output_dir /path/to/dram_database
 
 **\# Execute the DRAM annotation command.**
 
-DRAM.py annotate -i bin_refinement/KGHS_1-0/metawrap_50_10_bins/bin.1.fa
--o refined_bins/KGHS_1-0/KGHS_1-0_bin.1/dram ``````
+DRAM.py annotate -i bin_refinement/KGHS_1-0/metawrap_50_10_bins/bin.1.fa -o refined_bins/KGHS_1-0/KGHS_1-0_bin.1/dram
 
 **\# Execute the DRAM distill command.**
 
-DRAM.py distill -i
-refined_bins/KGHS_1-0/KGHS_1-0_bin.1/dram/annotations.tsv -o
-refined_bins/KGHS_1-0/KGHS_1-0_bin.1/dram/genome_summaries --trna_path
-refined_bins/KGHS_1-0/KGHS_1-0_bin.1/dram/trnas.tsv --rrna_path
-refined_bins/KGHS_1-0/KGHS_1-0_bin.1/dram/rrnas.tsv
+DRAM.py distill -i refined_bins/KGHS_1-0/KGHS_1-0_bin.1/dram/annotations.tsv -o refined_bins/KGHS_1-0/KGHS_1-0_bin.1/dram/genome_summaries --trna_path refined_bins/KGHS_1-0/KGHS_1-0_bin.1/dram/trnas.tsv --rrna_path refined_bins/KGHS_1-0/KGHS_1-0_bin.1/dram/rrnas.tsv
 
 Both steps took 26 minutes together for the KGHS_1-0_bin.1 MAG using 10
 threads as it uses 10 threads as the default if you do not specify the
@@ -852,14 +792,12 @@ threads as it uses 10 threads as the default if you do not specify the
 
 Example output:
 
-```less
-/home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0_bin.1/dram/annotations.tsv```
+```less /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0_bin.1/dram/annotations.tsv```
 
 <img src="images/media/image16.png"
 style="width:7.26852in;height:1.09183in" />
 
-```Open the KGHS_1-0_bin.1 product.html file in a
-browser window (i.e. chrome)```
+```Open the KGHS_1-0_bin.1 product.html file in a browser window (i.e. chrome)```
 
 [```http://50.uhn-hpc.ca/mags_workshop/KGHS_1-0_bin.1_product.html```](http://50.uhn-hpc.ca/mags_workshop/KGHS_1-0_bin.1_product.html)
 
@@ -871,8 +809,7 @@ style="width:7.03704in;height:4.39815in" />
 **Question**: How many pentose phosphate pathway steps are found within
 the KGHS_1-0_bin.1.fa MAG?
 
-```Open the KGHS_1-0_bin.3 product.html file in a
-browser window (i.e. chrome)```
+```Open the KGHS_1-0_bin.3 product.html file in a browser window (i.e. chrome)```
 
 [```http://50.uhn-hpc.ca/mags_workshop/KGHS_1-0_bin.3_product.html```](http://50.uhn-hpc.ca/mags_workshop/KGHS_1-0_bin.3_product.html)
 
@@ -940,32 +877,20 @@ Example commands to run mobileOG-db.
 
 **\# Change the directory back to the module5 directory.**
 
-```cd
-/home/ubuntu/CourseData/MIC_data/mags_workshop/module5```
+```cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5```
 
 **\# Run diamond on the mobileOG-db.**
 
-```diamond blastp -q
-refined_bins/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.faa --db
-software_dir/mobileOG-db/mobileOG-db-beatrix-1.6.dmnd --outfmt 6 stitle
-qseqid pident bitscore slen evalue qlen sstart send qstart qend -o
-refined_bins/KGHS_1-0/KGHS_1-0_bin.1/mobileog_db/KGHS_1-0_bin.1.tsv
---threads 14 -k 15 -e 1e-20 --query-cover 80 --id 30```
+```diamond blastp -q refined_bins/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.faa --db software_dir/mobileOG-db/mobileOG-db-beatrix-1.6.dmnd --outfmt 6 stitle qseqid pident bitscore slen evalue qlen sstart send qstart qend -o refined_bins/KGHS_1-0/KGHS_1-0_bin.1/mobileog_db/KGHS_1-0_bin.1.tsv --threads 14 -k 15 -e 1e-20 --query-cover 80 --id 30```
 
 **\# Run the mobileOG-db script for parsing the output and merging the
 metadata for extra information.**
 
-```python
-software_dir/mobileOG-db/mobileOG-pl/mobileOGs-pl-kyanite.py --o
-refined_bins/KGHS_1-0/KGHS_1-0_bin.3/mobileog_db/annotation --i
-"refined_bins/KGHS_1-0/KGHS_1-0_bin.3/mobileog_db/KGHS_1-0_bin.3.tsv" -m
-software_dir/mobileOG-db/mobileOG-db-beatrix-1.6-All.csv```
+```python software_dir/mobileOG-db/mobileOG-pl/mobileOGs-pl-kyanite.py --o refined_bins/KGHS_1-0/KGHS_1-0_bin.3/mobileog_db/annotation --i "refined_bins/KGHS_1-0/KGHS_1-0_bin.3/mobileog_db/KGHS_1-0_bin.3.tsv" -m software_dir/mobileOG-db/mobileOG-db-beatrix-1.6-All.csv```
 
 Example output:
 
-```less
-/home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/mobileog_db
-/annotation.mobileOG.Alignment.Out.csv```
+```less /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/mobileog_db/annotation.mobileOG.Alignment.Out.csv```
 
 <img src="images/media/image19.png"
 style="width:7.35787in;height:1.0463in" />
@@ -1105,8 +1030,7 @@ Example output:
 <img src="images/media/image23.png"
 style="width:7.36508in;height:1.07407in" />
 
-```less
-/home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/eggnog_mapper/KGHS_1-0_bin.1.emapper.annotations```
+```less /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/eggnog_mapper/KGHS_1-0_bin.1.emapper.annotations```
 
 **\#query** – The query name
 
