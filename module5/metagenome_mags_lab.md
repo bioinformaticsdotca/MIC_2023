@@ -113,9 +113,7 @@ the metagenomic assembly.
 > these data on it. For the purpose of the in-class tutorial, the output
 > files are provided for you to view:*
 >
-> *  
-> *<span class="mark">cd
-> /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/metagenome_assemblies/KGHS_1-0</span>
+> <span class="mark" style="background-color:yellow">cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/metagenome_assemblies/KGHS_1-0</span>
 >
 > *We have also provided a conda environment and commands within shell
 > scripts to run MetaSPAdes, with more details in Appendix 2.*
@@ -124,8 +122,7 @@ Example commands for sample KGHS_1-0:
 
 **\# Change the directory back to the module5 directory.**
 
-<span class="mark" style="background-color:yellow">cd
-/home/ubuntu/CourseData/MIC_data/mags_workshop/module5</span>
+<span class="mark" style="background-color:yellow">cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5</span>
 
 **\# Activate the SPAdes conda environment so that you can run
 MetaSPAdes.**
