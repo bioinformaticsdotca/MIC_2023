@@ -1,3 +1,13 @@
+---
+layout: tutorial_page
+permalink: /MIC_2023_Module3_lab
+title: CBW-IMPACTT Microbiome Analysis 2023
+header1: Workshop Pages for Students
+header2: CBW-IMPACTT Microbiome Analysis Module 3 Lab
+image: /site_images/CBW_Metagenome_icon.jpg
+home: https://bioinformaticsdotca.github.io/
+--- 
+
 Microbial diversity metrics and data visualization with QIIME2
 
 
