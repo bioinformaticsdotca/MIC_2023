@@ -61,16 +61,16 @@ conda deactivate
 [SEPP](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5904434/) is one method for placing short sequences into a reference phylogenetic tree. This is a useful way of determining a phylogenetic tree for your ASVs. For 16S data you can do this with q2-fragment-insertion using the below command. Again, due to memory constraints, you can copy the output into your folder with the following command:
 
 ```
-cp CourseData/MIC_data/16S_data/asvs-tree.qza .
+cp ~/CourseData/MIC_data/16S_data/asvs-tree.qza .
 ```
 ```
-cp CourseData/MIC_data/16S_data/insertion-placements.qza .
+cp ~/CourseData/MIC_data/16S_data/insertion-placements.qza .
 ```
 
 DONOT RUN THIS COMMAND
 ```
 qiime fragment-insertion sepp --i-representative-sequences deblur_output/rep_seqs_final.qza \
---i-reference-database /home/shared/microbiome_amplicon/sepp-refs-gg-13-8.qza \
+--i-reference-database sepp-refs-gg-13-8.qza \
 --o-tree asvs-tree.qza --o-placements insertion-placements.qza --p-threads 4
 ```
 
@@ -85,6 +85,11 @@ qiime diversity alpha-rarefaction --i-table deblur_output/deblur_table_final.qza
 --p-max-depth 11536 --p-steps 20 --i-phylogeny asvs-tree.qza \
 --o-visualization rarefaction_curves.qzv
 ```
+
+Note in the last session if you were not able to complete some steps, you can use the files from the CourseData folder by adding this to the d
+
+``` ~/CourseData/MIC_data/16S_data/all_output/```
+
 
 **Click [here](https://www.dropbox.com/sh/iom12uffc3o24a6/AAC0t4f95AJ8QSJ1u9wLO2nVa?dl=1) to access and download any files from the server onto your machine (i.e. to upload to QIIME2 View).**
 
@@ -126,12 +131,15 @@ Click [here](https://www.dropbox.com/sh/iom12uffc3o24a6/AAC0t4f95AJ8QSJ1u9wLO2nV
 
 ### Beta diversity visualization and significance test
 
+Here we are going to use PERMANOVA from the beta-group-significance function to see if out groups in the Description_3 variable are significantly different or not. By default the function performs PERMANOVA method.The PERMANOVA implementation here is one-way. To include more than one variable with potential interactions, use `qiime diversity adonis`
 
 ``` 
 qiime diversity beta-group-significance --i-distance-matrix diversity/bray_curtis_distance_matrix.qza \
 --m-metadata-file ../Blueberry_metadata_reduced.tsv --m-metadata-column Description_3 \
 --o-visualization beta_group_sig_permanova
 ```
+
+It is recommended to test for dispersion of groups especially if PERMANOVA shows signifcant difference in groups. 
 
 ```
 qiime diversity beta-group-significance --i-distance-matrix diversity/bray_curtis_distance_matrix.qza \
