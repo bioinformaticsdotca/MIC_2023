@@ -1,3 +1,13 @@
+---
+layout: tutorial_page
+permalink: /MIC_2023_Module5_lab
+title: CBW-IMPACTT Microbiome Analysis 2023
+header1: Workshop Pages for Students
+header2: CBW-IMPACTT Microbiome Analysis Module 5 Lab
+image: /site_images/CBW_Metagenome_icon.jpg
+home: https://bioinformaticsdotca.github.io/
+---
+
 CBW IMPACTT Workshop
 
 Kevin Muirhead and Dr. Laura Sycuro
