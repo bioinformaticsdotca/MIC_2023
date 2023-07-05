@@ -3,7 +3,7 @@
 #SBATCH --partition=synergy,cpu2022,cpu2023
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=4
+#SBATCH --cpus-per-task=14
 #SBATCH --time=7-00:00:00
 #SBATCH --mem=60G
 #SBATCH --array=1-4%4
@@ -13,8 +13,8 @@
 # Get the bashrc information for conda.
 source ~/.bashrc
 
-# The number of cpu threads for metawrap bin refinement module..
-num_threads=4
+# The number of cpu threads for metawrap bin refinement module.
+num_threads=14
 
 # The completeness threshold
 completeness_thresh=50

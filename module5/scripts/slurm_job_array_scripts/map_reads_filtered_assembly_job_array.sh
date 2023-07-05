@@ -3,7 +3,7 @@
 #SBATCH --partition=synergy,cpu2022,cpu2023
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=4
+#SBATCH --cpus-per-task=14
 #SBATCH --time=7-00:00:00
 #SBATCH --mem=60G
 #SBATCH --array=1-4%4
@@ -16,8 +16,8 @@ source ~/.bashrc
 # Activate the bwa conda environment.
 conda activate bwa_env
 
-# The number of cpu threads for BWA and samtools..
-num_threads=4
+# The number of cpu threads for BWA and samtools.
+num_threads=14
 
 # A minimum length of 1500 bps.
 minimum_length=1500
