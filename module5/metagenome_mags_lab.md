@@ -79,7 +79,8 @@ workflow.
 To get started please change your directory to the module5 folder for
 this workshop using the following command;
 
-```cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5```
+<span class="mark">cd
+/home/ubuntu/CourseData/MIC_data/mags_workshop/module5</span>
 
 <u>Step 1a: Assemble metagenomic reads using MetaSPAdes</u>
 
@@ -113,7 +114,9 @@ the metagenomic assembly.
 > these data on it. For the purpose of the in-class tutorial, the output
 > files are provided for you to view:*
 >
-> <span style="background-color:yellow">cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/metagenome_assemblies/KGHS_1-0</span>
+> *  
+> *<span class="mark">cd
+> /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/metagenome_assemblies/KGHS_1-0</span>
 >
 > *We have also provided a conda environment and commands within shell
 > scripts to run MetaSPAdes, with more details in Appendix 2.*
@@ -122,7 +125,8 @@ Example commands for sample KGHS_1-0:
 
 **\# Change the directory back to the module5 directory.**
 
-<span style="background-color:yellow">cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5</span>
+<span class="mark">cd
+/home/ubuntu/CourseData/MIC_data/mags_workshop/module5</span>
 
 **\# Activate the SPAdes conda environment so that you can run
 MetaSPAdes.**
