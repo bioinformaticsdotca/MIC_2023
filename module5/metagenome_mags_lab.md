@@ -1,6 +1,6 @@
 CBW IMPACTT Workshop
 
-July 5-7th, 2023
+Kevin Muirhead and Dr. Laura Sycuro
 
 **Module 5: Metagenomic Assembly and Metagenome Assembled Genomes
 Tutorial**
@@ -80,7 +80,7 @@ To get started please change your directory to the module5 folder for
 this workshop using the following command;
 
 <span class="mark">cd
-/home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output</span>
+/home/ubuntu/CourseData/MIC_data/mags_workshop/module5</span>
 
 <u>Step 1a: Assemble metagenomic reads using MetaSPAdes</u>
 
@@ -104,7 +104,7 @@ paired end FASTQ files as input and generates a number of output files,
 including the scaffolds.fasta file containing all scaffold sequences for
 the metagenomic assembly.
 
-**WARNING: DO NOT RUN MetaSPAdes!**
+**WARNING: DO NOT RUN MetaSPAdes!!!**
 
 > *Notes: For a dataset this size (~300MB – 1.3GB per read1.fastq and
 > read2.fastq), with 28 threads, MetaSPAdes ran for 17 – 27 minutes
@@ -112,13 +112,21 @@ the metagenomic assembly.
 > several hours to several days using these parameters. The AWS instance
 > may similarly take many hours to complete if you attempt to assemble
 > these data on it. For the purpose of the in-class tutorial, the output
-> files are provided for you to view:  
-> <span class="mark">cd</span>*<span class="mark">/home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/metagenome_assemblies/KGHS_1-0</span>
+> files are provided for you to view:*
+>
+> *  
+> *<span class="mark">cd
+> /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/metagenome_assemblies/KGHS_1-0</span>
 >
 > *We have also provided a conda environment and commands within shell
 > scripts to run MetaSPAdes, with more details in Appendix 2.*
 
-Example command for sample KGHS_1-0:
+Example commands for sample KGHS_1-0:
+
+**\# Change the directory back to the module5 directory.**
+
+<span class="mark">cd
+/home/ubuntu/CourseData/MIC_data/mags_workshop/module5</span>
 
 **\# Activate the SPAdes conda environment so that you can run
 MetaSPAdes.**
@@ -174,7 +182,12 @@ alt="A close-up of a sign Description automatically generated with low confidenc
 input and generates a number of output files, including the
 transposed_report.tsv file.
 
-Example command for sample KGHS_1-0:
+Example commands for sample KGHS_1-0:
+
+**\# Change the directory back to the module5 directory.**
+
+<span class="mark">cd
+/home/ubuntu/CourseData/MIC_data/mags_workshop/module5</span>
 
 **\# Activate the QUAST conda environment.**
 
@@ -196,15 +209,15 @@ Example output:
 
 **QUAST contigs.fasta**
 
-<span class="mark">*less*
-/bulk/IMCshared_bulk/kevin/module5/output/metagenome_assemblies/KGHS_1-0/quast_contigs/transposed_report.tsv</span>
+<span class="mark">less
+/bulk/IMCshared_bulk/kevin/module5/metagenome_assemblies/KGHS_1-0/quast_contigs/transposed_report.tsv</span>
 
 **QUAST scaffolds.fasta**
 
-<span class="mark">*less*
-/bulk/IMCshared_bulk/kevin/module5/output/metagenome_assemblies/KGHS_1-0/quast_scaffolds/transposed_report.tsv</span>
+<span class="mark">less
+/bulk/IMCshared_bulk/kevin/module5/metagenome_assemblies/KGHS_1-0/quast_scaffolds/transposed_report.tsv</span>
 
-Table x: The QUAST evaluation metrics results for contigs.fasta and
+**Table 2:** The QUAST evaluation metrics results for contigs.fasta and
 scaffolds.fasta
 
 | Assembly  | Number of contigs | Largest contig | Total length | GC (%) | N50   | \# N's per 100 kbp |
@@ -242,7 +255,12 @@ file. Seqkit stats quickly/easily reports quality metrics and will be
 applied to the original scaffolds.fasta file and the length-filtered
 KGHS_1-0_min1500.fasta file to compare them.
 
-Example command for sample KGHS_1-0:
+Example commands for sample KGHS_1-0:
+
+**\# Change the directory back to the module5 directory.**
+
+<span class="mark">cd
+/home/ubuntu/CourseData/MIC_data/mags_workshop/module5</span>
 
 **\# Filter scaffolds to a minimum length of 1500 nt.**
 
@@ -320,32 +338,40 @@ filtered metagenome.
 **WARNING: DO NOT RUN BWA mem or samtools!!!** *Note: The mapping step
 takes a few minutes using 14 threads.*
 
-Example command for sample KGHS_1-0:
+Example commands for sample KGHS_1-0:
+
+**\# Change the directory back to the module5 directory.**
+
+<span class="mark">cd
+/home/ubuntu/CourseData/MIC_data/mags_workshop/module5</span>
 
 **\# Activate the bwa conda environment.**
 
-conda activate bwa_env
+<span class="mark">conda activate bwa_env</span>
 
 **\# Create an index of the filtered scaffolds using bwa index.**
 
-bwa index filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta
+<span class="mark">bwa index
+filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta</span>
 
 **\# Map the paired end reads from sample KGHS_1-0 to the filtered
 scaffolds using bwa mem.**
 
-bwa mem -t 1 filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta
+<span class="mark">bwa mem -t 4
+filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta
 cleaned_fastq_files/KGHS_1-0_1.fastq
 cleaned_fastq_files/KGHS_1-0_2.fastq \>
-filtered_metagenomes/KGHS_1-0/KGHS_1-0.sam
+filtered_metagenomes/KGHS_1-0/KGHS_1-0.sam</span>
 
 **\# Activate the samtools conda environment.**
 
-conda activate samtools_env
+<span class="mark">conda activate samtools_env</span>
 
 **\# Sort the sam file and conver to bam using samtools.**
 
-samtools sort -@ 1 -O BAM -o filtered_metagenomes/KGHS_1-0/KGHS_1-0.bam
-filtered_metagenomes/KGHS_1-0/KGHS_1-0.sam
+<span class="mark">samtools sort -@ 4 -O BAM -o
+filtered_metagenomes/KGHS_1-0/KGHS_1-0.bam
+filtered_metagenomes/KGHS_1-0/KGHS_1-0.sam</span>
 
 **MetaBat2** (<https://bitbucket.org/berkeleylab/metabat/src/master/>)
 
@@ -354,6 +380,11 @@ filtered_metagenomes/KGHS_1-0/KGHS_1-0.sam
 Example commands for sample KGHS_1-0:
 
 **Bin length-filtered scaffolds using MetaBat2.**
+
+**\# Change the directory back to the module5 directory.**
+
+<span class="mark">cd
+/home/ubuntu/CourseData/MIC_data/mags_workshop/module5</span>
 
 **\# Activate the metabat2 conda environment.**
 
@@ -471,23 +502,33 @@ initial_binning/KGHS_1-0/maxbin2/\$new_filename;</span>
 
 Example output:
 
-**Table 2:** Number of bins from MetaBAT2 and MaxBin2.
+**Table 3:** The number and quality of the initial bins from MetaBAT2
+and MaxBin2.
 
-| Binning Program | Bin ID            |     |     |     |     |
-|-----------------|-------------------|-----|-----|-----|-----|
-| MetaBAT2        | KGHS_1-0_bin.1.fa |     |     |     |     |
-| MetaBAT2        | KGHS_1-0_bin.2.fa |     |     |     |     |
-| MetaBAT2        | KGHS_1-0_bin.3.fa |     |     |     |     |
-| MaxBin2         | KGHS_1-0_bin.1.fa |     |     |     |     |
-| MaxBin2         | KGHS_1-0_bin.2.fa |     |     |     |     |
-| MaxBin2         | KGHS_1-0_bin.3.fa |     |     |     |     |
-| MaxBin2         | KGHS_1-0_bin.4.fa |     |     |     |     |
-| MaxBin2         | KGHS_1-0_bin.5.fa |     |     |     |     |
-| MaxBin2         | KGHS_1-0_bin.6.fa |     |     |     |     |
-| MaxBin2         | KGHS_1-0_bin.7.fa |     |     |     |     |
+| **Bin ID** | **Binning Program** | **Number of contigs** | **Completeness** | **Contamination** | **GC** | **Lineage**   | **N50** | **Total Size** |
+|------------|---------------------|-----------------------|------------------|-------------------|--------|---------------|---------|----------------|
+| bin.1      | MetaBAT2            | 31                    | 73.08            | 0                 | 0.34   | Lactobacillus | 70417   | 1018998        |
+| bin.2      | MetaBAT2            | 9                     | 44.82            | 0                 | 0.321  | Bacteria      | 82317   | 399990         |
+| bin.3      | MetaBAT2            | 4                     | 12.5             | 0                 | 0.325  | root          | 154219  | 296894         |
+| bin.4      | MetaBAT2            | 71                    | 55.17            | 1.724             | 0.363  | Bacteria      | 22949   | 1213585        |
+| bin.5      | MetaBAT2            | 23                    | 4.166            | 0                 | 0.377  | root          | 16390   | 295846         |
+| bin.6      | MetaBAT2            | 18                    | 20.34            | 0                 | 0.379  | Lactobacillus | 19069   | 239066         |
+| bin.7      | MetaBAT2            | 22                    | 11.44            | 0                 | 0.336  | Bacteria      | 40251   | 519230         |
+| bin.1      | MaxBin2             | 136                   | 79.06            | 0.216             | 0.373  | Lactobacillus | 17642   | 1593681        |
+| bin.2      | MaxBin2             | 72                    | 98.96            | 11.9              | 0.329  | Lactobacillus | 84766   | 1639119        |
+| bin.3      | MaxBin2             | 75                    | 98.83            | 0.322             | 0.341  | Lactobacillus | 67177   | 1711736        |
 
-Should we keep? I don’t have checkm or quast for this but can run it
-later ^^^^
+You can see that there are quite a few bins being generated using
+MetaBAT2 and MaxBin2 with variable number of contigs, N50 and total
+sizes. Each has its own completeness and contamination values from
+CheckM that is used to evaluate the bins. The percent completeness is
+the proportion of universal single copy marker genes present in the bin
+and percent contamination is the proportion of contamination from other
+genomes in your bin. You can see that the lineage is down to the genus
+level for some. That is the lowest taxonomy you can get out of using
+CheckM and will need to use GTDB-tk once you have MAGs. The quality of
+bins are important when moving forward and you can use metawrap to
+refine your bins into higher quality bins.
 
 <u>Step 2b: Refine bins using metaWRAP’s bin refinement module</u>
 
@@ -506,6 +547,10 @@ We precomputed the refined bins taking 31 minutes using 28 threads and
 
 Example commands for sample KGHS_1-0 bins:
 
+**\# Change the directory back to the module5 directory.**
+
+cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5
+
 **\# Start the conda environment for metaWRAP bin_refinement.**
 
 conda activate metawrap_bin_refinement_env
@@ -518,15 +563,19 @@ initial_binning/KGHS_1-0/metabat2 -B initial_binning/KGHS_1-0/maxbin2 -c
 
 Example output:
 
+The metawrap stats file for the
+
+less output/bin_refinement/KGHS_1-0/metawrap_50_10_bins.stats
+
 Obtained from quast output transposed_report.tsv for KGHS_1-0_bin.1 and
 KGHS_1-0_bin.3.
 
-**Table 3**: Number of bins refined using metaWRAP.
+**Table 4**: Number and quality of bins refined using metaWRAP.
 
-| **Bin ID**     | **Refined Bin Program** | **Number of contigs** | **Largest contig** | **Total length** | **GC (%)** | **N50** | **\# N's per 100 kbp** |
-|----------------|-------------------------|-----------------------|--------------------|------------------|------------|---------|------------------------|
-| KGHS_1-0_bin.1 | metaWRAP                | 75                    | 133687             | 1711736          | 34.19      | 67177   | 6.43                   |
-| KGHS_1-0_bin.3 | metaWRAP                | 136                   | 59107              | 1593681          | 37.33      | 17642   | 7.53                   |
+| **Bin ID**     | **Refined Bin Program** | **Number of contigs** | **Largest contig** | **Complete-ness** | **Contam-ination** | **Total length** | **GC (%)** | **N50** |
+|----------------|-------------------------|-----------------------|--------------------|-------------------|--------------------|------------------|------------|---------|
+| KGHS_1-0_bin.1 | metaWRAP                | 75                    | 133687             |                   |                    | 1711736          | 34.19      | 67177   |
+| KGHS_1-0_bin.3 | metaWRAP                | 136                   | 59107              |                   |                    | 1593681          | 37.33      | 17642   |
 
 <u>Step 2c: Evaluate bin quality using CheckM</u>
 
@@ -559,7 +608,11 @@ permissions to read the database, CheckM will print an error message
 until you run out of space on your hard drive. So be aware of this as it
 could potentially give you a lot of problems you don’t need.**
 
-Example command for the KGHS_1-0.bin1.fa MAG:
+Example commands for the KGHS_1-0.bin1.fa MAG:
+
+**\# Change the directory back to the module5 directory.**
+
+cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5
 
 **\# Set the CheckM database path.**
 
@@ -610,15 +663,20 @@ classification (Section 3, Step 3a below).**
 
 Exercise:
 
-\# Use awk to filter the CheckM results using \>= 50% completeness and
-\<=10 % contamination.
+**\# Change the directory to the checkm bin directory.**
+
+<span class="mark">cd /home/ubuntu/CourseData/MIC_data/mags_workshop/
+module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/checkm</span>
+
+**\# Use awk to filter the CheckM results using \>= 50% completeness and
+\<=10 % contamination.**
 
 <span class="mark">awk -F’\t’ ‘((\$1 \>= 50) && (\$2 \<= 10)){print
 \$0}’ \<(tail -n+2 \< checkm.tsv) \>
 checkm_output_ge50comp_le10contam.tsv</span>
 
-\# Use awk to filter the CheckM results using \>= 90% completeness and
-\<=10 % contamination.
+**\# Use awk to filter the CheckM results using \>= 90% completeness and
+\<=10 % contamination.**
 
 <span class="mark">awk -F’\t’ ‘((\$1 \>= 90) && (\$2 \<= 10)){print
 \$0}’ \<(tail -n+2 \< checkm.tsv) \>
@@ -649,7 +707,11 @@ fail.*
 **WARNING Do not run GTDB-tk!!! *Note It requires pplacer and will take
 20 mins using 46 GB RAM and 14 threads.***
 
-Example command for the KGHS_1-0.bin1.fa MAG:
+Example commands for the KGHS_1-0.bin1.fa MAG:
+
+**\# Change the directory back to the module5 directory.**
+
+cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5
 
 **\# Activate the gtdbtk conda environment.**
 
@@ -704,22 +766,28 @@ multi-FASTA files.
 
 Example command for the KGHS_1-0.bin1.fa MAG:
 
+**\# Change the directory back to the module5 directory.**
+
+<span class="mark">cd
+/home/ubuntu/CourseData/MIC_data/mags_workshop/module5</span>
+
 **\# Activate the conda environment.**
 
-conda activate prokka_env
+<span class="mark">conda activate prokka_env</span>
 
 **\# Rename and copy the KGHS_1-0_bin.1.fa MAG to the refined_bins
 KGHS_1-0_bin.1 prokka directory.**
 
-cp bin_refinement/KGHS_1-0/metawrap_50_10_bins/bin.1.fa
-refined_bins/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.fa
+<span class="mark">cp
+bin_refinement/KGHS_1-0/metawrap_50_10_bins/bin.1.fa
+refined_bins/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.fa</span>
 
 **\# Run prokka on the KGHS_1-0_bin.1.fa MAG.**
 
-prokka --metagenome --outdir refined_bins/KGHS_1-0/KGHS_1-0_bin.1/prokka
---prefix KGHS_1-0_bin.1
+<span class="mark">prokka --metagenome --outdir
+refined_bins/KGHS_1-0/KGHS_1-0_bin.1/prokka --prefix KGHS_1-0_bin.1
 refined_bins/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.fa --cpus 14
---rfam 1 –force
+--rfam 1 –force</span>
 
 Example output:
 
@@ -771,6 +839,10 @@ tutorial.**
 
 Example commands for the KGHS1-0.bin1.fa MAG:
 
+**\# Change the directory back to the module5 directory.**
+
+cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5
+
 **\# Activate the conda environment.**
 
 conda activate dram_env
@@ -805,9 +877,10 @@ Example output:
 <img src="images/media/image16.png"
 style="width:7.26852in;height:1.09183in" />
 
-<span class="mark">Open the
-/home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/dram/genome_summaries/product.html</span>
-in a browser window i.e. chrome
+<span class="mark">Open the KGHS_1-0_bin.1 product.html file in a
+browser window (i.e. chrome)</span>
+
+[<span class="mark">http://50.uhn-hpc.ca/mags_workshop/KGHS_1-0_bin.1_product.html</span>](http://50.uhn-hpc.ca/mags_workshop/KGHS_1-0_bin.1_product.html)
 
 <img src="images/media/image17.png"
 style="width:7.03704in;height:4.39815in" />
@@ -816,6 +889,11 @@ style="width:7.03704in;height:4.39815in" />
 
 **Question**: How many pentose phosphate pathway steps are found within
 the KGHS_1-0_bin.1.fa MAG?
+
+<span class="mark">Open the KGHS_1-0_bin.3 product.html file in a
+browser window (i.e. chrome)</span>
+
+[<span class="mark">http://50.uhn-hpc.ca/mags_workshop/KGHS_1-0_bin.3_product.html</span>](http://50.uhn-hpc.ca/mags_workshop/KGHS_1-0_bin.3_product.html)
 
 Compare the results of Prokka versus DRAM. Both use Prodigal
 (<https://github.com/hyattpd/Prodigal>) for calling open reading frames
@@ -827,7 +905,7 @@ for t-RNA gene prediction. DRAM and Prokka use a different combination
 of databases for annotation of protein coding genes resulting in
 different naming of each sequence ID and the annotation given.
 
-**Table 4**: Overview of the programs used in the DRAM and Prokka
+**Table 5**: Overview of the programs used in the DRAM and Prokka
 annotation software.
 
 | **Program Name** | **ORF caller** | **rRNA Prediction** | **t-RNA Prediction** | **Databases**                                                                                        |
@@ -873,23 +951,30 @@ annotation in Prokka.*
 <img src="images/media/image18.png" style="width:6.5in;height:1.32986in"
 alt="A picture containing text, font, screenshot, line Description automatically generated" />
 
+Example commands to run mobileOG-db.
+
+**\# Change the directory back to the module5 directory.**
+
+<span class="mark">cd
+/home/ubuntu/CourseData/MIC_data/mags_workshop/module5</span>
+
 **\# Run diamond on the mobileOG-db.**
 
-diamond blastp -q
+<span class="mark">diamond blastp -q
 refined_bins/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.faa --db
-/bulk/IMCshared_bulk/shared/dbs/mobileOG-db/mobileOG-db-beatrix-1.6.dmnd
---outfmt 6 stitle qseqid pident bitscore slen evalue qlen sstart send
-qstart qend -o
+software_dir/mobileOG-db/mobileOG-db-beatrix-1.6.dmnd --outfmt 6 stitle
+qseqid pident bitscore slen evalue qlen sstart send qstart qend -o
 refined_bins/KGHS_1-0/KGHS_1-0_bin.1/mobileog_db/KGHS_1-0_bin.1.tsv
---threads 14 -k 15 -e 1e-20 --query-cover 80 --id 30
+--threads 14 -k 15 -e 1e-20 --query-cover 80 --id 30</span>
 
 **\# Run the mobileOG-db script for parsing the output and merging the
 metadata for extra information.**
 
-python software_dir/mobileOG-db/mobileOG-pl/mobileOGs-pl-kyanite.py --o
+<span class="mark">python
+software_dir/mobileOG-db/mobileOG-pl/mobileOGs-pl-kyanite.py --o
 refined_bins/KGHS_1-0/KGHS_1-0_bin.3/mobileog_db/annotation --i
 "refined_bins/KGHS_1-0/KGHS_1-0_bin.3/mobileog_db/KGHS_1-0_bin.3.tsv" -m
-/bulk/IMCshared_bulk/shared/dbs/mobileOG-db/mobileOG-db-beatrix-1.6-All.csv
+software_dir/mobileOG-db/mobileOG-db-beatrix-1.6-All.csv</span>
 
 Example output:
 
@@ -900,7 +985,7 @@ Example output:
 <img src="images/media/image19.png"
 style="width:7.35787in;height:1.0463in" />
 
-You can expect to find the follow types of mobile elements;
+You can expect to find the follow types of mobile elements.
 
 - **Insertion sequences (IS)** - small pieces of DNA which move within
   or between genomes using their own specialized recombination systems.
@@ -996,8 +1081,7 @@ convenience. Please go to the bioinformatics.ca github repository to
 download these scripts for your use. Follow the instructions there for
 how to install the conda environments, databases and running the
 scripts.
-
-Link to scripts here.
+<https://github.com/bioinformaticsdotca/MIC_2023/blob/main/module5/scripts>
 
 **Appendix 3: Extra annotation programs and examples.**
 
@@ -1011,7 +1095,11 @@ alt="A picture containing text, font, screenshot, number Description automatical
 The eggnog-mapper program annotates a protein fasta file using the
 following databases.
 
-Example Command:
+Example Commands:
+
+**\# Change the directory back to the module5 directory.**
+
+cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5
 
 **\# Activate the eggnog_mapper conda environment.**
 
@@ -1054,7 +1142,7 @@ retrieve orthologs for annotations.
 
 **Description** - Description of the narrowest OG with a valid one.
 
-**Preferred_name**
+**Preferred_name** – The preferred name of the protein sequence.
 
 **GOs** – Gene Ontology IDs
 
@@ -1076,7 +1164,8 @@ retrieve orthologs for annotations.
 
 **CAZy** – The carbohydrate active enzyme annotation (cazy.org)
 
-**BiGG_Reaction** -
+**BiGG_Reaction** – The Biochemically, Genetically and Genomically
+structured genome-scale metabolic network reconstructions.
 
 **PFAMs** – PFAM IDs
 
@@ -1098,6 +1187,10 @@ The run_dbcan software annotates a protein fasta file with carbohydrate
 active enzymes\[11\]. run_dbcan4 is a new version that uses eCAMI HMM
 models to obtain the enzyme class number (EC#) to predict the substrate
 a CAZyme.
+
+**\# Change the directory back to the module5 directory.**
+
+cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5
 
 **\# Activate the run_dbcan conda environment.**
 
