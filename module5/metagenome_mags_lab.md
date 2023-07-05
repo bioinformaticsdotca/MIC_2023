@@ -125,7 +125,7 @@ Example commands for sample KGHS_1-0:
 
 **\# Change the directory back to the module5 directory.**
 
-<span class="mark">cd
+<span class="mark" style="background-color:yellow">cd
 /home/ubuntu/CourseData/MIC_data/mags_workshop/module5</span>
 
 **\# Activate the SPAdes conda environment so that you can run
