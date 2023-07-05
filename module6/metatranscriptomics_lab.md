@@ -1,3 +1,14 @@
+---
+layout: tutorial_page
+permalink: /MIC_2023_Module6_lab
+title: CBW-IMPACTT Microbiome Analysis 2023
+header1: Workshop Pages for Students
+header2: CBW-IMPACTT Microbiome Analysis Module 6 Lab
+image: /site_images/CBW_Metagenome_icon.jpg
+home: https://bioinformaticsdotca.github.io/
+---
+
+
 # Metatranscriptomics Practical Lab - CBW 2023
 
 **This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/). This means that you are able to copy, share and modify the work, as long as the result is distributed under the same license.**

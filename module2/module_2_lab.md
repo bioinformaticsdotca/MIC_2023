@@ -1,3 +1,13 @@
+---
+layout: tutorial_page
+permalink: /MIC_2023_Module2_lab
+title: CBW-IMPACTT Microbiome Analysis 2023
+header1: Workshop Pages for Students
+header2: CBW-IMPACTT Microbiome Analysis Module 2 Lab
+image: /site_images/CBW_Metagenome_icon.jpg
+home: https://bioinformaticsdotca.github.io/
+---
+
 This tutorial is for the [2023 CBW-IMPACTT bioinformatics workshop](https://bioinformatics.ca/workshops-all/2023-cbw-impactt-microbiome-analysis/) running from July 5-7th with access to AWS servers. It is based on the Amplicon SOP v2 available on the [Microbiome Helper repository](https://github.com/LangilleLab/microbiome_helper/wiki/Amplicon-SOP-v2-(qiime2-2022.11)) and a [previous workshop designed by Monica Alvaro Fuss](https://github.com/LangilleLab/microbiome_helper/wiki/Microbiome-analysis-using-QIIME2-with-16S-data). 
 
 **Authors:** Robyn Wright and Morgan Langille

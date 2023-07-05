@@ -1,3 +1,14 @@
+---
+layout: tutorial_page
+permalink: /MIC_2023_Module4_lab
+title: CBW-IMPACTT Microbiome Analysis 2023
+header1: Workshop Pages for Students
+header2: CBW-IMPACTT Microbiome Analysis Module 4 Lab
+image: /site_images/CBW_Metagenome_icon.jpg
+home: https://bioinformaticsdotca.github.io/
+---
+
+
 This tutorial is for the [2023 CBW-IMPACTT bioinformatics workshop](https://bioinformatics.ca/workshops-all/2023-cbw-impactt-microbiome-analysis/) running in Calgary from July 5-7th. This tutorial has been adapted from the [2022 IMPACTT bioinformatics workshops](https://github.com/LangilleLab/microbiome_helper/wiki/IMPACTT-workshop-tutorials-2022), but it now uses different samples that match those in the [amplicon sequencing part of this workshop](https://github.com/LangilleLab/microbiome_helper/wiki/CBW-IMPACTT-2023-Microbiome-analysis-using-QIIME2-with-16S-data). We have also added the part that includes visualisation of results in Phyloseq, and removed parts related to initial quality control of reads.
 
 **Authors**: [Robyn Wright](mailto:robyn.wright@dal.ca) and Morgan Langille
