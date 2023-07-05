@@ -616,18 +616,16 @@ Exercise:
 **\# Use awk to filter the CheckM results using >= 50% completeness and
 <=10 % contamination.**
 
-```awk -F’\t’ ‘(($1 >= 50) && ($2 <= 10)){print $0}’ <(tail -n+2 < checkm.tsv) > checkm_output_ge50comp_le10contam.tsv```
+```awk -F'\t' '(($1 >= 50) && ($2 <= 10)){print $0}' <(tail -n+2 < checkm.tsv) > checkm_output_ge50comp_le10contam.tsv```
 
 **\# Use awk to filter the CheckM results using >= 90% completeness and
 <=10 % contamination.**
 
-```awk -F’\t’ ‘(($1 >= 90) && ($2 <= 10)){print $0}’ <(tail -n+2 < checkm.tsv) > checkm_output_ge90comp_le10contam.tsv```
+```awk -F'\t' '(($1 >= 90) && ($2 <= 10)){print $0}' <(tail -n+2 < checkm.tsv) > checkm_output_ge90comp_le10contam.tsv```
 
 **Section 3: Annotation**
 
-For the purposes of this tutorial, you will consider refined bins with
->= 90% completeness and <= 10% contamination (CheckM) as MAGs suitable
-for downstream annotation.
+For the purposes of this tutorial, you will consider refined bins with >= 90% completeness and <= 10% contamination (CheckM) as MAGs suitable for downstream annotation.
 
 <u>Step 3a: Classify the taxonomy of each MAG using GTDB-tk</u>
 
