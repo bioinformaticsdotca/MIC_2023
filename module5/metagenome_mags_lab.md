@@ -54,7 +54,7 @@ working component of the tutorial, go to page 3.
 
 **Overview of the Dataset and Workflow**
 
-The KGHS dataset was downloaded from NCBI BioProject RJNA838641 (Table
+The KGHS dataset was downloaded from NCBI BioProject PRJNA838641 (Table
 1). Please see Appendix 1 for more information on how this was performed
 and how to download public datasets using the NCBI SRA toolkit program
 fasterq-dump.
