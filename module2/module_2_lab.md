@@ -20,7 +20,7 @@ This lab provides a walkthrough of an end-to-end pipeline using the command line
 - [Metagenomic Functional Shifts to Plant Induced Environmental Changes](https://www.frontiersin.org/articles/10.3389/fmicb.2019.01682/full#B50)
 
 In this module (module 2) we will cover the basics of marker gene analysis from raw reads to filtered feature table. The pipeline described is embedded in the latest version of QIIME2 (Quantitative Insights into Microbial Ecology version 2023.2), which is a popular microbiome bioinformatics platform for microbial ecology built on user-made software packages called plugins that work on QIIME2 artifact or QZA files. Documentation for these plugins can be found in the [QIIME 2 user documentation](https://docs.qiime2.org/2023.2/), along with tutorials and other useful information. QIIME2 also provides interpretable visualizations that can be accessed by opening any generated QZV files within [QIIME2 View](https://view.qiime2.org/).
-There are questions throughout this workshop that are aimed at ensuring you've understood the material - you can find the answers [here]() and are welcome to discuss the answers with us, but we will *not* be marking them.
+There are questions throughout this workshop that are aimed at ensuring you've understood the material - you can find the answers [here](https://github.com/bioinformaticsdotca/MIC_2023/blob/main/module2/module_2_answers.md) and are welcome to discuss the answers with us, but we will *not* be marking them.
 
 #### Practical considerations
 
