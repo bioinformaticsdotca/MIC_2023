@@ -146,21 +146,18 @@ Key output files:
 **contigs.fasta** - The FASTA file containing the assembled metagenomic
 contigs
 
-```less
-/home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/metagenome_assemblies/KGHS_1-0/contigs.fasta```
+```less /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/metagenome_assemblies/KGHS_1-0/contigs.fasta```
 
 **scaffolds.fasta** - The FASTA file containing the assembled
 metagenomic scaffolds
 
-```less
-/home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/metagenome_assemblies/KGHS_1-0/scaffolds.fasta```
+```less /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/metagenome_assemblies/KGHS_1-0/scaffolds.fasta```
 
 **spades.log** – The log text file containing information on what the
 program did, how long each step took, and where things went wrong (if
 they do).
 
-```less
-/home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/metagenome_assemblies/KGHS_1-0/spades.log```
+```less /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/metagenome_assemblies/KGHS_1-0/spades.log```
 
 <u>Step 1b: Evaluate assembly quality using QUAST</u>
 
@@ -183,8 +180,7 @@ Example commands for sample KGHS_1-0:
 
 **\# Change the directory back to the module5 directory.**
 
-```cd
-/home/ubuntu/CourseData/MIC_data/mags_workshop/module5```
+```cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5```
 
 **\# Activate the QUAST conda environment.**
 
@@ -192,27 +188,21 @@ Example commands for sample KGHS_1-0:
 
 **\# Run QUAST on the scaffolds.fasta file.**
 
-```quast.py --output-dir
-metagenome_assemblies/KGHS_1-0/quast_contigs --threads 1
-output/metagenome_assemblies/KGHS_1-0/contigs.fasta```
+```quast.py --output-dir metagenome_assemblies/KGHS_1-0/quast_contigs --threads 1 output/metagenome_assemblies/KGHS_1-0/contigs.fasta```
 
 **\# Run QUAST on the scaffolds.fasta file.**
 
-```quast.py --output-dir
-metagenome_assemblies/KGHS_1-0/quast_scaffolds --threads 1
-output/metagenome_assemblies/KGHS_1-0/scaffolds.fasta```
+```quast.py --output-dir metagenome_assemblies/KGHS_1-0/quast_scaffolds --threads 1 output/metagenome_assemblies/KGHS_1-0/scaffolds.fasta```
 
 Example output:
 
 **QUAST contigs.fasta**
 
-```less
-/bulk/IMCshared_bulk/kevin/module5/metagenome_assemblies/KGHS_1-0/quast_contigs/transposed_report.tsv```
+```less /bulk/IMCshared_bulk/kevin/module5/metagenome_assemblies/KGHS_1-0/quast_contigs/transposed_report.tsv```
 
 **QUAST scaffolds.fasta**
 
-```less
-/bulk/IMCshared_bulk/kevin/module5/metagenome_assemblies/KGHS_1-0/quast_scaffolds/transposed_report.tsv```
+```less /bulk/IMCshared_bulk/kevin/module5/metagenome_assemblies/KGHS_1-0/quast_scaffolds/transposed_report.tsv```
 
 **Table 2:** QUAST evaluation metrics for contigs.fasta and
 scaffolds.fasta
@@ -256,20 +246,15 @@ Example commands for sample KGHS_1-0:
 
 **\# Change the directory back to the module5 directory.**
 
-```cd
-/home/ubuntu/CourseData/MIC_data/mags_workshop/module5```
+```cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5```
 
 **\# Filter scaffolds to a minimum length of 1500 nt.**
 
-```seqkit seq -m 1500
-output/metagenome_assemblies/KGHS_1-0/scaffolds.fasta \>
-filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500/KGHS_1-0_min1500.fasta```
+```seqkit seq -m 1500 output/metagenome_assemblies/KGHS_1-0/scaffolds.fasta filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500/KGHS_1-0_min1500.fasta```
 
 **\# Run seqkit stats on the KGHS_1-0 contigs.fasta file.**
 
-```seqkit stats -a
-output/metagenome_assemblies/KGHS_1-0/contigs.fasta \>
-metagenome_assemblies/KGHS_1-0/contigs.fasta.seqkit.stats.txt```
+```seqkit stats -a output/metagenome_assemblies/KGHS_1-0/contigs.fasta metagenome_assemblies/KGHS_1-0/contigs.fasta.seqkit.stats.txt```
 
 Example output:
 
@@ -278,9 +263,7 @@ style="width:6.5in;height:0.34097in" />
 
 **\# Run seqkit stats on the KGHS_1-0 scaffolds.fasta file.**
 
-```seqkit stats -a
-output/metagenome_assemblies/KGHS_1-0/scaffolds.fasta \>
-metagenome_assemblies/KGHS_1-0/scaffolds.fasta.seqkit.stats.txt```
+```seqkit stats -a output/metagenome_assemblies/KGHS_1-0/scaffolds.fasta metagenome_assemblies/KGHS_1-0/scaffolds.fasta.seqkit.stats.txt```
 
 Example output:
 
@@ -291,9 +274,7 @@ style="width:6.5in;height:0.34485in" />
 KGHS_1-0_min1500.fasta file to see how filtering affected the minimum
 length reported and the number of scaffolds.**
 
-```seqkit stats -a
-output/filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta \>
-filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta.seqkit.stats.txt```
+```seqkit stats -a output/filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta.seqkit.stats.txt```
 
 Example output:
 
@@ -1211,8 +1192,7 @@ protein --db_dir
 --dia_cpu 14 --hmm_cpu 14 --dbcan_thread 14 --out_dir
 refined_bins/KGHS_1-0/KGHS_1-0_bin.1/dbcan
 
-```less
-/home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0_bin.1/dbcan/overview.txt```
+```less /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0_bin.1/dbcan/overview.txt```
 
 Example output from overview.txt. Open the KGHS_1-0_bin.1 overview.txt
 file using the less command. You will see the following columns. One row
