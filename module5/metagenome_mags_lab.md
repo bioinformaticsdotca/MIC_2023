@@ -79,8 +79,7 @@ workflow.
 To get started please change your directory to the module5 folder for
 this workshop using the following command;
 
-<span class="mark">cd
-/home/ubuntu/CourseData/MIC_data/mags_workshop/module5</span>
+<span class="mark" style="background-color:yellow">cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5</span>
 
 <u>Step 1a: Assemble metagenomic reads using MetaSPAdes</u>
 
