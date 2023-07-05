@@ -402,11 +402,11 @@ generated in the mapping step.**
 **\# Create the maxbin2 abundance file using the first and third columns
 of the maxbin2 depth of coverage file.**
 
-```tail -n+2 initial_binning/KGHS_1-0/KGHS_1-0_maxbin2_depth.txt \| cut -f1,3 \> initial_binning/KGHS_1-0/KGHS_1-0_maxbin2_abund.txt```
+```tail -n+2 initial_binning/KGHS_1-0/KGHS_1-0_maxbin2_depth.txt \| cut -f1,3 > initial_binning/KGHS_1-0/KGHS_1-0_maxbin2_abund.txt```
 
 **\# Print the path of the maxbin2 abundance file to a list file.**
 
-```echo initial_binning/KGHS_1-0/KGHS_1-0_maxbin2_abund.txt \> initial_binning/KGHS_1-0/KGHS_1-0_maxbin2_abund_list.txt```
+```echo initial_binning/KGHS_1-0/KGHS_1-0_maxbin2_abund.txt > initial_binning/KGHS_1-0/KGHS_1-0_maxbin2_abund_list.txt```
 
 **\# Activate the maxbin2 conda environment.**
 
@@ -616,7 +616,7 @@ Exercise:
 **\# Use awk to filter the CheckM results using \>= 50% completeness and
 \<=10 % contamination.**
 
-```awk -F’\t’ ‘((\$1 \>= 50) && (\$2 \<= 10)){print \$0}’ \<(tail -n+2 \< checkm.tsv) \> checkm_output_ge50comp_le10contam.tsv```
+```awk -F’\t’ ‘((\$1 \>= 50) && (\$2 \<= 10)){print \$0}’ \<(tail -n+2 < checkm.tsv) > checkm_output_ge50comp_le10contam.tsv```
 
 **\# Use awk to filter the CheckM results using \>= 90% completeness and
 \<=10 % contamination.**
