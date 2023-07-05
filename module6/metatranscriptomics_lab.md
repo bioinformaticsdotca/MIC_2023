@@ -23,7 +23,7 @@ This tutorial will take you through a pipeline for processing metatranscriptomic
 
 The whole metatranscriptomic pipeline includes existing bioinformatic tools and a series of Python scripts that handle file format conversion and output parsing. We will go through these steps to illustrate the complexity of the process and the underlying tools and scripts.
 
-New, faster, and/or more accurate tools are being developed all the time, and it is worth bearing in mind that any pipelines need to be flexible to incorporate these tools as they get adopted as standards by the community. For example, over the past two years, our lab has transitioned from cross\_match to Trimmomatic and from BLAST to DIAMOND.
+New, faster, and/or more accurate tools are being developed all the time, and it is worth bearing in mind that any pipelines need to be flexible to incorporate these tools as they get adopted as standards by the community. For example, over the past few years, our lab has transitioned from cross\_match to Trimmomatic and from BLAST to DIAMOND. 
 Note:  This workshop was designed for use with DIAMOND v0.826.  Newer versions of DIAMOND will be incompatible with the pre-compiled database files we have made as part of this exercise.  
 To illustrate the process we are going to use sequence reads generated from the contents of the colon of a mouse. These are 150 bp single-end reads. Paired-end reads can also be used, and are often preferred because they can improve annotation quality when there is enough overlap in the read pairs to improve the effective average read length. Working with paired-end data involves an additional data processing step (merging of overlapping reads) produces more files during data processing (files for merged/singleton reads, forward reads, and reverse reads), but the structure of a pipeline for paired-end data is similar to the pipeline described here and can be readily adapted.
 
@@ -70,7 +70,7 @@ fastqc mouse1.fastq
 
 The FastQC report is generated in a HTML file, `mouse1_fastqc.html`. You'll also find a zip file which includes data files used to generate the report.
 
-To open the HTML report file use the following command `firefox mouse1_fastqc.html` then you can go through the report and find the following information:
+To open the HTML report file, visit *xx.uhn-hpc.ca/*. As we generate more reports, make sure you are opening the most recent!
 
 -   Basic Statistics: Basic information of the mouse RNA-seq data, e.g. the total number of reads, read length, GC content.
 -   Per base sequence quality: An overview of the range of quality values across all bases at each position.
@@ -81,7 +81,7 @@ To open the HTML report file use the following command `firefox mouse1_fastqc.ht
 
 ### Step 1. Remove adapter sequences and trim low quality sequences. 
 
-Trimmomatic can rapidly identify and trim adaptor sequences, as well as identify and remove low quality sequence data - It is already installed on the PCs
+Trimmomatic can rapidly identify and trim adaptor sequences, as well as identify and remove low quality sequence data - It is already installed on the PCs, and we've included their adapter database in the precomputed files.
 
 ```
 tar -xvf precomputed_files.tar.gz TruSeq3-SE.fa
@@ -106,7 +106,6 @@ Checking read quality with FastQC:
 
 ```
 fastqc mouse1_trim.fastq
-firefox mouse1_trim_fastqc.html
 ```
 
 Compare with the previous report to see changes in the following sections:
@@ -136,7 +135,6 @@ If you want to see the distribution of merged read lengths you can use fastqc to
 ```
 Also example only!
 fastqc mouse_merged_trim.fastq
-firefox mouse_merged_trim_fastqc.html
 ```
 
 **Read quality filtering**
@@ -158,7 +156,6 @@ Checking read quality with FastQC:
 
 ```
 fastqc mouse1_qual.fastq
-firefox mouse1_qual_fastqc.html
 ```
 
 Compare with the previous reports to see changes in the following sections:
@@ -260,9 +257,7 @@ python 1_BLAT_Filter.py mouse1_univec_bwa.fastq mouse1_univec.blatout mouse1_uni
 The argument structure for this script is:
 `1_BLAT_Filter.py <Input_Reads.fq> <BLAT_Output_File> <Unmapped_Reads_Output> <Mapped_Reads_Output>`
 
-Here, BLAT does not identify any additional sequences which align to the vector contaminant database. However, we have found that BLAT is often able find alignments not identified by BWA, particularly when searching against a database consisting of whole genomes.
-
-some alignments to vector contaminants missed by BWA in large multi-million read datasets.
+Here, BLAT does not identify any additional sequences which align to the vector contaminant database. However, we have found that BLAT is often able find alignments not identified by BWA, particularly when searching against a database consisting of whole genomes. Some alignments to vector contaminants are missed by BWA in large multi-million read datasets.
 
 ### Step 4. Remove host reads
 
@@ -359,7 +354,6 @@ Now that we have filtered vectors, adapters, linkers, primers, host sequences, a
 
 ```
 fastqc mouse1_mRNA.fastq
-firefox mouse1_mRNA_fastqc.html
 ```
 
 <!-- ***Question 8: How many total contaminant, host, and rRNA reads were filtered out?*** -->
@@ -424,7 +418,7 @@ KronaTools/scripts/ImportText.pl -o mouse1_classification.html mouse1_classifica
 We can then view this pie chart representation of our dataset using a web browser:
 
 ```
-firefox mouse1_classification.html
+open mouse1_classification.html
 ```
 
 <!-- 
