@@ -17,7 +17,7 @@ samples (N=17) from participants in the Kenyan Girls Health Study
 and young women (AGYW) aged 16–20 years old from Thika, Kenya to study
 drivers of *Lactobacillus* dominance. A healthy vaginal microbiome is
 dominated by a single *Lactobacillus* species, such as *L. crispatus* or
-*L. iners*, which can make up anywhere from 50% to \>90% of the total
+*L. iners*, which can make up anywhere from 50% to >90% of the total
 bacterial load. In contrast, a dysbiotic vaginal microbiome is
 characterized by a high diversity of anaerobic bacteria such as
 *Gardnerella vaginalis.* This dataset will introduce you to some of
@@ -211,7 +211,7 @@ scaffolds.fasta
 | Contigs   | 29757             | 256891         | 5998229      | 36.61  | 28084 | 0                  |
 | Scaffolds | 29708             | 256891         | 6021946      | 36.64  | 29877 | 33.54              |
 
-<u>Step 1c: Filter scaffolds \<1500 nt and evaluate change in assembly
+<u>Step 1c: Filter scaffolds <1500 nt and evaluate change in assembly
 quality using seqkit</u>
 
 **seqkit** (<https://github.com/shenwei356/seqkit>)
@@ -249,11 +249,11 @@ Example commands for sample KGHS_1-0:
 
 **\# Filter scaffolds to a minimum length of 1500 nt.**
 
-```seqkit seq -m 1500 output/metagenome_assemblies/KGHS_1-0/scaffolds.fasta \> filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500/KGHS_1-0_min1500.fasta```
+```seqkit seq -m 1500 output/metagenome_assemblies/KGHS_1-0/scaffolds.fasta > filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500/KGHS_1-0_min1500.fasta```
 
 **\# Run seqkit stats on the KGHS_1-0 contigs.fasta file.**
 
-```seqkit stats -a output/metagenome_assemblies/KGHS_1-0/contigs.fasta \> metagenome_assemblies/KGHS_1-0/contigs.fasta.seqkit.stats.txt```
+```seqkit stats -a output/metagenome_assemblies/KGHS_1-0/contigs.fasta > metagenome_assemblies/KGHS_1-0/contigs.fasta.seqkit.stats.txt```
 
 Example output:
 
@@ -262,7 +262,7 @@ style="width:6.5in;height:0.34097in" />
 
 **\# Run seqkit stats on the KGHS_1-0 scaffolds.fasta file.**
 
-```seqkit stats -a output/metagenome_assemblies/KGHS_1-0/scaffolds.fasta \> metagenome_assemblies/KGHS_1-0/scaffolds.fasta.seqkit.stats.txt```
+```seqkit stats -a output/metagenome_assemblies/KGHS_1-0/scaffolds.fasta > metagenome_assemblies/KGHS_1-0/scaffolds.fasta.seqkit.stats.txt```
 
 Example output:
 
@@ -273,7 +273,7 @@ style="width:6.5in;height:0.34485in" />
 KGHS_1-0_min1500.fasta file to see how filtering affected the minimum
 length reported and the number of scaffolds.**
 
-```seqkit stats -a output/filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta \> filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta.seqkit.stats.txt```
+```seqkit stats -a output/filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta > filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta.seqkit.stats.txt```
 
 Example output:
 
@@ -333,7 +333,7 @@ Example commands for sample KGHS_1-0:
 **\# Map the paired end reads from sample KGHS_1-0 to the filtered
 scaffolds using bwa mem.**
 
-```bwa mem -t 4 filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta cleaned_fastq_files/KGHS_1-0_1.fastq cleaned_fastq_files/KGHS_1-0_2.fastq \> filtered_metagenomes/KGHS_1-0/KGHS_1-0.sam```
+```bwa mem -t 4 filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta cleaned_fastq_files/KGHS_1-0_1.fastq cleaned_fastq_files/KGHS_1-0_2.fastq > filtered_metagenomes/KGHS_1-0/KGHS_1-0.sam```
 
 **\# Activate the samtools conda environment.**
 
@@ -402,11 +402,11 @@ generated in the mapping step.**
 **\# Create the maxbin2 abundance file using the first and third columns
 of the maxbin2 depth of coverage file.**
 
-```tail -n+2 initial_binning/KGHS_1-0/KGHS_1-0_maxbin2_depth.txt \| cut -f1,3 \> initial_binning/KGHS_1-0/KGHS_1-0_maxbin2_abund.txt```
+```tail -n+2 initial_binning/KGHS_1-0/KGHS_1-0_maxbin2_depth.txt | cut -f1,3 > initial_binning/KGHS_1-0/KGHS_1-0_maxbin2_abund.txt```
 
 **\# Print the path of the maxbin2 abundance file to a list file.**
 
-```echo initial_binning/KGHS_1-0/KGHS_1-0_maxbin2_abund.txt \> initial_binning/KGHS_1-0/KGHS_1-0_maxbin2_abund_list.txt```
+```echo initial_binning/KGHS_1-0/KGHS_1-0_maxbin2_abund.txt > initial_binning/KGHS_1-0/KGHS_1-0_maxbin2_abund_list.txt```
 
 **\# Activate the maxbin2 conda environment.**
 
@@ -429,21 +429,21 @@ this is needed in order for metawrap to use them as input.**
 **\# Rename bins and copy the maxbin2 bins to the maxbin2 bin
 directory.**
 
-```for bin_file in \$(ls initial_binning/KGHS_1-0/working_dir/maxbin2 \| grep "\\fasta");```
+```for bin_file in $(ls initial_binning/KGHS_1-0/working_dir/maxbin2 | grep "\.fasta");```
 
-```do echo \$bin_file;```
+```do echo $bin_file;```
 
-```filename=\$(basename \$bin_file '.fasta');```
+```filename=$(basename $bin_file '.fasta');```
 
-```bin_num=\$(echo \$filename \| sed -r "s/KGHS_1-0_bin\\0+//g");```
+```bin_num=$(echo $filename | sed -r "s/KGHS_1-0_bin\\0+//g");```
 
-```echo \$bin_num;```
+```echo $bin_num;```
 
-```new_filename="KGHS_1-0_bin.\${bin_num}.fa";```
+```new_filename="KGHS_1-0_bin.${bin_num}.fa";```
 
-```echo \$new_filename;```
+```echo $new_filename;```
 
-```cp initial_binning/KGHS_1-0/working_dir/maxbin2/\$bin_file initial_binning/KGHS_1-0/maxbin2/\$new_filename;```
+```cp initial_binning/KGHS_1-0/working_dir/maxbin2/$bin_file initial_binning/KGHS_1-0/maxbin2/$new_filename;```
 
 ```done```
 
@@ -565,7 +565,7 @@ cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5
 
 **\# Set the CheckM database path.**
 
-echo "software_dir/checkm_data_dir" \| checkm data setRoot
+echo "software_dir/checkm_data_dir" | checkm data setRoot
 
 **\# Copy the bin and rename to KGHS_1-0.bin1 so that we can run
 CheckM.**
@@ -613,20 +613,20 @@ Exercise:
 
 ```cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/checkm```
 
-**\# Use awk to filter the CheckM results using \>= 50% completeness and
-\<=10 % contamination.**
+**\# Use awk to filter the CheckM results using >= 50% completeness and
+<=10 % contamination.**
 
-```awk -F’\t’ ‘((\$1 \>= 50) && (\$2 \<= 10)){print \$0}’ \<(tail -n+2 \< checkm.tsv) \> checkm_output_ge50comp_le10contam.tsv```
+```awk -F’\t’ ‘(($1 >= 50) && ($2 <= 10)){print $0}’ <(tail -n+2 < checkm.tsv) > checkm_output_ge50comp_le10contam.tsv```
 
-**\# Use awk to filter the CheckM results using \>= 90% completeness and
-\<=10 % contamination.**
+**\# Use awk to filter the CheckM results using >= 90% completeness and
+<=10 % contamination.**
 
-```awk -F’\t’ ‘((\$1 \>= 90) && (\$2 \<= 10)){print \$0}’ \<(tail -n+2 \< checkm.tsv) \> checkm_output_ge90comp_le10contam.tsv```
+```awk -F’\t’ ‘(($1 >= 90) && ($2 <= 10)){print $0}’ <(tail -n+2 < checkm.tsv) > checkm_output_ge90comp_le10contam.tsv```
 
 **Section 3: Annotation**
 
 For the purposes of this tutorial, you will consider refined bins with
-\>= 90% completeness and \<= 10% contamination (CheckM) as MAGs suitable
+>= 90% completeness and <= 10% contamination (CheckM) as MAGs suitable
 for downstream annotation.
 
 <u>Step 3a: Classify the taxonomy of each MAG using GTDB-tk</u>
@@ -1043,9 +1043,9 @@ style="width:7.36508in;height:1.07407in" />
 **eggNOG_OGs** - A comma-separated, clade depth-sorted (broadest to
 narrowest), list of Orthologous Groups (OGs) identified for this query.
 Note that each OG is represented in the following
-format: *OG@tax_id\|tax_name*
+format: *OG@tax_id|tax_name*
 
-**max_annot_lvl** - tax_id\|tax_name of the level of widest OG used to
+**max_annot_lvl** - tax_id|tax_name of the level of widest OG used to
 retrieve orthologs for annotations.
 
 **COG_category** - COG category of the narrowest OG with a valid
