@@ -15,6 +15,8 @@ This tutorial is for the [2023 CBW-IMPACTT bioinformatics workshop](https://bioi
 
 ### Table of Contents
 
+#### Taxonomic annotation
+
 1. Initial setup
 
 2. Generating Taxonomic Profiles with Kraken2
@@ -23,13 +25,13 @@ This tutorial is for the [2023 CBW-IMPACTT bioinformatics workshop](https://bioi
 
 4. Visualising the results using Phyloseq in R
 
-## Introduction
+#### Functional annotation
 
-The main goal of this tutorial is to introduce students to different approaches for the taxonomic profiling of metagenomic data from microbiome samples. We want to emphasize that there is not a one-size-fits-all pipeline for analyzing MGS data. For example some individuals may opt to examine their data using a marker-based approach such as [MetaPhlAn](https://huttenhower.sph.harvard.edu/metaphlan/) while others may opt to use a kmer based strategy such as Kraken2+Bracken. Furthermore, in a subsequent module in this workshop, you will also learn about another approach for examining microbiome data using metagenomic assembly and binning.
+1. Determining functional profiles using MMseqs2
 
-Throughout this tutorial there will be questions are aimed at helping students understand the various steps in reference based metagenomic profiling. [The answers are found on this page]().
+2. Adding descriptions and stratifying the file
 
-This tutorial is based on our Microbiome Helper [Metagenomics SOP](https://github.com/LangilleLab/microbiome_helper/wiki/Metagenomics-Standard-Operating-Procedure-v3) and we are also working on a list of resources and papers that may be useful for beginners (or those that are not beginners!) in the microbiome field [here](https://github.com/LangilleLab/microbiome_helper/wiki/Microbiome-for-beginners).
+3. Visualising with JARRVIS
 
 ### Bioinformatic tool citations
 
@@ -41,6 +43,16 @@ Properly citing bioinformatic tools is important to ensure that developers are g
 * **Bracken** ([website](https://ccb.jhu.edu/software/bracken/), [paper](https://peerj.com/articles/cs-104/))
 * **Phyloseq** ([website](https://joey711.github.io/phyloseq/), [paper](https://doi.org/10.1371/journal.pone.0061217))
 * **Vegan** ([website](https://vegandevs.github.io/vegan/))
+* **MMseqs2** ([website](https://github.com/soedinglab/mmseqs2), [paper](https://www.nature.com/articles/nbt.3988))
+* **JARRVIS** ([website](https://github.com/dhwanidesai/JarrVis))
+
+## Taxonomic annotation introduction
+
+The main goal of this tutorial is to introduce students to different approaches for the taxonomic profiling of metagenomic data from microbiome samples. We want to emphasize that there is not a one-size-fits-all pipeline for analyzing MGS data. For example some individuals may opt to examine their data using a marker-based approach such as [MetaPhlAn](https://huttenhower.sph.harvard.edu/metaphlan/) while others may opt to use a kmer based strategy such as Kraken2+Bracken. Furthermore, in a subsequent module in this workshop, you will also learn about another approach for examining microbiome data using metagenomic assembly and binning.
+
+Throughout this tutorial there will be questions are aimed at helping students understand the various steps in reference based metagenomic profiling. [The answers are found on this page]().
+
+This tutorial is based on our Microbiome Helper [Metagenomics SOP](https://github.com/LangilleLab/microbiome_helper/wiki/Metagenomics-Standard-Operating-Procedure-v3) and we are also working on a list of resources and papers that may be useful for beginners (or those that are not beginners!) in the microbiome field [here](https://github.com/LangilleLab/microbiome_helper/wiki/Microbiome-for-beginners).
 
 ## Initial setup
 
@@ -397,3 +409,193 @@ adonis2(distance ~ sample_data(ps)$Description_1*sample_data(ps)$Description_3)
 Here we're doing exactly the same as above, but with Jaccard distance rather than Bray-Curtis dissimilarity.
 
 **Question 10: How do these results compare with those for Bray-Curtis dissimilarity? What does this tell you about the abundances of different taxa?**
+
+## Functional annotation introduction
+
+The main goal of this part of the tutorial is to introduce students to functional profiling of taxonomic reads using MMSeqs and to visualise the results of both the taxonomic and functional annotations. As in the taxonomic composition part of this workshop, we want to emphasize that there is not a one-size-fits-all pipeline for analyzing MGS data, and another commonly used functional profiling tool is [HUMAnN 3](https://huttenhower.sph.harvard.edu/humann/).
+
+Throughout this tutorial there will be questions are aimed at helping students understand the various steps in reference based metagenomic profiling. [The answers are found on this page]().
+
+## 1. Determining functional profiles using MMseqs2
+
+Now that we have an idea of the taxonomic profiles of our samples we can also look at their functional potential. To do this we will being using [MMseqs2](https://github.com/soedinglab/mmseqs2) along with a few scripts developed by our lab to connect the functional annotations to the taxonomic annotations.
+
+MMseqs2 works by taking sequenced reads, translating them into protein and then mapping them against a protein database. In this case we will be using [UniRef90](https://www.uniprot.org/help/uniref), a large protein database clustered at 90% identity. Our lab has developed a set of scripts to run this tool and use the information to assign both a taxonomic ID and a functional ID to each read within our samples.
+
+As for the taxonomic composition, we would usually perform some initial steps of quality control, removal of unwanted reads and joining of forward and reverse reads, but for now, we've done this for you. 
+
+We already created the directory that we'll be using in the taxonomic workshop, so we'll change into that and as previously, we've installed all of the tools that we'll need for this part of the tutorial into an Anaconda environment, which we can activate with the following commands:
+
+```
+cd workspace/metagenome_workshop
+conda activate functional
+```
+
+Now we'll create a folder for our MMSeqs output to go into:
+```
+mkdir mmseqs_U90_out
+```
+
+The first step will be running a command creates an MMSeqs database from the the input fastq files. The creation of this database is necessary for MMSeqs as it vastly increases the speed at which translated DNA sequences can be mapped against a protein database:
+```
+parallel -j 4 --progress 'mmseqs createdb {} mmseqs_U90_out/mmseqs-{/.}queryDB' ::: cat_reads/*
+```
+Notice that we're using Parallel for this again, and this time we're running 4 jobs at once and we've used the ```--progress``` flag to see which job we're on and how many have already been run. There aren't many options in the command, but you can see that after ```createdb``` this is where the reads file is taken in, and then we modify this name slightly for the output that will go into the ```mmseqs_U90_out``` folder.
+
+The next commands we unfortunately won't be able to run as they require more memory than we have, and would take a very long time to run (I would usually assume >24 hours to run this for a set of samples), but we'll go through what they're doing still.
+
+This command is the real meat of the job file and runs the freshly created sample database against the provided UniRef90 protien database:
+```
+parallel -j 1 'mmseqs search mmseqs_U90_out/mmseqs-{/.}queryDB ~/CourseData/MIC_data/metagenome_data/MMSeqs2_db/mmseqsUniref90DB mmseqs_U90_out/mmseqs-{/.}resultDB tmp --db-load-mode 3 --threads 4 --max-seqs 25 -s 1 -a -e 1e-5 > /dev/null 2>&1' ::: cat_reads/*
+```
+*Note: If you ran this command by accident, you can stop it again by pressing ```ctrl```+```c``` (at the same time)*
+
+There are a number of parameters in this command:
+* ```--db-load-mode 3``` - This parameter tells MMSeqs how to deal with loading the database into memory. For more information you can check out this [page](https://mmseqs.com/latest/userguide.pdf). However, setting this parameter to 3 helps when running MMSeqs on a cluster environment. 
+* ```--threads``` - The number of processors we want MMSeqs to use during the search
+* ```--max-seqs 25``` - This indicates that we want MMSeqs to output at maximum 25 hits for each sequence
+* ```-s 1``` - This indicates the sensitivity that we want MMSeqs to run at. Increasing this number will lower the speed at which mmseqs runs but will increase its sensitivity. For well-explored environments such as the human gut, a setting of 1 should suffice.
+* ```-a``` - This indicates that we want our results to output backtraces for each sequence match. These are needed to convert the resulting MMSeqs file into a usable file format. 
+* ```-e 1e-5``` - This indicates that we only want to keep matches that are below an E-value of 1e-5 (E-values are a measure of how well two sequences match one another, and the closer they are to zero, the better the match is).
+* ```> /dev/null 2>&1``` This final part of the command allows us to run the command without having too much text printed to our screen.
+
+The final command allows us to convert the resulting file from the MMSeqs2 format into one that is more usable:
+```
+#parallel -j 1 'mmseqs convertalis mmseqs_U90_out/mmseqs-{/.}queryDB MMSeqs2_db/mmseqsUniref90DB mmseqs_U90_out/mmseqs-{/.}resultDB mmseqs_U90_out/mmseqs-{/.}-s1.m8 --db-load-mode 2 > /dev/null 2>&1' ::: cat_reads/*
+```
+This command is similar and takes as input the query database we made from our first command, the UniRef90 database we searched against and the resulting file from our search command. It will output the file ```mmseqs_U90_out/*.m8```. 
+
+We'll create a new folder for the ```.m8``` files and create a link to them:
+```
+mkdir mmseqs_m8_files
+ln -s ~/CourseData/MIC_data/metagenome_data/mmseqs_U90_out/*.m8 mmseqs_m8_files/
+```
+The ```mmseqs search``` also made a lot of files that we're not interested in! We didn't copy them across here, but you can see them by running ```ls ~/CourseData/MIC_data/metagenome_data/mmseqs_U90_out/``` If you were running this for yourself, after you have the ```.m8``` files you could remove the others to save significantly on the amount of hard drive space that is being taken up by these files.
+
+Lets take a quick look at one of the files we just moved into the directory ```mmseqs_m8_files``` using the less command.
+
+```
+less mmseqs_m8_files/mmseqs-BB209-s1.m8
+```
+
+We you will see is a file in BLAST tabular format.
+
+| Column Number       | Data Type     |
+| :------------- | :----------: |
+| 0 |  query sequence ID  |
+| 1 | Subject (database) sequence ID |
+| 2 | 	Percent Identity |
+| 3 | Alignment Length |
+| 4 | Number of gaps |
+| 5 | 	Number of mismatches |
+| 6 | Start on the query sequence |
+| 7 | End on the query sequence |
+| 8 | Start on the database sequence |
+| 9 | 	End on the database sequence |
+| 10 | 	E value - the expectation that this alignment is random given the length of the sequence and length of the database |
+| 11 | bit score - the score of the alignment itself |
+
+
+**Question 1: How many protein sequences did the sequence ```SRR8742630.234641``` align with in the sample BB198? Which alignment/alignments have the lowest E-value/highest bitscore?**
+
+The next step we need to take is to get the name of the protein sequence that had the best alignment for each sequence read in our samples. We can achieve this by running the command:
+```
+mkdir mmseqs_U90_out_tophit
+cp -r ~/CourseData/MIC_data/metagenome_data/Functional_Helper_Scripts/ .
+python Functional_Helper_Scripts/pick_uniref_top_hit.py --unirefm8Dir mmseqs_m8_files --output_path mmseqs_U90_out_tophit
+```
+
+Now we have the best protein sequence that matches best with each of the sequences in our samples. At this point, we could just look at the distribution of functions in our samples by adding the number of hits to each sequence within our samples, and we could analyse this in the same way that we looked at the taxonomic annotation previously. But we think it's nice to combine the taxonomic and the functional annotations together. 
+
+So we'll be creating a final data table that contains the stratified abundance of each function in our samples. The next steps are using various databases to create files that contain information on the taxonomic and functional annotation that we've obtained for each read in our initial sequence files as well as collating that information so that we know about the abundance of different taxa/function combinations within samples.
+
+First we'll copy across a file that contains mapping between the raw kraken2 output files (that contain information on a read-by-read basis) and the MMSeqs2 output files for each sample:
+```
+cp ~/CourseData/MIC_data/metagenome_data/multi-sample-outfiles-w-m8.txt .
+```
+Have a look at it with the ```head``` or ```less``` commands if you like. 
+
+Now we'll create a link to some of the database files within out current directory:
+```
+ln -s ~/CourseData/MIC_data/metagenome_data/MMSeqs2_db/* .
+```
+These databases contain information about the length of each gene in our UniRef protein database, which is important to normalise the abundance of each functional classification. 
+
+The next step would be to run a script that will take in the taxonomy and function for each read and convert this to a more usable format:
+```
+python Functional_Helper_Scripts/parse_TaxonomyFunction.py --multisample multi-sample-outfiles-w-m8.txt --outputf Workshop_strat_matrix_RPKM.txt --stratified Y --map2EC Y
+```
+You can run this command if you like, but it takes quite a while to run, so for the sake of time it is probably easier to just grab the file that we've already made:
+```
+ln -s ~/CourseData/MIC_data/metagenome_data/Workshop_strat_matrix_RPKM.txt .
+```
+This command would have generated this final stratified data matrix that shows the abundance of each EC (Enzyme Commission) number stratified by the different taxonomic classifications within the sample. This script also normalises the abundances of each of these ECs into reads per kilobase per million (RPKM). This abundance metric is the number of reads that mapped to that EC number per million reads mapped within the sample, divided by the gene length of that EC. It's important that the abundances are normalised by gene length or there would be an unfair bias toward longer genes due to the higher chance of them being sequenced. We can also run the same command as above without the ```--stratified Y``` option to generate functional profiles that are not broken down by the contributing taxa. 
+
+Lets take a look at this file with the less command:
+```
+less Workshop_strat_matrix_RPKM.txt
+```
+*Remember that you can press ```q``` to exit the less view again*.
+
+**Question 2: What is the RPKM contributed to the sample BB209 for the EC:5.4.2.2 contributed by Impatiens glandulifera?**
+
+## 2. Adding descriptions and stratifying the file
+
+Next, we want to add some descriptions to the EC numbers file and also convert this to pathway abundances. For this, we'll use some of the files included within [PICRUSt2](https://github.com/picrust/picrust2/wiki), but we've modified the scripts for this workshop.
+
+First, we'll add the descriptions to our file:
+```
+ln -s ~/CourseData/MIC_data/metagenome_data/add_descriptions.py .
+python add_descriptions.py
+```
+After running this, you should see a new file called ```Workshop_strat_matrix_RPKM_des.txt```. Take a look at it with the ```head``` command. You should see that each EC number now has a description associated.
+
+**Question 3: What is the name of the enzyme with the EC number EC:5.4.2.2?**
+
+The final step now is converting this into a stratified file and also adding the full taxonomy information to it. A stratified file is one where each line has a value for only the contribution of a gene by a single taxon in a single sample. Prior to this, we'll also take only the top most abundant pathways so that we'll be able to visualise it easily. If you were performing your own analysis, you might choose to visualise only *e.g.* those that were found to be significantly differentially abundant between your treatment and control samples. 
+
+
+```
+python add_taxonomy_and_stratify.py
+```
+
+## 3. Visualising with JARRVIS
+
+If you've made it this far in the workshop - congrats!
+
+For this, the easiest thing to do is to download both of the files that we'll need. First we'll run:
+```
+cp ~/CourseData/MIC_data/16S_data/Blueberry_metadata_reduced.tsv .
+sed -i 's/SampleID/sample_id/g' Blueberry_metadata_reduced.tsv
+```
+We've also just changed "SampleID" to "sample_id" as the first column name - often we find in bioinformatics tools they are very sensitive to small changes, and the tool we'll be using expects "sample_id" in this column rather than "SampleID". 
+
+And then you can download these files from the ```metagenome_workshop/``` directory on http://##.uhn-hpc.ca/:
+```
+Blueberry_metadata_reduced.tsv
+EC-stratified-SankeyFormat.txt
+```
+
+Next, we'll be using RStudio on your own computer. If you already have this installed, great. If not, download and install it from [here](https://posit.co/downloads/) (choose the free version download link!).
+
+Go ahead and open it up and click into the console section. 
+
+First, we're going to install a package called ```shiny```. You can do that with this command:
+```
+install.packages('shiny')
+```
+If you already had RStudio and it's already installed, running this won't do any harm.
+
+Now we can run:
+```
+library(shiny)
+runGist("943ff5fdbd94815cc27f302d9f56ff0b")
+```
+You should see a lot of different lines of code running, and eventually a window should pop up. This is a new tool that we're developing in the Langille Lab called [JarrVis](https://github.com/dhwanidesai/JarrVis) that we'll be using to visualise the links between the taxonomy and function in our different samples groups. 
+
+You can now select the ```EC-stratified-SankeyFormat.txt``` file for the first box and the ```Blueberry_metadata_reduced.tsv``` file for the second box. Click ```Select Metadata Categories``` and it should populate the dropdown with the Metadata categories in our data. Choose either "Description_1" or "Description_3" here.
+
+Leave ```Filtercollapse the dataframe``` as it is ("yes") and select a taxonomy level (I suggest starting with family or order). You can then click "Update the Gene Contribution Threshold from data". You can play around with the thresholds to use, but a lower end of around 100 gives a sensible number of things in the plot to look at. 
+
+If you then click "Display Plot" then you should see a diagram come up that has sample labels on the left (red nodes), taxa names in the middle (blue nodes) and function names on the right (green nodes). Here, there are links between each of these - you can hover over things to highlight the full path and explore the different functions in your data and the taxa that contribute to each of these functions in your samples. 
+

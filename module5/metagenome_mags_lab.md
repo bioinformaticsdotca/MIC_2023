@@ -1,3 +1,13 @@
+---
+layout: tutorial_page
+permalink: /MIC_2023_Module5_lab
+title: CBW-IMPACTT Microbiome Analysis 2023
+header1: Workshop Pages for Students
+header2: CBW-IMPACTT Microbiome Analysis Module 5 Lab
+image: /site_images/CBW_Metagenome_icon.jpg
+home: https://bioinformaticsdotca.github.io/
+---
+
 CBW IMPACTT Workshop
 
 Kevin Muirhead and Dr. Laura Sycuro
@@ -68,7 +78,7 @@ fasterq-dump.
 | KGHS_9-0    | SRR19237608 | 1116676                       | 2x150       | 2x450MB   |
 | KGHS_15-0   | SRR19237617 | 3701058                       | 2x150       | 2x1.3GB   |
 
-<img src="images/media/image1.png" style="width:6.5in;height:5.11042in"
+<img src="https://github.com/bioinformaticsdotca/MIC_2023/blob/main/module5/images/media/image1.png" style="width:6.5in;height:5.11042in"
 alt="A screenshot of a computer Description automatically generated with medium confidence" />
 
 **Figure 1**: Overview of the assembly, binning, and annotation
@@ -616,18 +626,16 @@ Exercise:
 **\# Use awk to filter the CheckM results using >= 50% completeness and
 <=10 % contamination.**
 
-```awk -F’\t’ ‘(($1 >= 50) && ($2 <= 10)){print $0}’ <(tail -n+2 < checkm.tsv) > checkm_output_ge50comp_le10contam.tsv```
+```awk -F'\t' '(($1 >= 50) && ($2 <= 10)){print $0}' <(tail -n+2 < checkm.tsv) > checkm_output_ge50comp_le10contam.tsv```
 
 **\# Use awk to filter the CheckM results using >= 90% completeness and
 <=10 % contamination.**
 
-```awk -F’\t’ ‘(($1 >= 90) && ($2 <= 10)){print $0}’ <(tail -n+2 < checkm.tsv) > checkm_output_ge90comp_le10contam.tsv```
+```awk -F'\t' '(($1 >= 90) && ($2 <= 10)){print $0}' <(tail -n+2 < checkm.tsv) > checkm_output_ge90comp_le10contam.tsv```
 
 **Section 3: Annotation**
 
-For the purposes of this tutorial, you will consider refined bins with
->= 90% completeness and <= 10% contamination (CheckM) as MAGs suitable
-for downstream annotation.
+For the purposes of this tutorial, you will consider refined bins with >= 90% completeness and <= 10% contamination (CheckM) as MAGs suitable for downstream annotation.
 
 <u>Step 3a: Classify the taxonomy of each MAG using GTDB-tk</u>
 
@@ -1160,7 +1168,7 @@ assemblies.* Bioinformatics, 2013. **29**(8): p. 1072-1075.
 
 3\. Peng, Y., et al., *IDBA-UD: a de novo assembler for single-cell and
 metagenomic sequencing data with highly uneven depth.* Bioinformatics,
-2012. **28**(11): p. 1420-1428.
+1.    **28**(11): p. 1420-1428.
 
 4\. Li, D., et al., *MEGAHIT: an ultra-fast single-node solution for
 large and complex metagenomics assembly via succinct de Bruijn graph.*
