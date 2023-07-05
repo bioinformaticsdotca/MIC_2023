@@ -662,10 +662,8 @@ present in the MAG.
 
 **WARNING: CheckM does not provide an accurate taxonomic classification
 of the MAGs – do not consider what is reported by this program as the
-final assignment. This is because it is giving the best classification
-based on the percent completeness of universal single copy genes and the
-percent contamination of other genomes. GTDB-tk gives a more accurate
-classification (Section 3, Step 3a below).**
+final assignment.** **GTDB-tk gives a more accurate classification
+(Section 3, Step 3a below).**
 
 Exercise:
 
