@@ -750,12 +750,12 @@ Example output:
 **KGHS_1-0_bin.1.ffn** – The annotated genes FASTA file containing
 rRNAs, tRNAs, CDS, ncRNAs, etc.
 
-```less /home/ubuntu/workspace/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.ffn```
+```less /home/ubuntu/workspace/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.ffn```
 
 **KGHS_1-0_bin.1.faa** – The protein FASTA file annotated CDS gene
 sequences translated to proteins.
 
-```less /home/ubuntu/workspace/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.faa```
+```less /home/ubuntu/workspace/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.faa```
 
 **KGHS_1-0_bin.1.gff** – The generic feature format (GFF) file that
 contains all the annotated MAG sequence information including start and
