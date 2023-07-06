@@ -1,6 +1,6 @@
 ---
 layout: tutorial_page
-permalink: /MIC_2023_Module5_lab
+permalink: /MIC_2023_Module5_lab_test
 title: CBW-IMPACTT Microbiome Analysis 2023
 header1: Workshop Pages for Students
 header2: CBW-IMPACTT Microbiome Analysis Module 5 Lab
