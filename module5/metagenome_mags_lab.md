@@ -536,6 +536,10 @@ cd /home/ubuntu/workspace/mags_workshop/module5
 
 conda activate metawrap_bin_refinement_env
 
+**\# Create the bin_refinement directory.**
+
+mkdir -p bin_refinement/KGHS_1-0
+
 **\# Run the metawrap bin refinement module.**
 
 metawrap bin_refinement -o bin_refinement/KGHS_1-0 -t 1 -A initial_binning/KGHS_1-0/metabat2 -B initial_binning/KGHS_1-0/maxbin2 -c 50 -x 10
