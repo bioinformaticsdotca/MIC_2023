@@ -261,6 +261,15 @@ Example commands for sample KGHS_1-0:
 
 ```cd /home/ubuntu/workspace/mags_workshop/module5```
 
+**\# Create the seqkit conda environment.**
+```conda create --name seqkit_env```
+
+**\# Activate the seqkit conda environment.**
+```conda activate seqkit_env```
+
+**\# Install the seqkit conda package.**
+```conda install -c bioconda seqkit```
+
 **\# Filter scaffolds to a minimum length of 1500 nt.**
 
 ```seqkit seq -m 1500 output/metagenome_assemblies/KGHS_1-0/scaffolds.fasta > filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500/KGHS_1-0_min1500.fasta```
