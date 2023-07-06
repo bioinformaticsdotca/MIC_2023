@@ -61,7 +61,7 @@ Usually the first steps in metagenome analysis would involve:
 * (2) removal of unwanted reads - we usually check that there are no PhiX reads left over from the sequencing (usually added into Illumina sequencing runs for internal quality control) and may also remove any host-associated reads, for example, in human studies we would usually remove reads that map to the human genome
 * (3) joining of the forward and reverse reads
 
-Both of the first two steps can be performed using [Kneaddata](https://huttenhower.sph.harvard.edu/kneaddata/). The third step could be with a program that checks for matches between the reads, but as metagenome reads often don't have a large - or any - overlap, we may just simply concatenate the reads together. We've chosen to focus more on the taxonomic classification/downstream interpretation of our data in todays workshop, but you can read/work through the [previous workshop that we ran](https://github.com/LangilleLab/microbiome_helper/wiki/Metagenomics-(taxonomic-annotation;-IMPACTT-2022)) for a complete overview of of these preliminary steps.
+Both of the first two steps can be performed using [Kneaddata](https://huttenhower.sph.harvard.edu/kneaddata/). The third step could be with a program that checks for matches between the reads, but as metagenome reads often don't have a large - or any - overlap, we may just simply concatenate the reads together. We've chosen to focus more on the taxonomic/functional annotations/downstream interpretation of our data in todays workshop, but you can read/work through the [previous workshop that we ran](https://github.com/LangilleLab/microbiome_helper/wiki/Metagenomics-(taxonomic-annotation;-IMPACTT-2022)) for a complete overview of of these preliminary steps that you should definitely run if you have your own data.
 
 First open up your terminal and log in to the server instance.
 
@@ -424,7 +424,7 @@ MMseqs2 works by taking sequenced reads, translating them into protein and then 
 
 As for the taxonomic composition, we would usually perform some initial steps of quality control, removal of unwanted reads and joining of forward and reverse reads, but for now, we've done this for you. 
 
-We already created the directory that we'll be using in the taxonomic workshop, so we'll change into that and as previously, we've installed all of the tools that we'll need for this part of the tutorial into an Anaconda environment, which we can activate with the following commands:
+We already created the directory that we'll be using in the taxonomic part of this workshop, so we'll change into that and as previously, we've installed all of the tools that we'll need for this part of the tutorial into an Anaconda environment, which we can activate with the following commands:
 
 ```
 cd workspace/metagenome_workshop
@@ -465,6 +465,7 @@ The final command allows us to convert the resulting file from the MMSeqs2 forma
 ```
 This command is similar and takes as input the query database we made from our first command, the UniRef90 database we searched against and the resulting file from our search command. It will output the file ```mmseqs_U90_out/*.m8```. 
 
+Now we'll get the results that would have been created from these steps.
 We'll create a new folder for the ```.m8``` files and create a link to them:
 ```
 mkdir mmseqs_m8_files
@@ -497,6 +498,8 @@ We you will see is a file in BLAST tabular format.
 
 
 **Question 1: How many protein sequences did the sequence ```SRR8742630.234641``` align with in the sample BB198? Which alignment/alignments have the lowest E-value/highest bitscore?**
+
+You can press ```q``` to get out of the less view again.
 
 The next step we need to take is to get the name of the protein sequence that had the best alignment for each sequence read in our samples. We can achieve this by running the command:
 ```
@@ -556,12 +559,18 @@ The final step now is converting this into a stratified file and also adding the
 
 
 ```
+ln -s ~/CourseData/MIC_data/metagenome_data/add_taxonomy_and_stratify.py .
 python add_taxonomy_and_stratify.py
 ```
 
 ## 3. Visualising with JARRVIS
 
 If you've made it this far in the workshop - congrats!
+
+If you didn't get through the rest of the workshop but still want to look at the end output, you can copy across the final file to your folder like so:
+```
+cp ~/CourseData/MIC_data/metagenome_data/EC-stratified-SankeyFormat.txt .
+```
 
 For this, the easiest thing to do is to download both of the files that we'll need. First we'll run:
 ```
