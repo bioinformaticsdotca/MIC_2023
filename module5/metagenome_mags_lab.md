@@ -819,7 +819,11 @@ Example output:
 <img src="images/media/image16.png"
 style="width:7.26852in;height:1.09183in" />
 
-```Open the KGHS_1-0_bin.1 product.html file in a browser window (i.e. chrome)```
+**\# Use a symbolic link to point to the DRAM product.html file for the KGHS_1-0_bin.1 MAG.**
+
+```ln -s /home/ubuntu/workspace/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0_bin.1/dram/genome_summaries/product.html /home/ubuntu/workspace/mags_workshop/KGHS_1-0_bin.1_product.html```
+
+**\# Open the KGHS_1-0_bin.1 product.html file in a browser window (i.e. chrome)**
 
 [```http://50.uhn-hpc.ca/mags_workshop/KGHS_1-0_bin.1_product.html```](http://50.uhn-hpc.ca/mags_workshop/KGHS_1-0_bin.1_product.html)
 
@@ -831,7 +835,11 @@ style="width:7.03704in;height:4.39815in" />
 **Question**: How many pentose phosphate pathway steps are found within
 the KGHS_1-0_bin.1.fa MAG?
 
-```Open the KGHS_1-0_bin.3 product.html file in a browser window (i.e. chrome)```
+**\# Use a symbolic link to point to the DRAM product.html file for the KGHS_1-0_bin.3 MAG.**
+
+```ln -s /home/ubuntu/workspace/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0_bin.3/dram/genome_summaries/product.html /home/ubuntu/workspace/mags_workshop/KGHS_1-0_bin.3_product.html```
+
+**\# Open the KGHS_1-0_bin.3 product.html file in a browser window (i.e. chrome)**
 
 [```http://50.uhn-hpc.ca/mags_workshop/KGHS_1-0_bin.3_product.html```](http://50.uhn-hpc.ca/mags_workshop/KGHS_1-0_bin.3_product.html)
 
