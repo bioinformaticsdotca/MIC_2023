@@ -518,9 +518,7 @@ conda activate metawrap_bin_refinement_env
 
 **\# Run the metawrap bin refinement module.**
 
-metawrap bin_refinement -o bin_refinement/KGHS_1-0 -t 1 -A
-initial_binning/KGHS_1-0/metabat2 -B initial_binning/KGHS_1-0/maxbin2 -c
-50 -x 10
+metawrap bin_refinement -o bin_refinement/KGHS_1-0 -t 1 -A initial_binning/KGHS_1-0/metabat2 -B initial_binning/KGHS_1-0/maxbin2 -c 50 -x 10
 
 Example output:
 
@@ -621,7 +619,7 @@ Exercise:
 
 **\# Change the directory to the checkm bin directory.**
 
-```cd /home/ubuntu/workspace/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/checkm```
+``cd /home/ubuntu/workspace/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0_bin.1/checkm```
 
 **\# Use awk to filter the CheckM results using >= 50% completeness and
 <=10 % contamination.**
