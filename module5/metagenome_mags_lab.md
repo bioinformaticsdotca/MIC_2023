@@ -1034,7 +1034,7 @@ fasta file as input.**
 python path/to/software_dir/eggnog-mapper/emapper.py -i
 refined_bins/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.faa --itype
 proteins --cpu 14 --data_dir
-/bulk/IMCshared_bulk/shared/shared_software/eggnog-mapper/data --output
+/path/to/eggnog-mapper/data --output
 refined_bins/KGHS_1-0/KGHS_1-0_bin.1/eggnog_mapper/KGHS_1-0_bin.1
 
 Example output:
