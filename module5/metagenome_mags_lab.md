@@ -127,7 +127,7 @@ the metagenomic assembly.
 > these data on it. For the purpose of the in-class tutorial, the output
 > files are provided for you to view:*
 >
-> ```cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/metagenome_assemblies/KGHS_1-0```
+> ```cd /home/ubuntu/workspace/mags_workshop/module5/output/metagenome_assemblies/KGHS_1-0```
 >
 > *We have also provided a conda environment and commands within shell
 > scripts to run MetaSPAdes, with more details in Appendix 2.*
@@ -136,7 +136,7 @@ Example commands for sample KGHS_1-0:
 
 **\# Change the directory back to the module5 directory.**
 
-```cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5```
+```cd /home/ubuntu/workspace/mags_workshop/module5```
 
 **\# Activate the SPAdes conda environment so that you can run
 MetaSPAdes.**
@@ -159,18 +159,18 @@ Key output files:
 **contigs.fasta** - The FASTA file containing the assembled metagenomic
 contigs
 
-```less /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/metagenome_assemblies/KGHS_1-0/contigs.fasta```
+```less /home/ubuntu/workspace/mags_workshop/module5/output/metagenome_assemblies/KGHS_1-0/contigs.fasta```
 
 **scaffolds.fasta** - The FASTA file containing the assembled
 metagenomic scaffolds
 
-```less /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/metagenome_assemblies/KGHS_1-0/scaffolds.fasta```
+```less /home/ubuntu/workspace/mags_workshop/module5/output/metagenome_assemblies/KGHS_1-0/scaffolds.fasta```
 
 **spades.log** – The log text file containing information on what the
 program did, how long each step took, and where things went wrong (if
 they do).
 
-```less /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/metagenome_assemblies/KGHS_1-0/spades.log```
+```less /home/ubuntu/workspace/mags_workshop/module5/output/metagenome_assemblies/KGHS_1-0/spades.log```
 
 <u>Step 1b: Evaluate assembly quality using QUAST</u>
 
@@ -193,7 +193,7 @@ Example commands for sample KGHS_1-0:
 
 **\# Change the directory back to the module5 directory.**
 
-```cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5```
+```cd /home/ubuntu/workspace/mags_workshop/module5```
 
 **\# Activate the QUAST conda environment.**
 
@@ -259,7 +259,7 @@ Example commands for sample KGHS_1-0:
 
 **\# Change the directory back to the module5 directory.**
 
-```cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5```
+```cd /home/ubuntu/workspace/mags_workshop/module5```
 
 **\# Filter scaffolds to a minimum length of 1500 nt.**
 
@@ -334,7 +334,7 @@ Example commands for sample KGHS_1-0:
 
 **\# Change the directory back to the module5 directory.**
 
-```cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5```
+```cd /home/ubuntu/workspace/mags_workshop/module5```
 
 **\# Activate the bwa conda environment.**
 
@@ -367,7 +367,7 @@ Example commands for sample KGHS_1-0:
 
 **\# Change the directory back to the module5 directory.**
 
-```cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5```
+```cd /home/ubuntu/workspace/mags_workshop/module5```
 
 **\# Activate the metabat2 conda environment.**
 
@@ -510,7 +510,7 @@ Example commands for sample KGHS_1-0 bins:
 
 **\# Change the directory back to the module5 directory.**
 
-cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5
+cd /home/ubuntu/workspace/mags_workshop/module5
 
 **\# Start the conda environment for MetaWRAP bin_refinement.**
 
@@ -575,7 +575,7 @@ Example commands for the KGHS_1-0.bin1.fa MAG:
 
 **\# Change the directory back to the module5 directory.**
 
-cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5
+cd /home/ubuntu/workspace/mags_workshop/module5
 
 **\# Set the CheckM database path.**
 
@@ -600,7 +600,7 @@ refined_bins/KGHS_1-0/KGHS_1-0_bin.1/checkm
 
 Example output:
 
-```less /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/checkm/checkm.tsv```
+```less /home/ubuntu/workspace/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/checkm/checkm.tsv```
 
 <img src="images/media/image11.png"
 style="width:7.18336in;height:0.71296in" />
@@ -625,7 +625,7 @@ Exercise:
 
 **\# Change the directory to the checkm bin directory.**
 
-```cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/checkm```
+```cd /home/ubuntu/workspace/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/checkm```
 
 **\# Use awk to filter the CheckM results using >= 50% completeness and
 <=10 % contamination.**
@@ -664,7 +664,7 @@ Example commands for the KGHS_1-0.bin1.fa MAG:
 
 **\# Change the directory back to the module5 directory.**
 
-cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5
+cd /home/ubuntu/workspace/mags_workshop/module5
 
 **\# Activate the gtdbtk conda environment.**
 
@@ -688,7 +688,7 @@ refined_bins/KGHS_1-0/KGHS_1-0_bin.1/gtdbtk --extension "fa" --cpus 14
 
 **Example output:**
 
-```less /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/gtdbtk/gtdbtk.bac120.summary.tsv```
+```less /home/ubuntu/workspace/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/gtdbtk/gtdbtk.bac120.summary.tsv```
 
 <img src="images/media/image13.png"
 style="width:7.14777in;height:0.74074in" />
@@ -720,7 +720,7 @@ Example command for the KGHS_1-0.bin1.fa MAG:
 
 **\# Change the directory back to the module5 directory.**
 
-```cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5```
+```cd /home/ubuntu/workspace/mags_workshop/module5```
 
 **\# Activate the conda environment.**
 
@@ -740,19 +740,19 @@ Example output:
 **KGHS_1-0_bin.1.ffn** – The annotated genes FASTA file containing
 rRNAs, tRNAs, CDS, ncRNAs, etc.
 
-```less /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.ffn```
+```less /home/ubuntu/workspace/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.ffn```
 
 **KGHS_1-0_bin.1.faa** – The protein FASTA file annotated CDS gene
 sequences translated to proteins.
 
-```less /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.faa```
+```less /home/ubuntu/workspace/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.faa```
 
 **KGHS_1-0_bin.1.gff** – The generic feature format (GFF) file that
 contains all the annotated MAG sequence information including start and
 end position, reading frame, functional annotation, annotation
 description, etc.
 
-```less /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.gff```
+```less /home/ubuntu/workspace/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.gff```
 
 **DRAM** (<https://github.com/WrightonLabCSU/DRAM>)
 
@@ -780,7 +780,7 @@ Example commands for the KGHS1-0.bin1.fa MAG:
 
 **\# Change the directory back to the module5 directory.**
 
-cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5
+cd /home/ubuntu/workspace/mags_workshop/module5
 
 **\# Activate the conda environment.**
 
@@ -804,7 +804,7 @@ threads as it uses 10 threads as the default if you do not specify the
 
 Example output:
 
-```less /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0_bin.1/dram/annotations.tsv```
+```less /home/ubuntu/workspace/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0_bin.1/dram/annotations.tsv```
 
 <img src="images/media/image16.png"
 style="width:7.26852in;height:1.09183in" />
@@ -889,7 +889,7 @@ Example commands to run mobileOG-db.
 
 **\# Change the directory back to the module5 directory.**
 
-```cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5```
+```cd /home/ubuntu/workspace/mags_workshop/module5```
 
 **\# Run diamond on the mobileOG-db.**
 
@@ -902,7 +902,7 @@ metadata for extra information.**
 
 Example output:
 
-```less /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/mobileog_db/annotation.mobileOG.Alignment.Out.csv```
+```less /home/ubuntu/workspace/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/mobileog_db/annotation.mobileOG.Alignment.Out.csv```
 
 <img src="images/media/image19.png"
 style="width:7.35787in;height:1.0463in" />
@@ -1022,7 +1022,7 @@ Example command:
 
 **\# Change the directory back to the module5 directory.**
 
-cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5
+cd /home/ubuntu/workspace/mags_workshop/module5
 
 **\# Activate the eggnog_mapper conda environment.**
 
@@ -1042,7 +1042,7 @@ Example output:
 <img src="images/media/image23.png"
 style="width:7.36508in;height:1.07407in" />
 
-```less /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/eggnog_mapper/KGHS_1-0_bin.1.emapper.annotations```
+```less /home/ubuntu/workspace/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/eggnog_mapper/KGHS_1-0_bin.1.emapper.annotations```
 
 **\#query** – The query name
 
@@ -1114,7 +1114,7 @@ a CAZyme.
 
 **\# Change the directory back to the module5 directory.**
 
-cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5
+cd /home/ubuntu/workspace/mags_workshop/module5
 
 **\# Activate the run_dbcan conda environment.**
 
@@ -1128,7 +1128,7 @@ protein --db_dir
 --dia_cpu 14 --hmm_cpu 14 --dbcan_thread 14 --out_dir
 refined_bins/KGHS_1-0/KGHS_1-0_bin.1/dbcan
 
-```less /home/ubuntu/CourseData/MIC_data/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0_bin.1/dbcan/overview.txt```
+```less /home/ubuntu/workspace/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0_bin.1/dbcan/overview.txt```
 
 Example output from overview.txt. Open the KGHS_1-0_bin.1 overview.txt
 file using the less command. You will see the following columns. One row
