@@ -527,7 +527,7 @@ Example output:
 The statistics file outlining the results of the MetaWRAP bin refinement
 module.
 
-```less output/bin_refinement/KGHS_1-0/metawrap_50_10_bins.stats```
+```less /home/ubuntu/workspace/mags_workshop/module5/output/bin_refinement/KGHS_1-0/metawrap_50_10_bins.stats```
 
 Table data obtained from the MetaWRAP bin refinement module statistics
 output file and QUAST transposed_report.tsv output file for
@@ -584,8 +584,7 @@ echo "software_dir/checkm_data_dir" | checkm data setRoot
 **\# Copy the bin and rename to KGHS_1-0.bin1 so that we can run
 CheckM.**
 
-cp bin_refinement/KGHS_1-0/metawrap_50_10_bins/bin.1.fa
-refined_bins/KGHS_1-0/KGHS_1-0_bin.1/checkm/KGHS_1-0_bin.1.fa
+cp bin_refinement/KGHS_1-0/metawrap_50_10_bins/bin.1.fa refined_bins/KGHS_1-0/KGHS_1-0_bin.1/checkm/KGHS_1-0_bin.1.fa
 
 **\# Activate the CheckM conda environment.**
 
@@ -593,10 +592,7 @@ conda activate checkm_env
 
 **\# Run CheckM to assess the quality of the KGHS_1-0.bin1.fa MAG.**
 
-checkm lineage_wf -t 14 -x fa --tab_table --file
-refined_bins/KGHS_1-0/KGHS_1-0_bin.1/checkm/checkm.tsv
-refined_bins/KGHS_1-0/KGHS_1-0_bin.1/checkm
-refined_bins/KGHS_1-0/KGHS_1-0_bin.1/checkm
+checkm lineage_wf -t 14 -x fa --tab_table --file refined_bins/KGHS_1-0/KGHS_1-0_bin.1/checkm/checkm.tsv refined_bins/KGHS_1-0/KGHS_1-0_bin.1/checkm refined_bins/KGHS_1-0/KGHS_1-0_bin.1/checkm
 
 Example output:
 
