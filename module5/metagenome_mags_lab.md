@@ -86,9 +86,12 @@ workflow.
 
 **Section 1: Assembly**
 
+Make the directory for the mags_workshop.
+```mkdir -p /home/ubuntu/workspace/mags_workshop```
+
 To get started please use a symbolic link to point your CourseData files to the workspace folder.
 
-```ln -s /home/ubuntu/CourseData/MIC_data/mags_workshop/module5 /home/ubuntu/workspace/mags_workshop```
+```ln -s /home/ubuntu/CourseData/MIC_data/mags_workshop/module5 /home/ubuntu/workspace/mags_workshop/module5```
 
 change your directory to the module5 folder for
 this workshop using the following command;
