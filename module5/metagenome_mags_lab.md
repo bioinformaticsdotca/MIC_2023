@@ -418,7 +418,7 @@ sample.**
 
 **\# Copy the metabat2 bins to the initial binning metabat2 directory.**
 
-```cp initial_binning/KGHS_1-0/working_dir/metabat2/KGHS_1-0_bin.\[0-9\]\*.fa initial_binning/KGHS_1-0/metabat2```
+```cp initial_binning/KGHS_1-0/working_dir/metabat2/KGHS_1-0_bin.[0-9]*.fa initial_binning/KGHS_1-0/metabat2```
 
 **Bin length-filtered scaffolds using MaxBin2.**
 
