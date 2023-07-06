@@ -674,10 +674,15 @@ cd /home/ubuntu/workspace/mags_workshop/module5
 
 conda activate gtdbtk_env
 
-**\# Export the location of the gtdbtk database after it is installed.**
+**\# How to download the database on your own server or local machine. The GTDB-tk database is not installed on the AWS student instance. GTDB-Tk requires ~84G of external data that needs to be downloaded and unarchived.**
+
+```wget https://data.gtdb.ecogenomic.org/releases/latest/auxillary_files/gtdbtk_data.tar.gz```
+```wget https://data.ace.uq.edu.au/public/gtdb/data/releases/latest/auxillary_files/gtdbtk_data.tar.gz```
+
+**\# Export the location of the gtdbtk database after it is installed. Change the path to the location of the GTDB-tk database. **
 
 export
-GTDBTK_DATA_PATH="/home/ubuntu/workspace/mags_workshop/module5/software_dir/release207_v2"
+GTDBTK_DATA_PATH="/path/to/release207_v2"
 
 **\# Copy the KGHS_1-0_bin.1.fa MAG to the gtdbtk directory.**
 
