@@ -86,10 +86,14 @@ workflow.
 
 **Section 1: Assembly**
 
-To get started please change your directory to the module5 folder for
+To get started please use a symbolic link to point your CourseData files to the workspace folder.
+
+```ln -s /home/ubuntu/CourseData/MIC_data/mags_workshop/module5 /home/ubuntu/workspace/mags_workshop```
+
+change your directory to the module5 folder for
 this workshop using the following command;
 
-```cd /home/ubuntu/CourseData/MIC_data/mags_workshop/module5```
+```cd /home/ubuntu/workspace/mags_workshop/module5```
 
 <u>Step 1a: Assemble metagenomic reads using MetaSPAdes</u>
 
