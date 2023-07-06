@@ -1,3 +1,14 @@
+---
+layout: tutorial_page
+permalink: /MIC_2023_Module4_answers
+title: CBW-IMPACTT Microbiome Analysis 2023
+header1: Workshop Pages for Students
+header2: CBW-IMPACTT Microbiome Analysis Module 4 Lab Answers
+image: /site_images/CBW_Metagenome_icon.jpg
+home: https://bioinformaticsdotca.github.io/
+---
+
+
 # Metagenome taxonomic annotation with Kraken2 and Phyloseq
 
 **Question 1: How many more reads are classified using the full database than with the mini database?**

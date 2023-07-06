@@ -398,7 +398,8 @@ Here the lines are: 1) creating a copy of the physeq_rare object, 2) creating an
 
 **Question 9: What can you tell about the samples from how they group on the PCoA plots? Does this agree with the results of the PERMANOVA tests?**
 
-Jaccard distance:
+Jaccard distance:  
+
 ```{R, results='hide', fig.keep='all'}
 ps = physeq_rare
 ps.ord <- ordinate(ps, "PCoA", "jaccard")

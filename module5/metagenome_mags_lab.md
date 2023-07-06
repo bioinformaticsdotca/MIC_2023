@@ -78,10 +78,8 @@ fasterq-dump.
 | KGHS_9-0    | SRR19237608 | 1116676                       | 2x150       | 2x450MB   |
 | KGHS_15-0   | SRR19237617 | 3701058                       | 2x150       | 2x1.3GB   |
 
-<img src="images/media/image1.png" />
-<!-- 
-style="width:6.5in;height:5.11042in"
-alt="A screenshot of a computer Description automatically generated with medium confidence" -->
+<img src="images/media/image1.png" style="width:6.5in;height:5.11042in"
+alt="A screenshot of a computer Description automatically generated with medium confidence" />
 
 **Figure 1**: Overview of the assembly, binning, and annotation
 workflow.
