@@ -619,7 +619,7 @@ Exercise:
 
 **\# Change the directory to the checkm bin directory.**
 
-``cd /home/ubuntu/workspace/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0_bin.1/checkm```
+```cd /home/ubuntu/workspace/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0_bin.1/checkm```
 
 **\# Use awk to filter the CheckM results using >= 50% completeness and
 <=10 % contamination.**
