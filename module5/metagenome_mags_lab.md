@@ -277,6 +277,10 @@ Example commands for sample KGHS_1-0:
 
 ```conda install -c bioconda seqkit```
 
+**\# Create the filtered_metagenomes/KGHS_1-0 directory.**
+
+```mkdir -p filtered_metagenomes/KGHS_1-0```
+
 **\# Filter scaffolds to a minimum length of 1500 nt.**
 
 ```seqkit seq -m 1500 output/metagenome_assemblies/KGHS_1-0/scaffolds.fasta > filtered_metagenomes/KGHS_1-0/KGHS_1-0_min1500.fasta```
