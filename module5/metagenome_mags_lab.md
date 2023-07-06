@@ -211,11 +211,11 @@ Example output:
 
 **QUAST contigs.fasta**
 
-```less /bulk/IMCshared_bulk/kevin/module5/metagenome_assemblies/KGHS_1-0/quast_contigs/transposed_report.tsv```
+```less /home/ubuntu/workspace/mags_workshop/module5/metagenome_assemblies/KGHS_1-0/quast_contigs/transposed_report.tsv```
 
 **QUAST scaffolds.fasta**
 
-```less /bulk/IMCshared_bulk/kevin/module5/metagenome_assemblies/KGHS_1-0/quast_scaffolds/transposed_report.tsv```
+```less /home/ubuntu/workspace/mags_workshop/module5/metagenome_assemblies/KGHS_1-0/quast_scaffolds/transposed_report.tsv```
 
 **Table 2:** QUAST evaluation metrics for contigs.fasta and
 scaffolds.fasta
