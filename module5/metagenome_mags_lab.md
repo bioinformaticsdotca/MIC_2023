@@ -673,7 +673,7 @@ conda activate gtdbtk_env
 **\# Export the location of the gtdbtk database after it is installed.**
 
 export
-GTDBTK_DATA_PATH="/bulk/IMCshared_bulk/kevin/module5/software_dir/release207_v2"
+GTDBTK_DATA_PATH="/home/ubuntu/workspace/mags_workshop/module5/software_dir/release207_v2"
 
 **\# Copy the KGHS_1-0_bin.1.fa MAG to the gtdbtk directory.**
 
@@ -1124,7 +1124,7 @@ conda activate run_dbcan_env
 
 run_dbcan refined_bins/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.faa
 protein --db_dir
-/bulk/IMCshared_bulk/kevin/module5/software_dir/run_dbcan_database
+/home/ubuntu/workspace/mags_workshop/module5/software_dir/run_dbcan_database
 --dia_cpu 14 --hmm_cpu 14 --dbcan_thread 14 --out_dir
 refined_bins/KGHS_1-0/KGHS_1-0_bin.1/dbcan
 
