@@ -624,12 +624,12 @@ Exercise:
 **\# Use awk to filter the CheckM results using >= 50% completeness and
 <=10 % contamination.**
 
-```awk -F'\t' '(($1 >= 50) && ($2 <= 10)){print $0}' <(tail -n+2 < checkm.tsv) > checkm_output_ge50comp_le10contam.tsv```
+```awk -F'\t' '(($12 >= 50) && ($13 <= 10)){print $0}' <(tail -n+2 < checkm.tsv) > checkm_output_ge50comp_le10contam.tsv```
 
 **\# Use awk to filter the CheckM results using >= 90% completeness and
 <=10 % contamination.**
 
-```awk -F'\t' '(($1 >= 90) && ($2 <= 10)){print $0}' <(tail -n+2 < checkm.tsv) > checkm_output_ge90comp_le10contam.tsv```
+```awk -F'\t' '(($12 >= 90) && ($13 <= 10)){print $0}' <(tail -n+2 < checkm.tsv) > checkm_output_ge90comp_le10contam.tsv```
 
 **Section 3: Annotation**
 
