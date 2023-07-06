@@ -677,6 +677,7 @@ conda activate gtdbtk_env
 **\# How to download the database on your own server or local machine. The GTDB-tk database is not installed on the AWS student instance. GTDB-Tk requires ~84G of external data that needs to be downloaded and unarchived.**
 
 ```wget https://data.gtdb.ecogenomic.org/releases/latest/auxillary_files/gtdbtk_data.tar.gz```
+
 ```wget https://data.ace.uq.edu.au/public/gtdb/data/releases/latest/auxillary_files/gtdbtk_data.tar.gz```
 
 **\# Export the location of the gtdbtk database after it is installed. Change the path to the location of the GTDB-tk database. **
