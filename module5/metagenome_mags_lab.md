@@ -594,7 +594,7 @@ checkm lineage_wf -t 14 -x fa --tab_table --file refined_bins/KGHS_1-0/KGHS_1-0_
 
 Example output:
 
-```less /home/ubuntu/workspace/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/checkm/checkm.tsv```
+```less /home/ubuntu/workspace/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0_bin.1/checkm/checkm.tsv```
 
 <img src="images/media/image11.png"
 style="width:7.18336in;height:0.71296in" />
@@ -698,7 +698,7 @@ refined_bins/KGHS_1-0/KGHS_1-0_bin.1/gtdbtk --extension "fa" --cpus 14
 
 **Example output:**
 
-```less /home/ubuntu/workspace/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/gtdbtk/gtdbtk.bac120.summary.tsv```
+```less /home/ubuntu/workspace/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0_bin.1/gtdbtk/gtdbtk.bac120.summary.tsv```
 
 <img src="images/media/image13.png"
 style="width:7.14777in;height:0.74074in" />
@@ -762,7 +762,7 @@ contains all the annotated MAG sequence information including start and
 end position, reading frame, functional annotation, annotation
 description, etc.
 
-```less /home/ubuntu/workspace/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.gff```
+```less /home/ubuntu/workspace/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.gff```
 
 **DRAM** (<https://github.com/WrightonLabCSU/DRAM>)
 
@@ -912,7 +912,7 @@ metadata for extra information.**
 
 Example output:
 
-```less /home/ubuntu/workspace/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/mobileog_db/annotation.mobileOG.Alignment.Out.csv```
+```less /home/ubuntu/workspace/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0_bin.1/mobileog_db/annotation.mobileOG.Alignment.Out.csv```
 
 <img src="images/media/image19.png"
 style="width:7.35787in;height:1.0463in" />
@@ -1052,7 +1052,7 @@ Example output:
 <img src="images/media/image23.png"
 style="width:7.36508in;height:1.07407in" />
 
-```less /home/ubuntu/workspace/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0/KGHS_1-0_bin.1/eggnog_mapper/KGHS_1-0_bin.1.emapper.annotations```
+```less /home/ubuntu/workspace/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0_bin.1/eggnog_mapper/KGHS_1-0_bin.1.emapper.annotations```
 
 **\#query** – The query name
 
