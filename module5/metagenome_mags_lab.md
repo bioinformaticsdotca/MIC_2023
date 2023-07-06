@@ -916,7 +916,7 @@ Example commands to run mobileOG-db.
 **\# Run the mobileOG-db script for parsing the output and merging the
 metadata for extra information.**
 
-```python software_dir/mobileOG-db/mobileOG-pl/mobileOGs-pl-kyanite.py --o refined_bins/KGHS_1-0/KGHS_1-0_bin.3/mobileog_db/annotation --i "refined_bins/KGHS_1-0/KGHS_1-0_bin.3/mobileog_db/KGHS_1-0_bin.3.tsv" -m software_dir/mobileOG-db/mobileOG-db-beatrix-1.6-All.csv```
+```python software_dir/mobileOG-db/mobileOG-pl/mobileOGs-pl-kyanite.py --o refined_bins/KGHS_1-0/KGHS_1-0_bin.3/mobileog_db/annotation --i "refined_bins/KGHS_1-0/KGHS_1-0_bin.1/mobileog_db/KGHS_1-0_bin.1.tsv" -m software_dir/mobileOG-db/mobileOG-db-beatrix-1.6-All.csv```
 
 Example output:
 
