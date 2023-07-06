@@ -1019,6 +1019,7 @@ convenience. Please go to the bioinformatics.ca github repository to
 download these scripts for your use. Follow the instructions there for
 how to install the conda environments, databases and running the
 scripts.
+
 <https://github.com/bioinformaticsdotca/MIC_2023/blob/main/module5/scripts>
 
 **Appendix 3: Extra annotation programs and examples.**
@@ -1047,11 +1048,7 @@ conda activate eggnog_mapper_env
 **\# Run the eggnog-mapper annotation command using the prokka protein
 fasta file as input.**
 
-python path/to/software_dir/eggnog-mapper/emapper.py -i
-refined_bins/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.faa --itype
-proteins --cpu 14 --data_dir
-/path/to/eggnog-mapper/data --output
-refined_bins/KGHS_1-0/KGHS_1-0_bin.1/eggnog_mapper/KGHS_1-0_bin.1
+python path/to/software_dir/eggnog-mapper/emapper.py -i refined_bins/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.faa --itype proteins --cpu 14 --data_dir /path/to/eggnog-mapper/data --output refined_bins/KGHS_1-0/KGHS_1-0_bin.1/eggnog_mapper/KGHS_1-0_bin.1
 
 Example output:
 
@@ -1138,11 +1135,7 @@ conda activate run_dbcan_env
 
 **\# Run the run_dbcan command.**
 
-run_dbcan refined_bins/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.faa
-protein --db_dir
-/home/ubuntu/workspace/mags_workshop/module5/software_dir/run_dbcan_database
---dia_cpu 14 --hmm_cpu 14 --dbcan_thread 14 --out_dir
-refined_bins/KGHS_1-0/KGHS_1-0_bin.1/dbcan
+run_dbcan refined_bins/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.faa protein --db_dir /home/ubuntu/workspace/mags_workshop/module5/software_dir/run_dbcan_database --dia_cpu 14 --hmm_cpu 14 --dbcan_thread 14 --out_dir refined_bins/KGHS_1-0/KGHS_1-0_bin.1/dbcan
 
 ```less /home/ubuntu/workspace/mags_workshop/module5/output/refined_bins/KGHS_1-0/KGHS_1-0_bin.1/dbcan/overview.txt```
 
