@@ -400,7 +400,7 @@ Here the lines are: 1) creating a copy of the physeq_rare object, 2) creating an
 
 Jaccard distance:  
 
-```{R, results='hide', fig.keep='all'}
+```
 ps = physeq_rare
 ps.ord <- ordinate(ps, "PCoA", "jaccard")
 plot_ordination(ps, ps.ord, type="samples", color="Description_1", shape="Description_3")
