@@ -3,6 +3,30 @@ Email: kevin.muirhead@ucalgary.ca
 
 Disclaimer: If you have any issues or if something is missing in this document please email me and I will help you and update it for the next person. 
 
+### Installing miniconda3 if you do not have conda.
+
+# Go to the following website.
+https://docs.conda.io/en/latest/miniconda.html
+
+# Select the version that works for your system. (We are going to use the linux version "Python 3.10 Miniconda3 Linux 64-bit")
+
+# Download the miniconda3 installer using wget.
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+
+# Install miniconda3 to your path using -p /path/to/miniconda3 and -b makes it easier so you don't have to read the user agreement and type 'Y' and press enter a few times. If you want to read the user agreement then leave the -b option out. 
+sh Miniconda3-latest-Linux-x86_64.sh -b -p /path/to/miniconda3
+
+# After the install you might not see the text '(base)' at the start of your terminal. If you don't then you have to use the conda init command using the full path to the conda command in bin folder.
+
+# Run this command if you don't see the text '(base)' at the start of your terminal.
+/path/to/miniconda3/bin/conda init
+
+# Open your ~/.bashrc file and you should see the conda initialization information in there.
+less ~/.bashrc
+
+# If you see conda in your ~/bashrc then run the command so you don't have to log out and log back in using the source command.
+source ~/.bashrc
+
 ## Installing NCBI SRA tools conda environment to use fasterq-dump.
 
 ## [Option 1]: Install NCBI SRA tools so that you can install the SRA files using the SraRunInfo.csv file using conda create.
