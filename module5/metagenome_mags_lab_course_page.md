@@ -703,6 +703,7 @@ conda activate gtdbtk_env
 wget https://data.gtdb.ecogenomic.org/releases/latest/auxillary_files/gtdbtk_data.tar.gz
 
 **\# Uncompress the tar archive using the tar xvzf command.** 
+
 tar xvzf gtdbtk_data.tar.gz
 
 **\# Export the location of the gtdbtk database after it is installed. Change the path to the location of the GTDB-tk database.**
