@@ -604,6 +604,7 @@ cd /home/ubuntu/workspace/mags_workshop/module5
 echo "software_dir/checkm_data_dir" | checkm data setRoot
 
 **\# Create the checkm directory.**
+
 mkdir -p refined_bins/KGHS_1-0/KGHS_1-0_bin.1/checkm
 
 **\# Copy the bin and rename to KGHS_1-0.bin1 so that we can run
