@@ -603,6 +603,9 @@ cd /home/ubuntu/workspace/mags_workshop/module5
 
 echo "software_dir/checkm_data_dir" | checkm data setRoot
 
+**\# Create the checkm directory.**
+mkdir -p refined_bins/KGHS_1-0/KGHS_1-0_bin.1/checkm
+
 **\# Copy the bin and rename to KGHS_1-0.bin1 so that we can run
 CheckM.**
 
@@ -710,6 +713,10 @@ tar xvzf gtdbtk_data.tar.gz
 
 export GTDBTK_DATA_PATH="/path/to/release207_v2"
 
+**\# Create the gtdbtk directory.**
+
+mkdir -p refined_bins/KGHS_1-0/KGHS_1-0_bin.1/gtdbtk
+
 **\# Copy the KGHS_1-0_bin.1.fa MAG to the gtdbtk directory.**
 
 cp bin_refinement/KGHS_1-0/metawrap_50_10_bins/bin.1.fa
@@ -759,15 +766,18 @@ Example command for the KGHS_1-0.bin1.fa MAG:
 
 ```conda activate prokka_env```
 
+**\# Create the prokka bin directory.**
+
+```mkdir -p refined_bins/KGHS_1-0/KGHS_1-0_bin.1/prokka```
+
 **\# Rename and copy the KGHS_1-0_bin.1.fa MAG to the refined_bins
 KGHS_1-0_bin.1 prokka directory.**
 
-```cp bin_refinement/KGHS_1-0/metawrap_50_10_bins/bin.1.fa refined_bins/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.fa```
+```cp output/bin_refinement/KGHS_1-0/metawrap_50_10_bins/bin.1.fa refined_bins/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.fa```
 
 **\# Run prokka on the KGHS_1-0_bin.1.fa MAG.**
 
-```prokka --metagenome --outdir refined_bins/KGHS_1-0/KGHS_1-0_bin.1/prokka --prefix KGHS_1-0_bin.1 refined_bins/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.fa --cpus 14 --rfam 1 –force```
-
+```prokka --metagenome --outdir refined_bins/KGHS_1-0/KGHS_1-0_bin.1/prokka --prefix KGHS_1-0_bin.1 refined_bins/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.fa --cpus 14 --rfam 1 --force```
 Example output:
 
 **KGHS_1-0_bin.1.ffn** – The annotated genes FASTA file containing
@@ -932,6 +942,14 @@ Example commands to run mobileOG-db.
 
 ```cd /home/ubuntu/workspace/mags_workshop/module5```
 
+**\# Activate the conda environment.**
+
+```conda activate mobileogdb_env```
+
+**\# Create the mobileogdb directory.**
+
+```mkdir -p refined_bins/KGHS_1-0/KGHS_1-0_bin.1/mobileog_db```
+
 **\# Run diamond on the mobileOG-db.**
 
 ```diamond blastp -q refined_bins/KGHS_1-0/KGHS_1-0_bin.1/prokka/KGHS_1-0_bin.1.faa --db software_dir/mobileOG-db/mobileOG-db-beatrix-1.6.dmnd --outfmt 6 stitle qseqid pident bitscore slen evalue qlen sstart send qstart qend -o refined_bins/KGHS_1-0/KGHS_1-0_bin.1/mobileog_db/KGHS_1-0_bin.1.tsv --threads 14 -k 15 -e 1e-20 --query-cover 80 --id 30```
@@ -1070,6 +1088,10 @@ cd /home/ubuntu/workspace/mags_workshop/module5
 
 conda activate eggnog_mapper_env
 
+**\# Create the eggnog_mapper directory.**
+
+mkdir -p refined_bins/KGHS_1-0/KGHS_1-0_bin.1/eggnog_mapper
+
 **\# Run the eggnog-mapper annotation command using the prokka protein
 fasta file as input.**
 
@@ -1157,6 +1179,10 @@ cd /home/ubuntu/workspace/mags_workshop/module5
 **\# Activate the run_dbcan conda environment.**
 
 conda activate run_dbcan_env
+
+**\# Create the eggnog_mapper directory.**
+
+mkdir -p refined_bins/KGHS_1-0/KGHS_1-0_bin.1/dbcan
 
 **\# Run the run_dbcan command.**
 
