@@ -203,7 +203,7 @@ Example commands for sample KGHS_1-0:
 
 ```conda activate quast_env```
 
-**\# Run QUAST on the scaffolds.fasta file.**
+**\# Run QUAST on the contigs.fasta file.**
 
 ```quast.py --output-dir metagenome_assemblies/KGHS_1-0/quast_contigs --threads 1 output/metagenome_assemblies/KGHS_1-0/contigs.fasta```
 
