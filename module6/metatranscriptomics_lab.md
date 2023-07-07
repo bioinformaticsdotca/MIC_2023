@@ -35,7 +35,9 @@ This tutorial will take you through a pipeline for processing metatranscriptomic
 The whole metatranscriptomic pipeline includes existing bioinformatic tools and a series of Python scripts that handle file format conversion and output parsing. We will go through these steps to illustrate the complexity of the process and the underlying tools and scripts.
 
 New, faster, and/or more accurate tools are being developed all the time, and it is worth bearing in mind that any pipelines need to be flexible to incorporate these tools as they get adopted as standards by the community. For example, over the past few years, our lab has transitioned from cross\_match to Trimmomatic and from BLAST to DIAMOND. 
+
 Note:  This workshop was designed for use with DIAMOND v0.826.  Newer versions of DIAMOND will be incompatible with the pre-compiled database files we have made as part of this exercise.  
+
 To illustrate the process we are going to use sequence reads generated from the contents of the colon of a mouse. These are 150 bp single-end reads. Paired-end reads can also be used, and are often preferred because they can improve annotation quality when there is enough overlap in the read pairs to improve the effective average read length. Working with paired-end data involves an additional data processing step (merging of overlapping reads) produces more files during data processing (files for merged/singleton reads, forward reads, and reverse reads), but the structure of a pipeline for paired-end data is similar to the pipeline described here and can be readily adapted.
 
 Rather than use the entire set of 25 million read, which might take several days to process on a desktop, the tutorial will take you through processing a subset of 100,000 reads.
@@ -81,12 +83,14 @@ fastqc mouse1.fastq
 
 The FastQC report is generated in a HTML file, `mouse1_fastqc.html`. You'll also find a zip file which includes data files used to generate the report.
 
-To open the HTML report file, visit *xx.uhn-hpc.ca/*. As we generate more reports, make sure you are opening the most recent!
+To open the HTML report file, visit *xx.uhn-hpc.ca/*. As we generate more reports, make sure you are opening the most recent! Some features of FastQC include:
 
 -   Basic Statistics: Basic information of the mouse RNA-seq data, e.g. the total number of reads, read length, GC content.
 -   Per base sequence quality: An overview of the range of quality values across all bases at each position.
 -   Per Base Sequence Content: A plot showing nucleotide bias across sequence length.
 -   Adapter Content: Provides information on the level of adapter contamination in your sequence sample.
+
+Note that FastQC report flags can be misleading - red flags might not always be concerning, and green flags are not always an all-clear. For example, FastQC has a limited database of adapter sequences and may not recognize the particular adapters in your data. It is important to check if the report is consistent with _your_ expectations.
 
 ## Processing the Reads
 
@@ -95,14 +99,13 @@ To open the HTML report file, visit *xx.uhn-hpc.ca/*. As we generate more report
 Trimmomatic can rapidly identify and trim adaptor sequences, as well as identify and remove low quality sequence data - It is already installed on the PCs, and we've included their adapter database in the precomputed files.
 
 ```
-tar -xvf precomputed_files.tar.gz TruSeq3-SE.fa
-ln -s TruSeq3-SE.fa Adapters
+tar -xvf precomputed_files.tar.gz TruSeq3-SE.fa > Adapters
 java -jar /usr/local/trimmomatic-0.36.jar SE mouse1.fastq mouse1_trim.fastq ILLUMINACLIP:Adapters:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:50
 ```
 
 **Notes**:
 
--   `ln -s TruSeq3-SE.fa Adapters` is used to create a symbolic link to the Trimmomatic supplied single-end adapter sequence files suitable for use with sequences produced by HiSeq and MiSeq machines. However, this file should be replaced with known adapter files from your own sequencing project if possible.
+-   Trimmomatic has supplied single-end adapter sequence files suitable for use with sequences produced by HiSeq and MiSeq machines. However, this file should be replaced with known adapter files from your own sequencing project if possible.
 -   The command line parameters are:
     -   `SE`: The input data are single-end reads.
     -   `ILLUMINACLIP:Adapters:2:30:10`: remove the adapters.
@@ -160,7 +163,7 @@ vsearch --fastq_filter mouse1_trim.fastq --fastq_maxee 2.0 --fastqout mouse1_qua
 
 -   The command line parameters are:
     -   `--fastq_filter ` Instructs VSEARCH to use the quality filtering algorithm to remove low quality reads
-    -   `--fastq_maxee 2.0` The expected error threshold. Set at 1. Any reads with quality scores that suggest that the average expected number of errors in the read are greater than 1 will be filtered.
+    -   `--fastq_maxee 2.0` The expected error threshold. Set at 2. Any reads with quality scores that suggest that the average expected number of errors in the read are greater than 2 will be filtered.
     -   `--fastqout` Indicates the output file contain the quality filtered reads
 
 Checking read quality with FastQC:
@@ -416,7 +419,7 @@ Then we generate a human readable summary of the classification using Kaiju.
     -   `-o`: The summary report output file
     -   `-r`: The taxonomic rank for which the summary will be produced
 
-<!-- ***Question 9: How many reads did kaiju classify?*** -->
+<!-- ***Question 9: How many different genera did kaiju find within our sample?*** -->
 
 Lastly, we will use [Krona] (https://github.com/marbl/Krona/wiki) to generate a hierarchical multi-layered pie chart summary of the taxonomic composition of our dataset.
 
@@ -434,7 +437,7 @@ open mouse1_classification.html
 
 <!-- 
 ***Question 10: What is the most abundant family in our dataset? What is the most abundant phylum?  
-Hint: Try decreasing the `Max depth` value on the top left of the screen and/or double clicking on spcific taxa.***
+Hint: Try decreasing the `Max depth` value on the top left of the screen and/or double clicking on specific taxa.***
 -->
 
 ### Step 8. Assembling reads
@@ -503,11 +506,11 @@ Since BWA utilizes nucleotide searches, we rely on a [microbial genome database]
 
 **BWA searches against microbial genome database**
 
--  If you were to run BWA yourself, you would use the following commands to search the `microbial_all_cds.fasta` database:
+-  If you were to run BWA yourself, you would use the following commands to search the `microbial_all_cds.fasta` database (Don't run these!):
    -  `bwa mem -t 4 microbial_all_cds.fasta mouse1_contigs.fasta > mouse1_contigs_annotation_bwa.sam`
    -  `bwa mem -t 4 microbial_all_cds.fasta mouse1_unassembled.fasta > mouse1_unassembled_annotation_bwa.sam`
 
-Then you would run the following python script to extract high confidence alignments to the `microbial_all_cds.fasta` database and generate a read to gene mapping table. Here we are only taking one gene per contig, but it is possible that contigs may have more than one genes (e.g. co-transcribed genes).
+Then you would run the following python script to extract high confidence alignments to the `microbial_all_cds.fasta` database and generate a read to gene mapping table. Here we are only taking one gene per contig, but it is possible that contigs may have more than one genes (e.g. co-transcribed genes). (Don't run these!)
 
 -  `python 6_BWA_Gene_Map.py microbial_all_cds.fasta mouse1_contigs_map.tsv mouse1_genes_map.tsv mouse1_genes.fasta mouse1_contigs.fasta mouse1_contigs_annotation_bwa.sam mouse1_contigs_unmapped.fasta mouse1_unassembled.fastq mouse1_unassembled_annotation_bwa.sam mouse1_unassembled_unmapped.fasta`
 
@@ -519,7 +522,7 @@ The argument structure for this script is:
 
 DIAMOND is a BLAST-like local aligner for mapping translated DNA query sequences against a protein reference database (BLASTX alignment mode). The speedup over BLAST is up to 20,000 on short reads at a typical sensitivity of 90-99% relative to BLAST depending on the data and settings. However, searching time for the nr database is still long (timing scales primarily by size of reference database for small numbers of reads).
 
--  If you were to run DIAMOND yourself, you would use the following commands:
+-  If you were to run DIAMOND yourself, you would use the following commands (Don't run these!):
    -   `mkdir -p dmnd_tmp`
    -   `diamond blastx -p 4 -d nr -q mouse1_contigs_unmapped.fasta -o mouse1_contigs.dmdout -f 6 -t dmnd_tmp -k 10 --id 85 --query-cover 65 --min-score 60`
    -   `diamond blastx -p 4 -d nr -q mouse1_unassembled_unmapped.fasta -o mouse1_unassembled.diamondout -f 6 -t dmnd_tmp -k 10 --id 85 --query-cover 65 --min-score 60`
@@ -533,7 +536,7 @@ DIAMOND is a BLAST-like local aligner for mapping translated DNA query sequences
     -   `-o`: Output file name.
     -   `-f`: Output file is in a tabular format.
 
-From the output of these searches, you would need to extract the top matched proteins using the script below. Here we consider a match if 85% sequence identity over 65% of the read length - this can result in very poor e-values (E = 3!) but the matches nonetheless appear reasonable.
+From the output of these searches, you would need to extract the top matched proteins using the script below. Here we consider a match if 85% sequence identity over 65% of the read length - this can result in very poor e-values (E = 3!) but the matches nonetheless appear reasonable. (Don't run these!)
 
 -  `python 7_Diamond_Protein_Map.py nr mouse1_contigs_map.tsv mouse1_genes_map.tsv mouse1_proteins.fasta mouse1_contigs_unmapped.fasta mouse1_contigs.dmdout mouse1_contigs_unannotated.fasta mouse1_unassembled_unmapped.fasta mouse1_unassembled.dmdout mouse1_unassembled_unannotated.fasta`
 
@@ -615,7 +618,7 @@ python 9_RPKM.py nodes.dmp mouse1_classification.tsv mouse1_genes_map.tsv mouse1
     -   `gi|110832861|ref|NC_008260.1|:414014-415204 1191 1 3.9.3.5 106.98 0 0 45.89 6.86 20.77 7.35 2.3 0 4.63`
 
 <!--
-***Question 15: have a look at the `mouse1_RPKM.txt` file. What are the most highly expressed genes? Which phylum appears most active?***
+***Question 15: Using excel (and referring back to Krona if needed), have a look at the `mouse1_RPKM.txt` file. What are the most highly expressed genes? Which phylum appears most active?***
 -->
 ### Step 12. Visualize the results using a KEGG Pathway as a scaffold in Cytoscape.
 
@@ -649,9 +652,9 @@ You can find other [pathways on KEGG] (http://www.genome.jp/kegg-bin/get_htext?h
 
 **Loading a node attribute text file (.txt) - this will map attributes to nodes in your network which you can subsequently visualize**
 
--   Select `File` -> `Import` -> `Table` -> `File...`
+-   Navigate to the Node Table panel (bottom right) and click on the Import Table from file icon (arrow pointing into document)
 -   Select the `mouse1_cytoscape.txt` file and click `Open`
--   Change the `Key Column for network` from `shared name` to `KEGG_NODE_LABEL`
+-   Change the `Import Data as` from `shared name` to `KEGG_NODE_LABEL`
 -   Click OK
 
 **Visualizing your node attributes**

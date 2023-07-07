@@ -1,0 +1,93 @@
+---
+layout: tutorial_page
+permalink: /MIC_2023_Module6_answers
+title: CBW-IMPACTT Microbiome Analysis 2023
+header1: Workshop Pages for Students
+header2: CBW-IMPACTT Microbiome Analysis Module 6 Lab Answers
+image: /site_images/CBW_Metagenome_icon.jpg
+home: https://bioinformaticsdotca.github.io/
+---
+
+## Question 1: How many low quality sequences have been removed?
+
+5565 low quality reads were removed. 
+
+
+## Question 2: How has the per read sequence quality curve changed?
+
+From the Trimmomatic step, the tail of quality curve has been compressed to left, indicating that many lower quality reads were removed. 
+
+
+## Question 3: Can you find how many unique reads there are?
+
+Stated in the CD-HIT output, there are 85377 unique reads in this file. As mentioned in the tutorial, in your own data, you might find a much lower number of unique reads. 
+
+
+## Question 4: Can you find how many reads BWA mapped to the vector database?
+
+234 reads mapped to the vector database. 
+
+
+## Question 5: How many reads did BWA and BLAT align to the mouse host sequence database?
+
+BWA found 1066 host reads and BLAT found 6 host reads. 
+
+
+## Question 6: How many rRNA sequences were identified? How many reads are now remaining?
+
+2249 reads were identified as rRNA and 81822 reads remain.
+
+
+## Question 7: How many putative mRNA sequences were identified? How many unique mRNA sequences?
+
+81822 putative mRNA reads and 82741 unique mRNA reads.
+
+
+## Question 8: How many total contaminant, host, and rRNA reads were filtered out?
+
+17259 reads were filtered out. 
+
+
+## Question 9: How many different genera did kaiju find within our sample?
+
+1128 genera were found. 
+
+
+## Question 10: What is the most abundant family in our dataset? What is the most abundant phylum?
+
+The most abundant family is Oscillibacter, and Firmicutes is the most abundant phylum. 
+
+
+## Question 11: How many assemblies did SPAdes produce?
+
+SPAdes produced 1084 assemblies. 
+
+
+## Question 12: How many reads were not used in contig assembly? How many reads were used in contig assembly? How many contigs did we generate?
+
+59658 reads were not used, 23083 reads were used, and 1084 contigs were generated. 
+
+
+## Question 13: How many reads were mapped in each step? How many genes were the reads mapped to? How many proteins were the genes mapped to?
+
+Since this section was not run, the answer is given to you in case you wanted to try these later. 
+
+
+## Question 14: How many unique enzyme functions were identified in our dataset?
+
+1016 unique enzyme functions were identified. 
+
+
+## Question 15: Using excel, have a look at the `mouse1_RPKM.txt` file. What are the most highly expressed genes? Which phylum appears most active?
+
+The two highest expressing features are flagellin proteins. Firmicutes looks to be the most active phylum.
+
+
+## Visualization Questions
+In the format of ec00010/ ec00500. These questions are more open-ended, but some example answers are included.  
+glyceraldehyde-3-phosphate dehydrogenase/ glucose-1-phosphate adenylyltransferase  
+Oscillospiraceae / Oscillospiraceae  
+Ex. The cluster of ec00010:58, ec00010:59, and ec00010:145 have higher Clostridia expression.  
+---  
+All three enzymes are involved with fructose phosphorylation.  
+The homologs across these different bacteria may not all function in the exact same way.   
