@@ -1,0 +1,7 @@
+name: sra_tools_env
+channels:
+  - <unknown>
+  - defaults
+dependencies:
+  - sra-tools=3.0.3=h87f3376_0
+prefix: /work/sycuro_lab/kevin/miniconda3/envs/sra_tools_env

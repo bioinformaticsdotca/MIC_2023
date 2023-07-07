@@ -1,0 +1,249 @@
+TA Name: Kevin Muirhead
+Email: kevin.muirhead@ucalgary.ca
+
+Disclaimer: If you have any issues or if something is missing in this document please email me and I will help you and update it for the next person. 
+
+## Installing NCBI SRA tools conda environment to use fasterq-dump.
+
+## [Option 1]: Install NCBI SRA tools so that you can install the SRA files using the SraRunInfo.csv file using conda create.
+
+# Create the sra-tools conda environment.
+conda create --name sra_tools_env
+
+# Activate the sra-tools conda environment.
+conda activate sra_tools_env
+
+# Install the sra-tools conda package.
+conda install -c bioconda sra-tools
+
+# Export the NCBI SRA tools conda environment if you want to share with colleagues.
+conda env export > sra_tools_env.yaml
+
+
+## [Option 2] Install NCBI SRA tools so that you can install the SRA files using the SraRunInfo.csv file using conda
+conda env create --file sra_tools_env.yaml
+
+
+## Installing the spades conda environment to use metaspades.py.
+
+## [Option 1]: Install conda environment using conda create.
+
+# Create the spades conda environment.
+conda create --name spades_env
+
+# Activate the spades conda environment.
+conda activate spades_env
+
+# Install the python 3.9.12 conda package
+conda install -c conda-forge python==3.9.12
+
+# Install the spades 3.13.0 conda package.
+conda install -c bioconda spades==3.13.0
+
+# Make the spades conda yaml file for quick installation.
+conda env export > spades_env.yaml
+
+## Installing the seqtk conda environment to run seqtk.
+
+## [Option 1]: Install conda environment using conda create.
+
+# Create the seqtk conda environment.
+conda create --name seqtk_env
+
+# Activate the seqtk conda environment.
+conda activate seqtk_env
+
+# Install the seqtk conda package.
+conda install -c bioconda seqtk
+
+
+## Installing the seqkit conda environment to run seqkit
+
+## [Option 1]: Install conda environment using conda create.
+
+# Create the seqkit conda environment.
+conda create --name seqkit_env
+
+# Activate the seqkit conda environment.
+conda activate seqkit_env
+
+# Install the seqkit conda package.
+conda install -c bioconda seqkit
+
+## Installing the quast conda environment to run quast.
+
+## [Option 1]: Install conda environment using conda create.
+
+# Create the quast conda environment. 
+conda create --name quast_env
+
+# Activate the quast conda environment.
+conda activate quast_env
+
+# Install the quast conda package.
+conda install -c bioconda quast==5.0.2
+
+## Installing the bwa conda environment to run bwa mem for read mapping.
+
+## [Option 1]: Install conda environment using conda create.
+
+# Create the bwa conda environment.
+conda create --name bwa_env
+
+# Activate the bwa conda environment.
+conda activate bwa_env
+
+# Install the bwa conda package.
+conda install -c bioconda bwa
+
+## Installing the samtools conda environment to run samtools for sorting sam and converting to bam files.
+
+## [Option 1]: Install conda environment using conda create.
+
+# Create the samtools conda environment.
+conda create --name samtools_env
+
+# Activate the samtools conda environment.
+conda activate samtools_env
+
+# Install the samtools conda package.
+conda install -c bioconda samtools==1.6
+
+## Installing the metabat2 conda environment
+
+## [Option 1]: Install conda environment using conda create.
+
+# Create the metabat2 conda environment.
+conda create --name metabat2_env
+
+# Activate the metabat2 conda environment.
+conda activate metabat2_env
+
+# Install the metabat2 conda package.
+conda install -c bioconda metabat2
+
+
+## Installing the maxbin2 conda environment.
+
+# Create and install the maxbin2 conda environment.
+conda env create --file maxbin2_env.yaml
+
+# Activate the maxbin2 conda environment.
+conda activate maxbin2_env
+
+# Change to the software_dir directory.
+cd software_dir/
+
+# Download the MaxBin2 perl script from sourceforge.
+wget https://sourceforge.net/projects/maxbin/files/MaxBin-2.2.7.tar.gz/download -O MaxBin-2.2.7.tar.gz
+
+# Uncompress the MaxBin2 source code using tar xvzf.
+tar xvzf MaxBin-2.2.7.tar.gz 
+
+
+## Install the checkm database
+
+# Make the checkm_data_dir directory.
+mkdir -p checkm_data_dir
+
+# Change directory to the checkm_data_dir directory.
+cd checkm_data_dir/
+
+# Download the checkm database.
+wget https://data.ace.uq.edu.au/public/CheckM_databases/checkm_data_2015_01_16.tar.gz
+
+# Uncompress the checkm database using tar xvzf.
+tar xzf checkm_data_2015_01_16.tar.gz
+
+# Set the checkm database path. *** Need to do this or you will run into issue where the error message might print to a file in an infinite loop causing your storage to get full because it doesn't stop.
+checkm data setRoot /path/to/checkm_data_dir
+
+## Installing metawrap bin_refinement module using conda.
+
+# Create the metawrap bin_refinement module conda environment using the yaml file
+conda env create --file metawrap_bin_refinement_env.yaml
+
+
+## Installing the checkm conda environment
+
+# Create the checkm conda environment.
+conda create --name checkm_env
+
+# Activate the checkm conda environment.
+conda activate checkm_env
+
+# Install the checkm-genome conda package.
+conda install -c bioconda checkm-genome
+
+## Installing the gtdbtk conda environment.
+
+# Create the gtdbtk conda environment.
+conda create --name gtdbtk_env
+
+# Activate the gtdbtk conda environment.
+conda activate gtdbtk_env
+
+# Install the gtdbtk conda package.
+conda install -c bioconda gtdbtk
+
+## Installing prokka
+
+# Create the prokka conda environment.
+conda create --name prokka_env
+
+# Activate the prokka conda environment.
+conda activate prokka_env
+
+# Install the prokka conda package.
+conda install -c bioconda prokka
+
+# Install the blast==2.14.0 conda package.
+conda install -c bioconda blast==2.14.0
+
+## Installing eggnog-mapper 
+
+# Create the eggnog_mapper conda environment.
+conda create --name eggnog_mapper_env
+
+# Activate the eggnog_mapper conda environment.
+conda activate eggnog_mapper_env
+
+# Install the eggnog-mapper conda package.
+conda install -c bioconda eggnog-mapper
+
+## Installing run_dbcan4
+
+# Create the dbcan conda environment.
+conda create --name dbcan_env
+
+# Activate the run_dbcan4 conda environment.
+conda activate dbcan_env
+
+# Install the blast conda package.
+conda install -c bioconda blast
+
+# Install the dbcan conda package.
+conda install -c bioconda dbcan
+
+# Install the dbcan databases.
+mkdir -p software_dir/run_dbcan_database
+
+# Change the directory to the run_dbcan_database directory.
+cd software_dir/run_dbcan_database
+
+# Install the dbcan databases.
+
+wget http://bcb.unl.edu/dbCAN2/download/Databases/fam-substrate-mapping-08252022.tsv && wget http://bcb.unl.edu/dbCAN2/download/Databases/PUL.faa && makeblastdb -in PUL.faa -dbtype prot && wget http://bcb.unl.edu/dbCAN2/download/Databases/dbCAN-PUL_07-01-2022.xlsx     && wget http://bcb.unl.edu/dbCAN2/download/Databases/dbCAN-PUL_07-01-2022.txt && wget http://bcb.unl.edu/dbCAN2/download/Databases/dbCAN-PUL.tar.gz && tar xvf dbCAN-PUL.tar.gz     && wget http://bcb.unl.edu/dbCAN2/download/Databases/dbCAN_sub.hmm && hmmpress dbCAN_sub.hmm     && wget http://bcb.unl.edu/dbCAN2/download/Databases/V11/CAZyDB.08062022.fa && diamond makedb --in CAZyDB.08062022.fa -d CAZy     && wget https://bcb.unl.edu/dbCAN2/download/Databases/V11/dbCAN-HMMdb-V11.txt && mv dbCAN-HMMdb-V11.txt dbCAN.txt && hmmpress dbCAN.txt     && wget https://bcb.unl.edu/dbCAN2/download/Databases/V11/tcdb.fa && diamond makedb --in tcdb.fa -d tcdb     && wget http://bcb.unl.edu/dbCAN2/download/Databases/V11/tf-1.hmm && hmmpress tf-1.hmm     && wget http://bcb.unl.edu/dbCAN2/download/Databases/V11/tf-2.hmm && hmmpress tf-2.hmm     && wget https://bcb.unl.edu/dbCAN2/download/Databases/V11/stp.hmm && hmmpress stp.hmm     && cd ../ && wget http://bcb.unl.edu/dbCAN2/download/Samples/EscheriaColiK12MG1655.fna     && wget http://bcb.unl.edu/dbCAN2/download/Samples/EscheriaColiK12MG1655.faa     && wget http://bcb.unl.edu/dbCAN2/download/Samples/EscheriaColiK12MG1655.gff
+
+## Installing DRAM conda environment
+
+# Download the conda environment from the DRAM github.
+wget https://raw.githubusercontent.com/WrightonLabCSU/DRAM/master/environment.yaml -O dram_env.yaml
+
+# Create the DRAM conda environment using the yaml file.
+conda env create --name dram_env --file dram_env.yaml
+
+# Activate the dram conda environment.
+conda activate dram_env
+
+
