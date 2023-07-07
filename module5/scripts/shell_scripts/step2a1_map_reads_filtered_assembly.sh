@@ -21,7 +21,7 @@ input_dir="cleaned_fastq_files"
 # Internal Field Separator (IFS) used when using cat in a job array so that lines are separated by newlines instead of separated based on spaces.
 IFS=$'\n'
 
-for sample_id in $(cat KGHS_pilot_subset_4_sample_list.txt);
+for sample_id in $(cat $list_file);
 do
 
     # The read 1 fastq file for each sample.
