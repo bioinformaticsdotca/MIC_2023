@@ -9,9 +9,6 @@ conda activate seqkit_env
 # The path to a list of sample ids.
 ids_infile="KGHS_pilot_subset_4_sample_list.txt"
 
-# Make a list of minimum lengths  
-minimum_lengths=(1500 2000 2500)
-
 # The output directory to write the filtered files.
 output_dir="filtered_metagenomes"
 
@@ -27,20 +24,19 @@ do
 	# The sample name output directory.
 	sample_dir="${output_dir}/${sample_id}"
 
-        # Create the sample name output directory if it does not exist.
-        mkdir -p $sample_dir
+    # Create the sample name output directory if it does not exist.
+    mkdir -p $sample_dir
 
-	;
 	# The assembly scaffold length directory for each sample.
 	sample_assembly_len_dir="${sample_dir}/${sample_id}_min${minimum_length}"
 		
 	# Create the assembly scaffold length directory for each sample.
 	mkdir -p $sample_assembly_len_dir
 
-		# Run the seqkit command.
-		echo "seqkit stats -a ${sample_assembly_len_dir}/${sample_id}_min${minimum_length}.fasta > ${sample_assembly_len_dir}/${sample_id}_min${minimum_length}.seqkit.stats.txt"
-		seqkit stats -a ${sample_assembly_len_dir}/${sample_id}_min${minimum_length}.fasta > ${sample_assembly_len_dir}/${sample_id}_min${minimum_length}.seqkit.stats.txt
-	done
+    # Run the seqkit command.
+    echo "seqkit stats -a ${sample_assembly_len_dir}/${sample_id}_min${minimum_length}.fasta > ${sample_assembly_len_dir}/${sample_id}_min${minimum_length}.seqkit.stats.txt"
+    seqkit stats -a ${sample_assembly_len_dir}/${sample_id}_min${minimum_length}.fasta > ${sample_assembly_len_dir}/${sample_id}_min${minimum_length}.seqkit.stats.txt
+	
 done
 
 

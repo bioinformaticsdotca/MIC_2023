@@ -1,13 +1,4 @@
 #!/bin/bash
-#SBATCH --partition=synergy
-#SBATCH --nodelist="sm1"
-#SBATCH --nodes=1
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=32
-#SBATCH --time=7-00:00:00
-#SBATCH --mem=600G
-#SBATCH --output=run_install_DRAM_database.%A.out
-#SBATCH --error=run_install_DRAM_database.%A.err
 
 # Get the conda environment path at the start of the shell script.
 source ~/.bashrc

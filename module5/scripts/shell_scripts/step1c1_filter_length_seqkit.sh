@@ -27,8 +27,8 @@ do
 	# The sample name output directory.
 	sample_dir="${output_dir}/${sample_id}"
 
-        # Create the sample name output directory if it does not exist.
-        mkdir -p $sample_dir
+    # Create the sample name output directory if it does not exist.
+    mkdir -p $sample_dir
 
 	# Run the seqkit command.
 	echo "seqkit seq -m ${minimum_length} metagenome_assemblies/${sample_id}/scaffolds.fasta > ${sample_dir}/${sample_id}_min${minimum_length}.fasta"

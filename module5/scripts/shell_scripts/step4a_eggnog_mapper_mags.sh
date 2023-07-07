@@ -1,14 +1,4 @@
 #!/bin/bash
-#SBATCH --job-name="run_eggnog_mapper_mags_job_array"
-#SBATCH --partition=synergy,cpu2022,cpu2023
-#SBATCH --nodes=1
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=14
-#SBATCH --time=7-00:00:00
-#SBATCH --mem=60G
-#SBATCH --array=1-4%4
-#SBATCH --output=run_eggnog_mapper_mags_job_array.%A_%a.out
-#SBATCH --error=run_eggnog_mapper_mags_job_array.%A_%a.err
 
 # Get the bashrc information for conda.
 source ~/.bashrc
@@ -28,55 +18,52 @@ eggnog_mapper_db="/bulk/IMCshared_bulk/shared/shared_software/eggnog-mapper/data
 # The list of sample ids.
 list_file="KGHS_pilot_subset_4_sample_list.txt"
 
-# Internal Field Separator (IFS) used when using cat in a job array so that lines are separated by newlines instead of separated based on spaces.
-IFS=$'\n' 
-
-# Making an bash array based on the list file.
-array=($(<$list_file))
-
-# The sample id entry.
-sample_id=${array[$SLURM_ARRAY_TASK_ID-1]}
-
 # The bin refinement directory for refined bins using metawrap.
 bin_refinement_dir="bin_refinement"
 
-# The sample bin refinement directory for refined bins for each sample.
-sample_bin_refinement_dir="${bin_refinement_dir}/${sample_id}"
+# Internal Field Separator (IFS) used when using cat in a job array so that lines are separated by newlines instead of separated based on spaces.
+IFS=$'\n'
 
-# The refined bins directory.
-refined_bins_dir="refined_bins"
-mkdir $refined_bins_dir
+for sample_id in $(cat KGHS_pilot_subset_4_sample_list.txt);
+do
 
-# The refined bins directory for each sample.
-sample_refined_bins_dir="${refined_bins_dir}/${sample_id}"
-mkdir $sample_refined_bins_dir
+    # The sample bin refinement directory for refined bins for each sample.
+    sample_bin_refinement_dir="${bin_refinement_dir}/${sample_id}"
 
-# The metawrap filtered refined bins directory.
-metawrap_bin_refinement_dir="${sample_bin_refinement_dir}/metawrap_${completeness_thresh}_${contamination_thresh}_bins"
+    # The refined bins directory.
+    refined_bins_dir="refined_bins"
+    mkdir $refined_bins_dir
 
-# Activate the eggnog_mapper conda environment.	 
-conda activate eggnog_mapper_env
+    # The refined bins directory for each sample.
+    sample_refined_bins_dir="${refined_bins_dir}/${sample_id}"
+    mkdir $sample_refined_bins_dir
 
-# Run eggnog_mapper on the refined bins from metawrap using a for loop.
-for bin_file in $(ls ${metawrap_bin_refinement_dir} | grep "\.fa")
-do 
-	echo $bin_file;
-	filename=$(basename $bin_file ".fa")
-	bin_dir="${sample_refined_bins_dir}/${sample_id}_${filename}"
-	mkdir -p $bin_dir
+    # The metawrap filtered refined bins directory.
+    metawrap_bin_refinement_dir="${sample_bin_refinement_dir}/metawrap_${completeness_thresh}_${contamination_thresh}_bins"
 
-	# The eggnog_mapper bin output file directory.
-	eggnog_mapper_bin_dir="${bin_dir}/eggnog_mapper"
-	mkdir -p $eggnog_mapper_bin_dir
+    # Activate the eggnog_mapper conda environment.
+    conda activate eggnog_mapper_env
 
-	# The prokka protein fasta file.
-	prokka_protein_file="${bin_dir}/prokka/${sample_id}_${filename}.faa"
+    # Run eggnog_mapper on the refined bins from metawrap using a for loop.
+    for bin_file in $(ls ${metawrap_bin_refinement_dir} | grep "\.fa")
+    do
+        echo $bin_file;
+        filename=$(basename $bin_file ".fa")
+        bin_dir="${sample_refined_bins_dir}/${sample_id}_${filename}"
+        mkdir -p $bin_dir
 
-	# The eggnog-mapper output file prefix.	
-	eggnog_mapper_output_file_prefix="${eggnog_mapper_bin_dir}/${sample_id}_${filename}"
+        # The eggnog_mapper bin output file directory.
+        eggnog_mapper_bin_dir="${bin_dir}/eggnog_mapper"
+        mkdir -p $eggnog_mapper_bin_dir
 
-	# Run the run_eggnog_mapper command.
-	echo "python /bulk/IMCshared_bulk/shared/shared_software/eggnog-mapper/emapper.py -i ${prokka_protein_file} --itype proteins --cpu ${num_threads} --data_dir ${eggnog_mapper_db} --output ${eggnog_mapper_output_file_prefix}"
-	python /bulk/IMCshared_bulk/shared/shared_software/eggnog-mapper/emapper.py -i ${prokka_protein_file} --itype proteins --cpu ${num_threads} --data_dir ${eggnog_mapper_db} --output ${eggnog_mapper_output_file_prefix}
+        # The prokka protein fasta file.
+        prokka_protein_file="${bin_dir}/prokka/${sample_id}_${filename}.faa"
+
+        # The eggnog-mapper output file prefix.
+        eggnog_mapper_output_file_prefix="${eggnog_mapper_bin_dir}/${sample_id}_${filename}"
+
+        # Run the run_eggnog_mapper command.
+        echo "python /bulk/IMCshared_bulk/shared/shared_software/eggnog-mapper/emapper.py -i ${prokka_protein_file} --itype proteins --cpu ${num_threads} --data_dir ${eggnog_mapper_db} --output ${eggnog_mapper_output_file_prefix}"
+        python /bulk/IMCshared_bulk/shared/shared_software/eggnog-mapper/emapper.py -i ${prokka_protein_file} --itype proteins --cpu ${num_threads} --data_dir ${eggnog_mapper_db} --output ${eggnog_mapper_output_file_prefix}
+    done
 done
-

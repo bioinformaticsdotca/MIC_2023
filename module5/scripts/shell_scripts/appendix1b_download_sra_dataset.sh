@@ -1,12 +1,4 @@
 #!/bin/bash
-#SBATCH --partition=synergy,cpu2013,cpu2019,cpu2021,cpu2022,cpu2023
-#SBATCH --nodes=1
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=8
-#SBATCH --time=7-00:00:00
-#SBATCH --mem=5G
-#SBATCH --output=run_download_sra_subsampled_dataset.%A.out
-#SBATCH --error=run_download_sra_subsampled_dataset.%A.err
 
 # Get the conda environment path at the start of the shell script.
 source ~/.bashrc
