@@ -149,7 +149,7 @@ qiime diversity beta-group-significance \
     --o-visualization beta_group_sig_permanova
 ```
 
-It is recommended to test for dispersion of groups especially if PERMANOVA shows signifcant difference in groups. 
+It is recommended to test for dispersion of groups especially if PERMANOVA shows signifcant difference in groups. This is to test if dispersions of the groups being compared is different or not. If the dispersion test has a significant p-value that means that group dispersions are different and you should be careful with reporting your PERMANOVA results.
 
 ```
 qiime diversity beta-group-significance \
