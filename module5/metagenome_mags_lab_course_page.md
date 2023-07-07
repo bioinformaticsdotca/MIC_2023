@@ -702,12 +702,12 @@ conda activate gtdbtk_env
 
 wget https://data.gtdb.ecogenomic.org/releases/latest/auxillary_files/gtdbtk_data.tar.gz
 
-**\# Uncompress the tar archive using the tar xvzf command.** 
-tar xvzf gtdbtk_data.tar.gz
+wget https://data.ace.uq.edu.au/public/gtdb/data/releases/latest/auxillary_files/gtdbtk_data.tar.gz
 
 **\# Export the location of the gtdbtk database after it is installed. Change the path to the location of the GTDB-tk database.**
 
-export GTDBTK_DATA_PATH="/path/to/release207_v2"
+export
+GTDBTK_DATA_PATH="/path/to/release207_v2"
 
 **\# Copy the KGHS_1-0_bin.1.fa MAG to the gtdbtk directory.**
 
