@@ -243,6 +243,8 @@ ln -s ~/CourseData/MIC_data/metagenome_data/combine_merged_files.py .
 ln -s ~/CourseData/MIC_data/metagenome_data/Blueberry_metadata_metagenome.tsv .
 ```
 
+You can find the combine_merged_files.py script [here.](https://drive.google.com/file/d/1c6nTWtUkYqhv1-2a1vn_228lXPg5KPvF/view?usp=drive_link)
+
 Finally, we'll create a single output file that contains the information for both the classifications using MiniKraken that we've run, as well as the RefSeqCompleteV214 database that we'd run prior to the workshop:
 ```
 python combine_merged_files.py
